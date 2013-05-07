@@ -16,7 +16,7 @@
 #############################################################################
 
 defaults: 
-  enable_tr8n:                false      # enables the engine
+  enable_tr8n:                true      # enables the engine
   host:                       geni.berkovich.net
 
   enable_fallback_languages:  true      # for example: Catalan can fallback onto Spanish
@@ -121,6 +121,7 @@ defaults:
     title:                    "Tr8n Sample Application"           # site title
     contact_email:            "admin@tr8nhub.com"                 # default contact email
     base_url:                 "http://localhost:3001"             # base site url 
+    default_url:              "/home"
     default_locale:           "en-US"                             # locale of the site default language
     current_locale_method:    "current_locale"                    # application controller method that sets and returns current locale
     user_info:                                                    # used by integrated and embedded modes

@@ -11,10 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title><%=trl(Tr8nClientSdk::Config.site_title)%></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%=render :partial => "/layouts/head" %>
 
   <style>
     html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background:#fff;}
