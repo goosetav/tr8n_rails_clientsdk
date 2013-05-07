@@ -1,0 +1,18 @@
+<div class="page size1of3 mha ptl mbxl">
+  <div class="shadowBox whiteBkgd pal mtl txtC">
+    <h3 class="mbl strong"><%=tr('Sign Up') %></h3>
+    <%= form_for(@user, :as => :user, :url => {}, :html => {:method => :post}) do |f| %>
+        <%=hidden_field_tag :id, @req.key %>
+        <div class="mbm">
+          <%=f.text_field :name, :class => "xlarge h4 pam", :placeholder => trl('Name') %>
+        </div>
+        <div class="mbm">
+          <%=f.password_field :password, :class => "xlarge h4 pam", :placeholder => trl('Password') %>
+        </div>
+        <div class="mbm">
+          <%=f.password_field :password_confirmation, :class => "xlarge h4 pam", :placeholder => trl('Confirm Password') %>
+        </div>
+        <button class="btn primary large mbm fullWidth"><%= tr('Complete Registration') %></button>
+    <% end %>
+  </div>
+</div>

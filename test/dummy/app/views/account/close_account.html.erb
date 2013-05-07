@@ -1,0 +1,31 @@
+<div class="settings_header"><%=tr("Close Account") %></div>
+
+
+<%=form_tag({}, {:method => :post, :id => "close_form"}) do %>
+<div style="padding-left:20px; border-bottom:1px solid #eee; padding-bottom:20px; margin-bottom:20px;">
+    <div style="padding-right:10px;">
+      <%=tr("We're sorry to see you go.") %> <%=tr("Please let us know why you're leaving:") %>
+    </div>  
+
+    <div style="margin-top:10px;">
+      <%=text_area_tag(:reason, params[:reason], :style => "width:450px; height:60px;") %>
+    </div>
+</div>  
+
+<div style="color:red;margin-top:30px;margin-bottom:30px; font-size: 14px;">
+  <%=tr("After clicking the Close Account button below, you will no longer be able to access this site.") %> 
+</div>  
+
+<script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=6LdF5dMSAAAAAGsAAuu76gbmeKK3X7p3J5pqmHq4"></script>
+<noscript>
+   <iframe src="https://www.google.com/recaptcha/api/noscript?k=6LdF5dMSAAAAAGsAAuu76gbmeKK3X7p3J5pqmHq4" height="300" width="500" frameborder="0"></iframe><br>
+   <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+   <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+</noscript>
+<% end %>
+
+<div style="text-align:center; border-top:1px solid #ccc; background-color: #eee; padding-top:5px; margin-top:30px;">
+  <button class="btn primary medium mbm" onClick="$('#close_form').submit()"><%=tr('Close Account') %></button>        
+  <%=tr("or") %>
+  <%=link_to(tr("Cancel"), "/calendar/monthly") %>
+</div>

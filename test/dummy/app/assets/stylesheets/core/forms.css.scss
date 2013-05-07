@@ -1,0 +1,142 @@
+@import "mixins.css.scss";
+
+
+label {
+  padding-top: 5px;
+  float: left;
+  width: 130px;
+  text-align: right;
+}
+
+
+form .input {
+  margin-left: 150px;
+  margin-bottom:15px;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  cursor: pointer;
+  width:auto;
+}
+
+input,
+textarea,
+select[multiple=multiple]{
+  display: inline-block;
+  width: 210px;
+  padding: 4px 5px;
+  border: 1px solid #bbb;
+  border-radius:2px;
+}
+
+select {
+  padding: initial;
+  width:210px;
+  display:inline-block;
+  padding: 4px 5px;
+}
+
+
+
+input,
+textarea {
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.15);
+}
+
+input:focus,
+textarea:focus {
+  outline:0;
+  background:#f8f8f8;
+}
+
+input[type=file]:focus,
+input[type=checkbox]:focus,
+select:focus {
+  box-shadow:none;
+  outline: 1px dotted #666;
+}
+
+
+
+
+input.mini,
+textarea.mini,
+select.mini {
+  width: 60px;
+}
+
+input.small,
+textarea.small,
+select.small {
+  width: 90px;
+}
+
+input.medium,
+textarea.medium,
+select.medium {
+  width: 150px;
+}
+
+input.large,
+textarea.large,
+select.large {
+  width: 210px;
+}
+
+input.xlarge,
+textarea.xlarge,
+select.xlarge {
+  width: 280px;
+}
+
+input.xxlarge,
+textarea.xxlarge,
+select.xxlarge {
+  width: 530px;
+}
+textarea.xxlarge {
+  overflow-y: auto;
+}
+
+
+input[disabled],
+select[disabled],
+textarea[disabled],
+input[readonly],
+select[readonly],
+textarea[readonly] {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+input[type=file] {border:none;box-shadow:none;padding:4px 0}
+
+input.search {background:url('/assets/sprite.png') 0px -25px no-repeat #fff;padding-left:20px;}
+input.search:focus {background-color:#fff}
+
+
+
+.stacked label {
+    display: block;
+    float: none;
+    width: auto;
+    text-align: left;
+    line-height: 20px;
+    padding-top: 0;
+}
+
+.stacked .input {
+margin-left:0
+}
+
+.error input {background-color:#ffeded;border-color:#c93f33;color:#c93f33}
+.error .help {color:#c93f33}
+.success input {background-color:#f3ffed;border-color:#3ca23c;color:#3ca23c}
+.success .help {color:#3ca23c}
+
+
+.searchPhrases {padding:8px 0 8px 25px !important;background-position:2px -22px !important;width:280px;vertical-align:middle}
+.searchPhrasesBtn {padding: 5px 10px 6px;font-size: 16px;vertical-align: middle;margin-left: -5px;}

@@ -1,0 +1,19 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+*/
+ 
+
+@import "core/mixins.css.scss";
+@import "core/style.css.scss";
+@import "core/layout.css.scss";
+@import "core/type.css.scss";
+@import "core/tables.css.scss";
+@import "core/navigation.css.scss";
+@import "core/buttons.css.scss";
+@import "core/forms.css.scss";
+@import "core/components.css.scss";
+@import "core/alerts.css.scss";
+

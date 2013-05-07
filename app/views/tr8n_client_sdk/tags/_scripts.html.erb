@@ -1,0 +1,20 @@
+<% if Tr8nClientSdk::Config.enabled? %>
+
+  <style type="text/css">
+  .tr8n_fltr {
+    <%=tr8n_style_attribute_tag('float', 'right')%> !important;
+  }
+  .tr8n_fltl {
+    <%=tr8n_style_attribute_tag('float', 'left')%> !important;
+  }
+  .tr8n_txtr {
+    <%=tr8n_style_attribute_tag('text-align', 'right')%> !important;
+  }
+  .tr8n_txtl {
+    <%=tr8n_style_attribute_tag('text-align', 'left')%> !important;
+  }
+  </style>
+
+  <script src="//<%=Tr8nClientSdk::Config.host%>/tr8n/api/v1/proxy/boot.js?debug=true"></script>
+
+<% end %>

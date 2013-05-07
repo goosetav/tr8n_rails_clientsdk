@@ -1,0 +1,75 @@
+@import "mixins.css.scss";
+
+/* =============================================================================
+   Typography
+   ========================================================================== */
+
+body                {font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;color:#444;}
+        
+h1, .h1             {font-size:36px !important; line-height: 42px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif; font-style: normal;letter-spacing:-2px;}
+h2, .h2             {font-size:20px !important; line-height: 24px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif; font-style: normal;}
+h3, .h3             {font-size:18px !important; line-height: 20px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif; font-style: normal;text-shadow:0 1px 1px rgba(0,0,0,0.1);}
+h4, .h4             {font-size:14px !important; line-height: 18px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif; font-style: normal;}
+h5, .h5             {font-size:12px !important; line-height: 16px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;font-style: normal;}
+h6, .h6             {font-size:11px !important; line-height: 18px; font-weight:300; font-family:"Lucida Grande", "Helvetica Neue", Helvetica, Arial, sans-serif;font-style: normal;}
+
+hr                  {display: block;height:1px;border:0;border-top:1px solid #ddd;margin:10px 0;padding:0;}
+      
+p,.p                {line-height: 18px;margin-bottom: 9px;}
+a,.link,         
+a:visited           {color:#446898;text-decoration:none}
+a:focus             {outline: thin dotted;}
+a:hover, a:active   { outline: 0;text-decoration:underline }
+
+strong,.strong      {font-weight:bold}
+em,.em              {font-style:italic;}
+code,.code          {background-color: #eee;padding: 1px 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+    
+.quiet              {opacity:0.7}
+.xquiet             {color:#aaa}
+.normal             {font-weight:normal !important; font-style: normal !important;}
+.light              {font-weight:300 !important;}
+.upcase							{text-transform:uppercase}
+.txtSmall 					{font-size:11px !important;}
+
+.sepia              {color:#93866b !important}
+
+.txtOrange          {color:orange}
+
+
+.ellipsis						{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.nowrap              {white-space:nowrap}
+
+.txtGreen {color:green}
+.txtRed {color:red}
+.txtBlack, a.txtBlack {color:#444}
+
+.underscore				{border-bottom: solid 1px #CCC;}
+.underscoreShadow {border-bottom: solid 1px #CCC;box-shadow: 0 2px 1px rgba(0,0,0,0.1);}
+
+/* =============================================================================
+   Lists
+   ========================================================================== */
+  
+ul, ol            {margin:0;padding:0;list-style:none;}
+li                {list-style:none;}
+
+ol.simpleList li  {list-style-type: decimal; margin-left:25px;line-height:18px}
+ul.simpleList li  {list-style-type:disc; margin-left:25px;line-height:18px}
+
+.inlineList li {display:inline-block}
+
+
+.hList,
+.hList.fltR                       {overflow:hidden;text-align:left;}
+.hList li                         {margin-left:-9px;border-left:solid 1px #ccc;padding:0px 8px;margin-right:8px;float:left;}
+.hList.fltR li                    {margin-right:-9px;border-right:solid 1px #ccc;border-left:none;padding:0px 8px;margin-left:8px;float:left;}
+
+
+.blockList li {padding:3px 0}
+
+/* =============================================================================
+   Labels
+   ========================================================================== */
+
+    
