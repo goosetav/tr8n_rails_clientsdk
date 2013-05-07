@@ -20,23 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::ComponentSource Schema Information
-#
-# Table name: tr8n_component_sources
-#
-#  id                       INTEGER     not null, primary key
-#  component_id             integer     
-#  translation_source_id    integer     
-#  created_at               datetime    not null
-#  updated_at               datetime    not null
-#
-# Indexes
-#
-#  tr8n_comp_src_id     (translation_source_id) 
-#  tr8n_comp_comp_id    (component_id) 
-#
-#++
 
 class Tr8nClientSdk::ComponentSource < ActiveRecord::Base
   self.table_name = :tr8n_component_sources

@@ -20,27 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::LanguageCaseRule Schema Information
-#
-# Table name: tr8n_language_case_rules
-#
-#  id                  INTEGER     not null, primary key
-#  language_case_id    integer     not null
-#  language_id         integer     
-#  translator_id       integer     
-#  definition          text        not null
-#  position            integer     
-#  created_at          datetime    not null
-#  updated_at          datetime    not null
-#
-# Indexes
-#
-#  tr8n_lcr_t     (translator_id) 
-#  tr8n_lcr_l     (language_id) 
-#  tr8n_lcr_lc    (language_case_id) 
-#
-#++
 
 class Tr8nClientSdk::LanguageCaseRule < ActiveRecord::Base
   self.table_name = :tr8n_language_case_rules
@@ -70,29 +49,6 @@ class Tr8nClientSdk::LanguageCaseRule < ActiveRecord::Base
     Tr8nClientSdk::Cache.fetch(cache_key(id)) do 
       find_by_id(id)
     end
-  end
-
-  def self.gender_options
-    [["not applicable", "none"], ["unknown", "unknown"], ["male", "male"], ["female", "female"]]
-  end
-  
-  def self.condition_options(with_if = false)
-    opts = [["starts with", "starts_with"], ["does not start with", "does_not_start_with"], 
-     ["ends in", "ends_in"], ["does not end in", "does_not_end_in"],
-     ["is", "is"], ["is not", "is_not"]]
-    return opts unless with_if
-    opts.each do |opt|
-      opt[0] = "if #{opt[0]}"
-    end
-    opts
-  end
-
-  def self.operation_options
-    [["replace with", "replace"], ["prepand", "prepand"], ["append", "append"]]
-  end
-
-  def self.operator_options
-    [["and", "and"], ["or", "or"]]
   end
 
   def evaluate(object, value)

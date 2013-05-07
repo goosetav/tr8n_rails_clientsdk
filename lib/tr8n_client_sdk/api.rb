@@ -21,35 +21,10 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-class Tr8nClientSdk::TranslationKeySource < ActiveRecord::Base
-  self.table_name =  :tr8n_translation_key_sources  
-  attr_accessible :translation_key_id, :translation_source_id, :details
-  attr_accessible :translation_source, :translation_key
+module Tr8nClientSdk
+  module Api
+    def get(url, params)
 
-  belongs_to :translation_source, :class_name => "Tr8nClientSdk::TranslationSource"
-  belongs_to :translation_key,    :class_name => "Tr8nClientSdk::TranslationKey"
-
-  alias :source :translation_source
-  alias :key :translation_key
-
-  serialize :details
-
-  def self.cache_key(tkey, source)
-    "key_source_[#{tkey}]_[#{source}]"
+    end
   end
-
-  def cache_key
-    self.class.cache_key(translation_key.key, translation_source.source)
-  end
-
-  def self.find_or_create(translation_key, translation_source)
-    Tr8nClientSdk::Cache.fetch(cache_key(translation_key.key, translation_source.source)) do 
-      tks = where("translation_key_id = ? and translation_source_id = ?", translation_key.id, translation_source.id).first
-      tks ||= begin
-        translation_source.touch
-        create(:translation_key => translation_key, :translation_source => translation_source)
-      end
-    end  
-  end
-  
 end

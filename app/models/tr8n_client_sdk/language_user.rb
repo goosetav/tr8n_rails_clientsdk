@@ -20,28 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::LanguageUser Schema Information
-#
-# Table name: tr8n_language_users
-#
-#  id               INTEGER     not null, primary key
-#  language_id      integer     not null
-#  user_id          integer     not null
-#  translator_id    integer     
-#  manager          boolean     
-#  created_at       datetime    not null
-#  updated_at       datetime    not null
-#
-# Indexes
-#
-#  tr8n_lu_ua    (updated_at) 
-#  tr8n_lu_ca    (created_at) 
-#  tr8n_lu_lt    (language_id, translator_id) 
-#  tr8n_lu_lu    (language_id, user_id) 
-#  tr8n_lu_u     (user_id) 
-#
-#++
 
 class Tr8nClientSdk::LanguageUser < ActiveRecord::Base
   self.table_name = :tr8n_language_users
@@ -74,13 +52,6 @@ class Tr8nClientSdk::LanguageUser < ActiveRecord::Base
     return [] unless user.id
     check_default_language_for(user)
     where("user_id = ?", user.id).order("updated_at desc")
-  end
-
-  def self.create_or_touch(user, language)
-    return if Tr8nClientSdk::Config.guest_user?(user)
-    lu = Tr8nClientSdk::LanguageUser.find_or_create(user, language)
-    lu.touch
-    lu
   end
   
   def translator?

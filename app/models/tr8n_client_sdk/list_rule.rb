@@ -20,25 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::ListRule Schema Information
-#
-# Table name: tr8n_language_rules
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  type             varchar(255)    
-#  definition       text            
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lr_lt    (language_id, translator_id) 
-#  tr8n_lr_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::ListRule < Tr8nClientSdk::LanguageRule
   
@@ -56,14 +37,6 @@ class Tr8nClientSdk::ListRule < Tr8nClientSdk::LanguageRule
 
   def self.default_rules_for(language = Tr8nClientSdk::Config.current_language)
     Tr8nClientSdk::Config.default_list_rules(language.locale)
-  end
-  
-  def self.operator_options
-    [["contains", "contains"]]
-  end
-
-  def self.list_options
-    [["one element", "one_element"], ["at least 2 elements", "at_least_two_elements"]]
   end
   
   def self.list_size_token_value(token)
@@ -124,14 +97,4 @@ class Tr8nClientSdk::ListRule < Tr8nClientSdk::LanguageRule
     false
   end
 
-  def to_hash
-    {:type => self.class.dependency, :operator => definition[:operator], :value => definition[:value]}
-  end
-
-  # used to describe a context of a given translation
-  def description
-    return "contains one element"              if "one_element" == definition[:value]
-    return "contains at least two elements"    if "at_least_two_elements" == definition[:value]
-    "has an unknown rule"
-  end
 end

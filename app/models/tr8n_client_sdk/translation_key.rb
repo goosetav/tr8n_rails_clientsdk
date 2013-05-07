@@ -20,37 +20,16 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::TranslationKey Schema Information
-#
-# Table name: tr8n_translation_keys
-#
-#  id                   INTEGER         not null, primary key
-#  type                 varchar(255)    
-#  key                  varchar(255)    not null
-#  label                text            not null
-#  description          text            
-#  verified_at          datetime        
-#  translation_count    integer         
-#  admin                boolean         
-#  locale               varchar(255)    
-#  level                integer         default = 0
-#  synced_at            datetime        
-#  created_at           datetime        not null
-#  updated_at           datetime        not null
-#
-# Indexes
-#
-#  tr8n_tk_k    (key) UNIQUE
-#
-#++
 
 require 'digest/md5'
+# require 'tr8n_client_sdk/api'
 
 class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
   self.table_name = :tr8n_translation_keys
   attr_accessible :key, :label, :description, :verified_at, :translation_count, :admin, :locale, :level, :synced_at
   
+  # include Tr8nClientSdk::Api
+
   has_many :translations,             :class_name => "Tr8nClientSdk::Translation",           :dependent => :destroy
   has_many :translation_key_locks,    :class_name => "Tr8nClientSdk::TranslationKeyLock",    :dependent => :destroy
   has_many :translation_key_sources,  :class_name => "Tr8nClientSdk::TranslationKeySource",  :dependent => :destroy
@@ -141,11 +120,6 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
     @tokenized_label ||= Tr8nClientSdk::TokenizedLabel.new(label)
   end
 
-  # comments are left for a specific language
-  def comments(language = Tr8nClientSdk::Config.current_language)
-    Tr8nClientSdk::TranslationKeyComment.where("language_id = ? and translation_key_id = ?", language.id, self.id).all
-  end
-
   delegate :tokens, :tokens?, :to => :tokenized_label
   delegate :data_tokens, :data_tokens?, :to => :tokenized_label
   delegate :decoration_tokens, :decoration_tokens?, :to => :tokenized_label
@@ -173,35 +147,8 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
     toks.uniq
   end
 
-  # determines whether the key can have rules generated for the language
-  def permutatable?(language = Tr8nClientSdk::Config.current_language)
-    language_rules_dependant_tokens(language).any?
-  end
-
-  def glossary
-    @glossary ||= Tr8nClientSdk::Glossary.where("keyword in (?)", words).order("keyword asc").all
-  end
-  
-  def glossary?
-    not glossary.empty?
-  end
-  
   def lock_for(language)
     Tr8nClientSdk::TranslationKeyLock.for(self, language)
-  end
-  
-  def lock!(language = Tr8nClientSdk::Config.current_language, translator = Tr8nClientSdk::Config.current_translator)
-    lock_for(language).lock!(translator)
-  end
-
-  def unlock!(language = Tr8nClientSdk::Config.current_language, translator = Tr8nClientSdk::Config.current_translator)
-    lock_for(language).unlock!(translator)
-  end
-
-  def unlock_all!
-    locks.each do |lock|
-      lock.unlock!
-    end
   end
   
   def locked?(language = Tr8nClientSdk::Config.current_language)
@@ -210,28 +157,6 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
 
   def unlocked?(language = Tr8nClientSdk::Config.current_language)
     not locked?(language)
-  end
-
-  def followed?(translator = nil)
-    translator ||= (Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator : nil)
-    return false unless translator
-    Tr8nClientSdk::TranslatorFollowing.following_for(translator, self)
-  end
-    
-  def commented?(language, translator = nil)
-    translator ||= (Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator : nil)
-    return false unless translator
-    Tr8nClientSdk::TranslationKeyComment.where("translator_id = ? and translation_key_id = ? and language_id = ?", 
-                                       translator.id, self.id, language.id).first
-  end
-
-
-  def add_translation(label, rules = nil, language = Tr8nClientSdk::Config.current_language, translator = Tr8nClientSdk::Config.current_translator)
-    raise Tr8nClientSdk::Exception.new("The translator is blocked and cannot submit translations") if translator.blocked?
-    raise Tr8nClientSdk::Exception.new("The sentence contains dirty words") unless language.clean_sentence?(label)
-    translation = Tr8nClientSdk::Translation.create(:translation_key => self, :language => language, :translator => translator, :label => label, :rules => rules)
-    translation.vote!(translator, 1)
-    translation
   end
 
   # returns all translations for the key, language and minimal rank
@@ -277,54 +202,6 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
     false
   end
   
-  # {"actor"=>{"gender"=>"true"}, "target"=>{"gender"=>"true", "value"=>"true"}}
-  def generate_rule_permutations(language, translator, dependencies)
-    return if dependencies.blank?
-    
-    token_rules = {}
-    
-    dependency_mapping = {}
-    
-    # make into {"actor"=>[1], "target"=>[1], "target_@1"=>[2]}
-    dependencies.each do |dependency, rule_types|
-      rule_types.keys.each_with_index do |rule_type, index|
-        token_key = dependency + "_@#{index}"
-        dependency_mapping[token_key] = dependency
-        
-        rules = language.default_rules_for(rule_type)
-        token_rules[token_key] = [] unless token_rules[token_key]
-        token_rules[token_key] << rules
-        token_rules[token_key].flatten!
-      end
-    end
-    
-    language_translations = translations_for(language)
-    
-    new_translations = []
-    token_rules.combinations.each do |combination|
-      rules = []
-      rules_hash = {}
-      
-      combination.each do |token, language_rule|
-        token_key = dependency_mapping[token]
-        rules_hash[token_key] ||= [] 
-        rules_hash[token_key] << language_rule.id.to_s
-      end
-      
-      rules = rules_hash.collect{|token_key, rule_ids| {:token => token_key, :rule_id => rule_ids}}
-
-      # if the user has previously create this particular combination, move on...
-      next if translation_with_such_rules_exist?(language_translations, translator, rules_hash)
-      new_translations << Tr8nClientSdk::Translation.create(:translation_key => self, :language => language, :translator => translator, :label => sanitized_label, :rules => rules)
-    end
-    
-    new_translations
-  end
-
-  def self.random
-    self.limit(1).offset(rand(count-1))
-  end
-
   ###########################################################################
   # returns back grouped by context - used by API - deprecated - 
   # MUST CHANGE JS to use the new method valid_translations_with_rules
@@ -490,27 +367,6 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
     processed_label
   end
   
-  # TODO: move all this stuff out of the model to decorators
-  def default_decoration(language = Tr8nClientSdk::Config.current_language, options = {})
-    return sanitized_label if Tr8nClientSdk::Config.current_user_is_guest?
-    return sanitized_label unless Tr8nClientSdk::Config.current_user_is_translator?
-    return sanitized_label unless can_be_translated?
-    return sanitized_label if locked?(language)
-
-    classes = ['tr8n_translatable']
-
-    if cached_translations_for_language(language).any?
-      classes << 'tr8n_translated'
-    else
-      classes << 'tr8n_not_translated'
-    end
-
-    html = "<tr8n class='#{classes.join(' ')}' translation_key_id='#{id}'>"
-    html << sanitized_label
-    html << "</tr8n>"
-    html.html_safe    
-  end
-  
   def level
     return 0 if super.nil?
     super
@@ -526,18 +382,6 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
       translator_level = 0
     end
     translator_level >= level
-  end
-
-  def can_be_locked?(translator = nil)
-    translator ||= (Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator : nil)
-    return false unless translator
-    translator.admin? or translator.manager?
-  end
-
-  def can_be_unlocked?(translator = nil)
-    translator ||= (Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator : nil)
-    return false unless translator
-    translator.admin? or translator.manager?
   end
   
   def decorate_translation(language, translated_label, translated = true, options = {})
@@ -567,215 +411,5 @@ class Tr8nClientSdk::TranslationKey < ActiveRecord::Base
     html << "</tr8n>"
     html
   end
-      
-  def verify!(time = Time.now)
-    update_attributes(:verified_at => time)
-  end
-      
-  def translations_changed!(language = Tr8nClientSdk::Config.current_language)
-    Tr8nClientSdk::Config.current_source.clear_cache_for_language(language)
-
-    # update timestamp and clear cache
-    update_translation_count! 
-
-    # notify all language sources that translation has changed
-    sources.each do |source|
-      source.touch
-      # Tr8nClientSdk::TranslationSourceLanguage.touch(source, language)
-      # may need to be a delayed job
-      source.clear_cache_for_language(language)
-    end
-  end
-        
-  def update_translation_count!
-    update_attributes(:translation_count => Tr8nClientSdk::Translation.count(:conditions => ["translation_key_id = ?", self.id]))
-  end
-
-  def source_map
-    @source_map ||= begin
-      map = {}
-      sources.each do |source|
-        (map[source.domain.name] ||= []) << source
-      end
-      map
-    end
-  end
-
-  ###############################################################
-  ## Offline Tasks
-  ###############################################################
-  def update_metrics!(language = Tr8nClientSdk::Config.current_language, opts = {})
-    Tr8nClientSdk::OfflineTask.schedule(self.class.name, :update_metrics_offline, {
-                               :translation_key_id => self.id, 
-                               :language_id => language.id
-    })
-  end
-
-  def self.update_metrics_offline(opts)
-    tkey = Tr8nClientSdk::TranslationKey.find(opts[:translation_key_id])
-    language = Tr8nClientSdk::Language.find(opts[:language_id])
-    Tr8nClientSdk::TranslationKeySource.where("translation_key_id = ?", tkey.id).all.each do |tks|
-      next unless tks.source
-      tks.source.update_metrics!(language)
-    end
-    language.total_metric.update_metrics!
-  end
-
-  ###############################################################
-  ## Synchronization Methods
-  ###############################################################
-  def mark_as_synced!
-    update_attributes(:synced_at => Time.now + 2.seconds)
-  end
-    
-  def to_sync_hash(opts = {})
-    { 
-      "id" => self.id,
-      "key" => self.key, 
-      "label" => self.label, 
-      "description" => self.description, 
-      "locale" => (locale || Tr8nClientSdk::Config.default_locale), 
-      "translations" => opts[:translations] || translations_for(opts[:languages], opts[:threshold] || Tr8nClientSdk::Config.translation_threshold).collect{|t| t.to_sync_hash(opts)}
-    }
-  end
-
-  def transations_sync_hashes(opts = {})
-    @transations_sync_hashes ||= begin
-      translations.collect{|t| t.to_sync_hash(:comparible => true)}
-    end  
-  end
-    
-  def self.can_create_from_sync_hash?(tkey_hash, translator, opts = {})
-    return false if tkey_hash["key"].blank? or tkey_hash["label"].blank? or tkey_hash["locale"].blank?
-    true
-  end
-      
-  # create translation key from API hash
-  def self.create_from_sync_hash(tkey_hash, default_translator, opts = {})
-    return unless can_create_from_sync_hash?(tkey_hash, default_translator, opts)
-    
-    # find or create translation key  
-    tkey = Tr8nClientSdk::TranslationKey.find_or_create(tkey_hash["label"], tkey_hash["description"])
-
-    # we will keep the translations that need to be sent back
-    remaining_translations = tkey.transations_sync_hashes(opts).dup
-
-    added_trans = []
-    (tkey_hash["translations"] || []).each do |thash|
-      remaining_translations.delete(thash)
-
-      # if the translation came from a linked translator, use the translator
-      translator = default_translator
-      if thash["translator_id"] # incoming translations from the remote server
-        translator = Tr8nClientSdk::Translator.find_by_id(thash["translator_id"]) || default_translator
-      elsif thash["translator"]
-        translator = Tr8nClientSdk::Translator.create_from_sync_hash(thash["translator"], opts) || default_translator
-      end
-      
-      # don't insert duplicate translations
-      comparible_hash = thash.slice("locale", "label", "rules")
-      next if tkey.transations_sync_hashes.include?(comparible_hash)
-      
-      translation = Tr8nClientSdk::Translation.create_from_sync_hash(tkey, translator, thash, opts)
-      
-      translation.mark_as_synced! if translation
-    end
-
-    # need to send back translations that have not been added, but exist in the system
-    # pp :after, remaining_sync_hashes
-    [tkey, remaining_translations]
-  end
-
-  ###############################################################
-  ## Feature Methods
-  ###############################################################
-  
-  def self.title
-    "Original Phrase in {language}".translate(nil, :language => Tr8nClientSdk::Config.current_language.native_name)
-  end
-  
-  def self.help_url
-    '/tr8n/help'
-  end
-  
-  def suggestion_label
-    tokenless_label.gsub('"', '\"')
-  end
-  
-  def suggestions?
-    true 
-  end
-
-  def rules?
-    translation_tokens? or Tr8nClientSdk::Config.current_language.has_rules?
-  end
-  
-  def dictionary?
-    true 
-  end
-
-  def sources?
-    true
-  end
-
-  ###############################################################
-  ## Search Methods
-  ###############################################################
-  
-  def self.filter_phrase_type_options
-    [["all", "any"], 
-     ["without translations", "without"], 
-     ["with translations", "with"],
-     ["followed by me", "followed"]
-    ] 
-  end
-  
-  def self.filter_phrase_status_options
-     [["any", "any"],
-      ["pending approval", "pending"], 
-      ["approved", "approved"]]
-  end
-
-  def self.filter_phrase_lock_options
-     [["locked and unlocked", "any"],
-      ["locked only", "locked"], 
-      ["unlocked only", "unlocked"]]
-  end
-  
-  def self.for_params(params)
-    results = self.where("tr8n_translation_keys.locale <> ? and (level is null or level <= ?)", Tr8nClientSdk::Config.current_language.locale, Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator.level : 0)
-    
-    unless params[:search].blank?
-      results = results.where("(tr8n_translation_keys.label like ? or tr8n_translation_keys.description like ?)", "%#{params[:search]}%", "%#{params[:search]}%")
-    end
-
-    # for with and approved, allow user to specify the kinds
-    if params[:phrase_type] == "with"
-      results = results.where("tr8n_translation_keys.id in (select tr8n_translations.translation_key_id from tr8n_translations where tr8n_translations.language_id = ?)", Tr8nClientSdk::Config.current_language.id)
-      
-      # if approved, ensure that translation key is locked
-      if params[:phrase_status] == "approved" 
-        results = results.where("tr8n_translation_keys.id in (select tr8n_translation_key_locks.translation_key_id from tr8n_translation_key_locks where tr8n_translation_key_locks.language_id = ? and tr8n_translation_key_locks.locked = ?)", Tr8nClientSdk::Config.current_language.id, true)
-      
-        # if approved, ensure that translation key does not have a lock or unlocked
-      elsif params[:phrase_status] == "pending" 
-        results = results.where("tr8n_translation_keys.id not in (select tr8n_translation_key_locks.translation_key_id from tr8n_translation_key_locks where tr8n_translation_key_locks.language_id = ? and tr8n_translation_key_locks.locked = ?)", Tr8nClientSdk::Config.current_language.id, true)
-      end
-            
-    elsif params[:phrase_type] == "without"
-      results = results.where("tr8n_translation_keys.id not in (select tr8n_translations.translation_key_id from tr8n_translations where tr8n_translations.language_id = ?)", Tr8nClientSdk::Config.current_language.id)
-      
-    elsif params[:phrase_type] == "followed" and Tr8nClientSdk::Config.current_user_is_translator?
-      results = results.where("tr8n_translation_keys.id in (select tr8n_translator_following.object_id from tr8n_translator_following where tr8n_translator_following.translator_id = ? and tr8n_translator_following.object_type = ?)", Tr8nClientSdk::Config.current_translator.id, 'Tr8nClientSdk::TranslationKey')
-    end
-    
-    if params[:phrase_lock] == "locked"
-      results = results.where("tr8n_translation_keys.id in (select tr8n_translation_key_locks.translation_key_id from tr8n_translation_key_locks where tr8n_translation_key_locks.language_id = ? and tr8n_translation_key_locks.locked = ?)", Tr8nClientSdk::Config.current_language.id, true)
-      
-    elsif params[:phrase_lock] == "unlocked"  
-      results = results.where("tr8n_translation_keys.id not in (select tr8n_translation_key_locks.translation_key_id from tr8n_translation_key_locks where tr8n_translation_key_locks.language_id = ? and tr8n_translation_key_locks.locked = ?)", Tr8nClientSdk::Config.current_language.id, true)
-    end
-    
-    results.order("created_at desc")
-  end    
+ 
 end

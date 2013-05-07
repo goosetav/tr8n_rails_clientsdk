@@ -20,37 +20,11 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::LanguageCase Schema Information
-#
-# Table name: tr8n_language_cases
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  keyword          varchar(255)    
-#  latin_name       varchar(255)    
-#  native_name      varchar(255)    
-#  description      text            
-#  application      varchar(255)    
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lc_lk    (language_id, keyword) 
-#  tr8n_lc_lt    (language_id, translator_id) 
-#  tr8n_lc_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::LanguageCase < ActiveRecord::Base
   self.table_name = :tr8n_language_cases
   attr_accessible :language_id, :translator_id, :keyword, :latin_name, :native_name, :description, :application
   attr_accessible :language, :translator
-
-  after_save :clear_cache
-  after_destroy :clear_cache
 
   belongs_to :language, :class_name => "Tr8nClientSdk::Language"   
   belongs_to :translator, :class_name => "Tr8nClientSdk::Translator"   
@@ -98,40 +72,12 @@ class Tr8nClientSdk::LanguageCase < ActiveRecord::Base
     where("language_id = ?", language.id).all
   end
 
-  def add_rule(definition, opts = {})
-    opts[:position] ||= language_case_rules.count
-    opts[:translator] ||= Tr8nClientSdk::Config.current_translator
-    Tr8nClientSdk::LanguageCaseRule.create(:language_case => self,           :language => language, 
-                                  :translator => opts[:translator], :position => opts[:position], 
-                                  :definition => definition)
-  end
-
   def rules
     return language_case_rules if id.blank?
     
     Tr8nClientSdk::Cache.fetch(language_case_rules_cache_key) do 
       language_case_rules
     end
-  end
-
-  def save_with_log!(new_translator)
-    if self.id
-      if changed?
-        self.translator = new_translator
-        translator.updated_language_case!(self)
-      end
-    else  
-      self.translator = new_translator
-      translator.added_language_case!(self)
-    end
-
-    save  
-  end
-  
-  def destroy_with_log!(new_translator)
-    new_translator.deleted_language_case!(self)
-    
-    destroy
   end
 
   def apply(object, value, options = {})
@@ -191,23 +137,5 @@ class Tr8nClientSdk::LanguageCase < ActiveRecord::Base
     nil
   end
 
-  def decorate_language_case(case_map_key, case_value, case_rule, options = {})
-    return case_value if options[:skip_decorations]
-    return case_value if language.default?
-    return case_value if Tr8nClientSdk::Config.current_user_is_guest?
-    return case_value unless Tr8nClientSdk::Config.current_user_is_translator?
-    return case_value unless Tr8nClientSdk::Config.current_translator.enable_inline_translations?
-    
-    "<span class='tr8n_language_case' case_id='#{id}' rule_id='#{case_rule ? case_rule.id : ''}' case_key='#{case_map_key.gsub("'", "\'")}'>#{case_value}</span>"
-  end
-
-  def self.application_options
-    [["every word", "words"], ["entire phrase", "phrase"]]
-  end
-
-  def clear_cache
-    Tr8nClientSdk::Cache.delete(language_case_cache_key)
-    Tr8nClientSdk::Cache.delete(language_case_rules_cache_key) 
-  end
 
 end

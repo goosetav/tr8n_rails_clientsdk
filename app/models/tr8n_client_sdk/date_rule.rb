@@ -20,25 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::DateRule Schema Information
-#
-# Table name: tr8n_language_rules
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  type             varchar(255)    
-#  definition       text            
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lr_lt    (language_id, translator_id) 
-#  tr8n_lr_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::DateRule < Tr8nClientSdk::LanguageRule
   
@@ -127,12 +108,4 @@ class Tr8nClientSdk::DateRule < Tr8nClientSdk::LanguageRule
     false    
   end
 
-  # used to describe a context of a given translation
-  def description
-    if definition and self.class.date_options.collect{|o| o.last}.include?(definition[:value])
-      return "is in the #{definition[:value]}"
-    end
-    
-    "has an unknown rule"
-  end
 end

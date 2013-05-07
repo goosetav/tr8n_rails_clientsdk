@@ -20,30 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::RelationshipKey Schema Information
-#
-# Table name: tr8n_translation_keys
-#
-#  id                   INTEGER         not null, primary key
-#  type                 varchar(255)    
-#  key                  varchar(255)    not null
-#  label                text            not null
-#  description          text            
-#  verified_at          datetime        
-#  translation_count    integer         
-#  admin                boolean         
-#  locale               varchar(255)    
-#  level                integer         default = 0
-#  synced_at            datetime        
-#  created_at           datetime        not null
-#  updated_at           datetime        not null
-#
-# Indexes
-#
-#  tr8n_tk_k    (key) UNIQUE
-#
-#++
 
 class Tr8nClientSdk::RelationshipKey < Tr8nClientSdk::TranslationKey
 
@@ -57,7 +33,6 @@ class Tr8nClientSdk::RelationshipKey < Tr8nClientSdk::TranslationKey
   def cache_key
     self.class.cache_key(self.key)
   end
-
 
   def self.normalize_key(label)
     label.gsub(" ", "").downcase

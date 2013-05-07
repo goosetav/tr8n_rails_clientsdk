@@ -20,22 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::TranslationSourceLanguage Schema Information
-#
-# Table name: tr8n_translation_source_languages
-#
-#  id                       INTEGER     not null, primary key
-#  language_id              integer     
-#  translation_source_id    integer     
-#  created_at               datetime    not null
-#  updated_at               datetime    not null
-#
-# Indexes
-#
-#  tr8n_tsl_lt    (language_id, translation_source_id) 
-#
-#++
 
 class Tr8nClientSdk::TranslationSourceLanguage < ActiveRecord::Base
   self.table_name = :tr8n_translation_source_languages
@@ -49,9 +33,5 @@ class Tr8nClientSdk::TranslationSourceLanguage < ActiveRecord::Base
     source_lang = where("translation_source_id = ? and language_id = ?", translation_source.id, language.id).first
     source_lang ||= create(:translation_source => translation_source, :language => language)
   end  
-  
-  def self.touch(translation_source, language = Tr8nClientSdk::Config.current_language)
-    find_or_create(translation_source, language).touch
-  end
   
 end

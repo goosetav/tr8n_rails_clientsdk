@@ -41,11 +41,7 @@
 #++
 
 class Tr8nClientSdk::GenderRule < Tr8nClientSdk::LanguageRule
-  
-  def self.description
-    "token object may have a gender, which"
-  end
-  
+    
   def self.dependency
     "gender" 
   end
@@ -138,27 +134,6 @@ class Tr8nClientSdk::GenderRule < Tr8nClientSdk::LanguageRule
     end
     
     false    
-  end
-
-  def to_hash
-    {:type => self.class.dependency, :operator => definition[:operator], :value => definition[:value]}
-  end
-
-  # used to describe a context of a given translation
-  def description
-    if definition[:operator] == "is"
-      return "is a #{definition[:value]}" if ["male", "female"].include?(definition[:value])
-      return "has a neutral gender" if "neutral" == definition[:value]
-      return "has an unknown gender" if "unknown" == definition[:value]
-    end
-    
-    if definition[:operator] == "is_not"
-      return "is not a #{definition[:value]}" if ["male", "female"].include?(definition[:value])
-      return "does not have a neutral gender" if "neutral" == definition[:value]
-      return "does not have an unknown gender" if "unknown" == definition[:value]
-    end
-
-    "has an unknown rule"
   end
 
 end

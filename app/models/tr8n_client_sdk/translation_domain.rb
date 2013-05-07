@@ -44,9 +44,6 @@ class Tr8nClientSdk::TranslationDomain < ActiveRecord::Base
   self.table_name = :tr8n_translation_domains
   attr_accessible :name, :description, :source_count
 
-  after_save      :clear_cache
-  after_destroy   :clear_cache
-  
   has_many    :translation_sources,       :class_name => "Tr8nClientSdk::TranslationSource",     :dependent => :destroy
   has_many    :translation_key_sources,   :class_name => "Tr8nClientSdk::TranslationKeySource",  :through => :translation_sources
   has_many    :translation_keys,          :class_name => "Tr8nClientSdk::TranslationKey",        :through => :translation_key_sources
@@ -75,9 +72,5 @@ class Tr8nClientSdk::TranslationDomain < ActiveRecord::Base
       find_by_name(domain_name) || create(:name => domain_name)
     end  
   end
-  
-  def clear_cache
-    Tr8nClientSdk::Cache.delete(cache_key)
-  end
-  
+    
 end

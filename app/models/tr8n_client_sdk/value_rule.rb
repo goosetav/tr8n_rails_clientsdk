@@ -20,32 +20,9 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::ValueRule Schema Information
-#
-# Table name: tr8n_language_rules
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  type             varchar(255)    
-#  definition       text            
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lr_lt    (language_id, translator_id) 
-#  tr8n_lr_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::ValueRule < Tr8nClientSdk::LanguageRule
-  
-  def self.description
-    "token object may have a value, which"
-  end
-  
+
   def self.dependency
     "value" 
   end
@@ -60,12 +37,6 @@ class Tr8nClientSdk::ValueRule < Tr8nClientSdk::LanguageRule
 
   def self.default_rules_for(language = Tr8nClientSdk::Config.current_language)
     Tr8nClientSdk::Config.default_value_rules(language.locale)
-  end
-  
-  def self.operator_options
-    [["starts with", "starts_with"], ["does not start with", "does_not_start_with"], 
-     ["ends in", "ends_in"], ["does not end in", "does_not_end_in"],
-     ["is", "is"], ["is not", "is_not"]]
   end
 
   def self.transformable?
@@ -112,25 +83,6 @@ class Tr8nClientSdk::ValueRule < Tr8nClientSdk::LanguageRule
     end
     
     false
-  end
-
-  def to_hash
-    {:type => self.class.dependency, :operator => definition[:operator], :value => definition[:value]}
-  end
-
-  # used to describe a context of a given translation
-  def description
-    desc = ""
-    case definition["operator"]
-      when "starts_with" then desc << " starts with"
-      when "does_not_start_with" then desc << " does not start with"        
-      when "ends_in" then desc << " ends in"        
-      when "does_not_end_in" then desc << " does not end in"        
-      when "is" then desc << " is"        
-      when "is_not" then desc << " is not"        
-    end
-    desc << " <strong>'" << Tr8nClientSdk::LanguageRule.humanize_values(definition["value"]) << "'</strong>"
-    desc.html_safe
   end
 
 end

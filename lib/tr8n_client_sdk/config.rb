@@ -31,10 +31,10 @@ module Tr8nClientSdk
   
     # initializes language, user and translator
     # the variables are kept in a thread safe form throughout the request
-    def self.init(site_current_locale, site_current_user = nil, source = nil, component = nil)
+    def self.init(site_current_locale, site_current_user = nil, site_current_translator = nil, source = nil, component = nil)
       Thread.current[:tr8n_current_language]   = Tr8nClientSdk::Language.for(site_current_locale) || default_language
       Thread.current[:tr8n_current_user]       = site_current_user
-      Thread.current[:tr8n_current_translator] = Tr8nClientSdk::Translator.for(site_current_user)
+      Thread.current[:tr8n_current_translator] = site_current_translator
       Thread.current[:tr8n_current_source]     = Tr8nClientSdk::TranslationSource.find_or_create(source || "undefined")
 
       # register source with component
@@ -44,9 +44,6 @@ module Tr8nClientSdk
       else
         Thread.current[:tr8n_current_component]  = nil
       end
-
-      # register the total metric for the current source and language
-      current_source.total_metric 
 
       Thread.current[:tr8n_block_options]      = []
     end
@@ -154,7 +151,7 @@ module Tr8nClientSdk
          Tr8nClientSdk::TranslationKey, Tr8nClientSdk::RelationshipKey, Tr8nClientSdk::ConfigurationKey, 
          Tr8nClientSdk::TranslationKeySource, Tr8nClientSdk::TranslationKeyLock,
          Tr8nClientSdk::TranslationSource, Tr8nClientSdk::TranslationDomain, Tr8nClientSdk::TranslationSourceLanguage, 
-         Tr8nClientSdk::Translation, Tr8nClientSdk::Translator, Tr8nClientSdk::IpLocation, Tr8nClientSdk::Application, 
+         Tr8nClientSdk::Translation, Tr8nClientSdk::Translator, Tr8nClientSdk::Application, 
          Tr8nClientSdk::Component, Tr8nClientSdk::ComponentSource, Tr8nClientSdk::ComponentTranslator, Tr8nClientSdk::ComponentLanguage,
       ]    
     end
@@ -233,6 +230,55 @@ module Tr8nClientSdk
       config[:enable_language_flags]
     end
 
+    def self.enable_translator_language?
+      config[:enable_translator_language]
+    end
+
+    def self.enable_admin_translations?
+      config[:enable_admin_translations]
+    end
+
+    def self.enable_admin_inline_mode?
+      config[:enable_admin_inline_mode]
+    end
+
+    #########################################################
+    # Translator Roles and Levels
+    #########################################################
+    def self.translator_roles
+      config[:translator_roles]
+    end
+
+    def self.translator_levels
+      @translator_levels ||= begin
+        levels = HashWithIndifferentAccess.new
+        translator_roles.each do |key, val|
+          levels[val] = key
+        end
+        levels
+      end
+    end
+
+    def self.manager_level
+      1000
+    end
+
+    def self.application_level
+      100000
+    end
+
+    def self.system_level
+      1000000
+    end
+
+    def self.admin_level
+      100000000
+    end
+
+    def self.default_translation_key_level
+      config[:default_translation_key_level] || 0
+    end
+
     #########################################################
     # Config Sections
     #########################################################
@@ -299,6 +345,10 @@ module Tr8nClientSdk
 
     def self.base_url
       site_info[:base_url]
+    end
+
+    def self.default_url
+      site_info[:default_url]
     end
 
     def self.contact_email

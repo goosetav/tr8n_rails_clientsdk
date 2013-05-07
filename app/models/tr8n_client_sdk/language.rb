@@ -307,10 +307,6 @@ class Tr8nClientSdk::Language < ActiveRecord::Base
   def has_gender_rules?
     dependencies.include?("gender")
   end
-
-  def translations_changed!
-    # TODO: handle change event - count translations, update total metrics
-  end
   
   def threshold
     super || Tr8nClientSdk::Config.translation_threshold

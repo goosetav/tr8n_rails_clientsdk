@@ -90,8 +90,21 @@ module Tr8nClientSdk
       def init_tr8n_client_sdk
         return unless Tr8nClientSdk::Config.enabled?
 
+        req = request.cookies["tr8n_signed_request"]        
+        if req
+          elements = req.split(';')
+          locale = elements[0]
+          if elements.size > 1
+            translator = Tr8nClientSdk::Translator.find(elements[1])
+          end
+        end
+
+        locale ||= tr8n_init_current_locale
+        user = tr8n_init_current_user
+        translator ||= Tr8nClientSdk::Translator.for(user)
+
         # initialize request thread variables
-        Tr8nClientSdk::Config.init(tr8n_init_current_locale, tr8n_init_current_user, tr8n_source, tr8n_component)
+        Tr8nClientSdk::Config.init(locale, user, translator, tr8n_source, tr8n_component)
         
         # for logged out users, fallback onto tr8n_access_key
         if Tr8nClientSdk::Config.current_user_is_guest?  
@@ -99,11 +112,6 @@ module Tr8nClientSdk
           unless tr8n_access_key.blank?
             Tr8nClientSdk::Config.set_translator(Tr8nClientSdk::Translator.find_by_access_key(tr8n_access_key))
           end
-        end
-
-        # track user's last ip address  
-        if Tr8nClientSdk::Config.enable_country_tracking? and Tr8nClientSdk::Config.current_user_is_translator?
-          Tr8nClientSdk::Config.current_translator.update_last_ip(tr8n_request_remote_ip)
         end
 
         # register component and verify that the current user is authorized to view it

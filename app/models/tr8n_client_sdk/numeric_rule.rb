@@ -20,31 +20,8 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::NumericRule Schema Information
-#
-# Table name: tr8n_language_rules
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  type             varchar(255)    
-#  definition       text            
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lr_lt    (language_id, translator_id) 
-#  tr8n_lr_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::NumericRule < Tr8nClientSdk::LanguageRule
-
-  def self.description
-    "token object may be a number, which"
-  end
 
   def self.dependency
     "number" 
@@ -56,14 +33,6 @@ class Tr8nClientSdk::NumericRule < Tr8nClientSdk::LanguageRule
 
   def self.default_rules_for(language = Tr8nClientSdk::Config.current_language)
     Tr8nClientSdk::Config.default_numeric_rules(language.locale)
-  end
-
-  def self.rule_options
-    [["is", "is"], ["is not", "is_not"], ["ends in", "ends_in"], ["does not end in", "does_not_end_in"]]
-  end
-  
-  def self.operator_options
-    ["and", "or"]
   end
 
   def self.number_token_value(token)
@@ -165,37 +134,6 @@ class Tr8nClientSdk::NumericRule < Tr8nClientSdk::LanguageRule
 
   def humanize_values(values)
     self.class.humanize_values(values)
-  end
-
-  def to_hash
-    { :type => self.class.dependency, 
-      :multipart => definition[:multipart], :operator => definition[:operator],  
-      :part1 => definition[:part1], :value1 => definition[:value1],
-      :part2 => definition[:part2], :value2 => definition[:value2]
-    }
-  end
-
-  # used to describe a context of a given translation
-  def description
-    rule_desc = describe_partial_rule(definition[:part1].to_sym, definition[:value1])
-    return rule_desc unless definition[:multipart].to_s == "true"
-    
-    rule_desc << " " << definition[:operator] << " " 
-    rule_desc << describe_partial_rule(definition[:part2].to_sym, definition[:value2])
-    humanize_description(rule_desc)   
-  end
-  
-  def describe_partial_rule(name, value)
-    return "is #{humanize_values(value)}" if name == :is
-    return "is not #{humanize_values(value)}" if name == :is_not
-    return "ends in #{humanize_values(value)}" if name == :ends_in
-    return "does not end in #{humanize_values(value)}" if name == :does_not_end_in
-
-    "has an unknown rule"
-  end
-  
-  def humanize_description(desc)
-    desc.gsub(" and does not end in", ", but not in")
   end
   
 end

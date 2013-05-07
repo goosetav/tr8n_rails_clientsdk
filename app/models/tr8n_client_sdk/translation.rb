@@ -50,10 +50,6 @@ class Tr8nClientSdk::Translation < ActiveRecord::Base
   attr_accessible :translation_key_id, :language_id, :translator_id, :label, :rank, :approved_by_id, :rules, :synced_at
   attr_accessible :language, :translator, :translation_key
 
-  after_create    :distribute_notification
-  after_save      :update_cache
-  after_destroy   :update_cache
-
   belongs_to :language,         :class_name => "Tr8nClientSdk::Language"
   belongs_to :translation_key,  :class_name => "Tr8nClientSdk::TranslationKey"
   belongs_to :translator,       :class_name => "Tr8nClientSdk::Translator"
@@ -67,58 +63,6 @@ class Tr8nClientSdk::Translation < ActiveRecord::Base
 
   # TODO: move this to config file
   VIOLATION_INDICATOR = -10
-
-  def vote!(translator, score)
-    score = score.to_i
-    vote = Tr8nClientSdk::TranslationVote.find_or_create(self, translator)
-    vote.update_attributes(:vote => score.to_i)
-    
-    Tr8nClientSdk::Notification.distribute(vote)
-
-    update_rank!
-    
-    # update the translation key timestamp
-    key.touch
-
-    self.translator.update_rank!(language) if self.translator
-    
-    # add the translator to the watch list
-    self.translator.update_attributes(:reported => true) if score < VIOLATION_INDICATOR
-    
-    translator.voted_on_translation!(self)
-    translator.update_metrics!(language)
-    translation_key.update_metrics!(language)
-  end
-  
-  def update_rank!
-    new_rank = 0
-    Tr8nClientSdk::TranslationVote.where(:translation_id => self.id).each do |tv|
-      next unless tv.translator
-      new_rank += (tv.translator.voting_power * tv.vote)
-    end
-    update_attributes(:rank => new_rank)
-  end
-  
-  def reset_votes!(translator)
-    Tr8nClientSdk::TranslationVote.delete_all(["translation_id = ?", self.id])
-    vote!(translator, 1)
-  end
-  
-  # TODO: move this stuff to decorators
-  def rank_style(rank)
-    Tr8nClientSdk::Config.default_rank_styles.each do |range, color|
-      return color if range.include?(rank)
-    end
-    "color:grey"
-  end
-  
-  # TODO: move this stuff to decorators
-  def rank_label
-    return "<span style='color:grey'>0</span>" if rank.blank?
-    
-    prefix = (rank > 0) ? "+" : ""
-    "<span style='#{rank_style(rank)}'>#{prefix}#{rank}</span>".html_safe 
-  end
 
   # populate language rules from the internal rules hash
   def rules
@@ -166,18 +110,6 @@ class Tr8nClientSdk::Translation < ActiveRecord::Base
     end
   end
 
-  # TODO: move to decorators
-  def context
-    return nil if rules.nil? or rules.empty? 
-    
-    @context ||= begin
-      context_rules = []  
-      rules.each do |rule|
-        context_rules << "<strong>#{rule[:token]}</strong> #{rule[:rule].description}" 
-      end
-      context_rules.join(" and ").html_safe
-    end
-  end
 
   # checks if the translation is valid for the given tokens
   def matches_rules?(token_values)
@@ -219,164 +151,4 @@ class Tr8nClientSdk::Translation < ActiveRecord::Base
     trns.count == 0
   end
   
-  def clean?
-    language.clean_sentence?(label)
-  end
-  
-  def can_be_edited_by?(editor)
-    return false if translation_key.locked?
-    translator == editor
-  end
-
-  def can_be_deleted_by?(editor)
-    return false if translation_key.locked?
-    return true if editor.manager?
-    
-    translator == editor
-  end
-
-  def save_with_log!(translator)
-    if self.id
-      translator.updated_translation!(self) if changed?
-    else  
-      translator.added_translation!(self)
-    end
-    
-    save
-  end
-  
-  def destroy_with_log!(translator)
-    translator.deleted_translation!(self)
-    
-    destroy
-  end
-
-  def distribute_notification
-    Tr8nClientSdk::Notification.distribute(self)
-  end
-
-  def update_cache
-    # Tr8nClientSdk::Cache.delete("translations_#{language.locale}_#{translation_key.key}") if language and translation_key
-    language.translations_changed! if language
-    translation_key.translations_changed!(language) if translation_key
-  end
-  
-  ###############################################################
-  ## Synchronization Methods
-  ###############################################################
-  # generates the hash without rule ids, but with full definitions
-  def mark_as_synced!
-    update_attributes(:synced_at => Time.now + 2.seconds)
-  end
-
-  def rules_sync_hash(opts = {})
-    @rules_sync_hash ||= (rules || []).collect{|rule| rule[:rule].to_sync_hash(rule[:token], opts)}
-  end
-
-  # serilaize translation to API hash to be used for synchronization
-  def to_sync_hash(opts = {})
-    return {"locale" => language.locale, "label" => label, "rules" => rules_sync_hash(opts)} if opts[:comparible]
-    
-    hash = {"locale" => language.locale, "label" => label, "rank" => rank, "rules" => rules_sync_hash(opts)}
-    if translator
-      if opts[:include_translator] # tr8n.net => local = include full translator info
-        hash["translator"] = translator.to_sync_hash(opts)
-      elsif translator.remote_id  # local => tr8n.net = include only the remote id of the translator if the translator is linked 
-        hash["translator_id"] = translator.remote_id
-      end  
-    end  
-    hash  
-  end
-
-  # create translation from API hash for a specific key
-  def self.create_from_sync_hash(tkey, translator, thash, opts = {})
-    return if thash["label"].blank?  # don't add empty translations
-    
-    lang = Tr8nClientSdk::Language.for(thash["locale"])
-    return unless lang  # don't add translations for an unsupported language
-
-    # generate rules for the translation
-    rules = []    
-    if thash["rules"] and thash["rules"].any?
-      thash["rules"].each do |rhash|
-        rule = Tr8nClientSdk::LanguageRule.create_from_sync_hash(lang, translator, rhash, opts)
-        return unless rule # if the rule has not been created, we should not even add the translation
-        rules << {:token => rhash["token"], :rule_id => rule.id}
-      end
-    end
-    rules = nil if rules.empty?
-    
-    tkey.add_translation(thash["label"], rules, lang, translator)
-  end
-    
-  ###############################################################
-  ## Search Methods
-  ###############################################################
-  def self.filter_status_options
-    [["all translations", "all"], 
-     ["accepted translations", "accepted"], 
-     ["pending translations", "pending"], 
-     ["rejected translations", "rejected"]].collect{|option| [option.first.trl("Translation filter status option"), option.last]}    
-  end
-  
-  def self.filter_submitter_options
-    [["anyone", "anyone"], 
-     ["me", "me"]].collect{|option| [option.first.trl("Translation filter submitter option"), option.last]}
-  end
-  
-  def self.filter_date_options
-    [["any date", "any"], 
-     ["today", "today"], 
-     ["yesterday", "yesterday"], 
-     ["in the last week", "last_week"]].collect{|option| [option.first.trl("Translation filter date option"), option.last]}
-  end
-  
-  def self.filter_order_by_options
-    [["date", "date"], 
-     ["rank", "rank"]].collect{|option| [option.first.trl("Translation filter order by option"), option.last]}
-  end
-  
-
-  def self.filter_group_by_options
-    [["nothing", "nothing"], 
-     ["translator", "translator"], 
-     ["context rule", "context"], 
-     ["rank", "rank"], 
-     ["date", "date"]].collect{|option| [option.first.trl("Translation filter group by option"), option.last]}
-  end
-  
-  def self.for_params(params, language = Tr8nClientSdk::Config.current_language)
-    results = self.where("language_id = ?", language.id)
-    
-    # ensure that only allowed translations are visible
-    allowed_level = Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator.level : 0
-    results = results.where("translation_key_id in (select id from tr8n_translation_keys where level <= ?)", allowed_level) 
-    
-    results = results.where("label like ?", "%#{params[:search]}%") unless params[:search].blank?
-  
-    if params[:with_status] == "accepted"
-      results = results.where("rank >= ?", Tr8nClientSdk::Config.translation_threshold)
-    elsif params[:with_status] == "pending"
-      results = results.where("rank >= 0 and rank < ?", Tr8nClientSdk::Config.translation_threshold)
-    elsif params[:with_status] == "rejected"
-      results = results.where("rank < 0")
-    end
-    
-    if params[:submitted_by] == "me"
-      results = results.where("translator_id = ?", Tr8nClientSdk::Config.current_user_is_translator? ? Tr8nClientSdk::Config.current_translator.id : 0)
-    end
-    
-    if params[:submitted_on] == "today"
-      date = Date.today
-      results = results.where("created_at >= ? and created_at < ?", date, date + 1.day)
-    elsif params[:submitted_on] == "yesterday"
-      date = Date.today - 1.days
-      results = results.where("created_at >= ? and created_at < ?", date, date + 1.day)
-    elsif params[:submitted_on] == "last_week"
-      date = Date.today - 7.days
-      results = results.where("created_at >= ? and created_at < ?", date, Date.today)
-    end    
-    results
-  end 
-    
 end

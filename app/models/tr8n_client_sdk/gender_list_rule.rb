@@ -20,25 +20,6 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
-#
-#-- Tr8nClientSdk::GenderListRule Schema Information
-#
-# Table name: tr8n_language_rules
-#
-#  id               INTEGER         not null, primary key
-#  language_id      integer         not null
-#  translator_id    integer         
-#  type             varchar(255)    
-#  definition       text            
-#  created_at       datetime        not null
-#  updated_at       datetime        not null
-#
-# Indexes
-#
-#  tr8n_lr_lt    (language_id, translator_id) 
-#  tr8n_lr_l     (language_id) 
-#
-#++
 
 class Tr8nClientSdk::GenderListRule < Tr8nClientSdk::LanguageRule
     
@@ -57,25 +38,7 @@ class Tr8nClientSdk::GenderListRule < Tr8nClientSdk::LanguageRule
   def self.default_rules_for(language = Tr8nClientSdk::Config.current_language)
     Tr8nClientSdk::Config.default_gender_list_rules(language.locale)
   end
-  
-  def self.part1_options
-    [["contains", "contains"]]
-  end
 
-  def self.value1_options
-    [["one element", "one_element"], ["at least 2 elements", "at_least_two_elements"]]
-  end
-
-  def self.part2_options(value1 = "one_element")
-    return [["that are", "are"], ["that are not", "are_not"]] if value1 == "at_least_two_elements"
-    [["that is", "is"], ["that is not", "is_not"]]
-  end
-
-  def self.value2_options(value1 = "one_element")
-    return [["all male", "all_male"], ["all female", "all_female"], ["of mixed genders", "mixed"]] if value1 == "at_least_two_elements"
-    [["male", "male"], ["female", "female"], ["unknown", "unknown"], ["neutral", "neutral"]]
-  end
-  
   def self.list_size_token_value(token)
     return nil unless token and token.respond_to?(Tr8nClientSdk::Config.rules_engine[:gender_list_rule][:object_method])
     token.send(Tr8nClientSdk::Config.rules_engine[:gender_list_rule][:object_method])
@@ -211,52 +174,4 @@ class Tr8nClientSdk::GenderListRule < Tr8nClientSdk::LanguageRule
     false
   end
 
-  def to_hash
-    { :type => self.class.dependency, 
-      :multipart => definition[:multipart],   
-      :part1 => definition[:part1], :value1 => definition[:value1],
-      :part2 => definition[:part2], :value2 => definition[:value2]
-    }
-  end
-
-  # used to describe a context of a given translation
-  def description
-    if definition[:value1] == "one_element"
-      desc = "contains one element"
-      
-      if definition[:multipart] == "true"
-        if definition[:part2] == "is"
-          desc << " that is a #{definition[:value2]}" if ["male", "female"].include?(definition[:value2])
-          desc << " that has a neutral gender" if "neutral" == definition[:value2]
-          desc << " that has an unknown gender" if "unknown" == definition[:value2]
-        else
-          desc << " that is not a #{definition[:value2]}" if ["male", "female"].include?(definition[:value2])
-          desc << " that does not have a neutral gender" if "neutral" == definition[:value2]
-          desc << " that does not have an unknown gender" if "unknown" == definition[:value2]
-        end
-      end
-      
-      return desc
-    end
-    
-    if definition[:value1] == "at_least_two_elements"
-      desc = "contains at least two elements"
-      
-      if definition[:multipart] == "true"
-        if definition[:part2] == "are"
-          desc << " that are all male" if "all_male" == definition[:value2]
-          desc << " that are all female" if "all_female" == definition[:value2]
-          desc << " that are of mixed genders" if "mixed" == definition[:value2]
-        else
-          desc << " that are not all male" if "all_male" == definition[:value2]
-          desc << " that are not all female" if "all_female" == definition[:value2]
-          desc << " that are not of mixed genders" if "mixed" == definition[:value2]
-        end
-      end
-      
-      return desc
-    end
-      
-    "has an unknown rule"
-  end
 end
