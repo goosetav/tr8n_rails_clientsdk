@@ -25,7 +25,8 @@ module Tr8nClientSdk
   module ActionControllerExtension
     def self.included(base)
       base.send(:include, InstanceMethods) 
-      base.before_filter :init_tr8n_client_sdk
+      base.before_filter :tr8n_init_client_sdk
+      base.after_filter :tr8n_register_key_sources
     end
 
     module InstanceMethods
@@ -38,7 +39,7 @@ module Tr8nClientSdk
           l += ';q=1.0' unless l =~ /;q=\d+\.\d+$/
           l.split(';q=')
         end.sort do |x,y|
-          raise Tr8nClientSdk::Exception.new("Not correctly formatted") unless x.first =~ /^[a-z\-]+$/i
+          raise Tr8n::Exception.new("Not correctly formatted") unless x.first =~ /^[a-z\-]+$/i
           y.last.to_f <=> x.last.to_f
         end.collect do |l|
           l.first.downcase.gsub(/-[a-z]+$/i) { |x| x.upcase }
@@ -49,10 +50,10 @@ module Tr8nClientSdk
 
       def tr8n_user_preffered_locale
         tr8n_browser_accepted_locales.each do |locale|
-          lang = Tr8nClientSdk::Language.for(locale)
+          lang = Tr8n::Language.by_locale(locale)
           return locale if lang and lang.enabled?
         end
-        Tr8nClientSdk::Config.default_locale
+        Tr8n::Config.default_locale
       end
 
       def tr8n_request_remote_ip
@@ -74,7 +75,7 @@ module Tr8nClientSdk
       end  
 
       def tr8n_init_current_locale
-        self.send(Tr8nClientSdk::Config.current_locale_method)
+        self.send(Tr8n::Config.current_locale_method)
       rescue
         # fallback to the default session based locale implementation
         # choose the first language from the accepted languages header
@@ -84,45 +85,49 @@ module Tr8nClientSdk
       end
 
       def tr8n_init_current_user
-        self.send(Tr8nClientSdk::Config.current_user_method)
+        self.send(Tr8n::Config.current_user_method)
       end
 
-      def init_tr8n_client_sdk
-        return unless Tr8nClientSdk::Config.enabled?
+      def tr8n_init_client_sdk
+        return unless Tr8n::Config.enabled?
 
         req = request.cookies["tr8n_signed_request"]        
         if req
           elements = req.split(';')
           locale = elements[0]
           if elements.size > 1
-            translator = Tr8nClientSdk::Translator.find(elements[1])
+            # translator = Tr8n::Models::Translator.by_id(elements[1])
           end
         end
 
-        locale ||= tr8n_init_current_locale
-        user = tr8n_init_current_user
-        translator ||= Tr8nClientSdk::Translator.for(user)
+        # locale ||= tr8n_init_current_locale
+        # user = tr8n_init_current_user
+        # translator ||= Tr8n::Translator.for(user)
 
         # initialize request thread variables
-        Tr8nClientSdk::Config.init(locale, user, translator, tr8n_source, tr8n_component)
+        Tr8n::Config.init(locale, tr8n_source, tr8n_component)
         
         # for logged out users, fallback onto tr8n_access_key
-        if Tr8nClientSdk::Config.current_user_is_guest?  
-          tr8n_access_key = params[:tr8n_access_key] || session[:tr8n_access_key]
-          unless tr8n_access_key.blank?
-            Tr8nClientSdk::Config.set_translator(Tr8nClientSdk::Translator.find_by_access_key(tr8n_access_key))
-          end
-        end
+        # if Tr8n::Config.current_user_is_guest?  
+        #   tr8n_access_key = params[:tr8n_access_key] || session[:tr8n_access_key]
+        #   unless tr8n_access_key.blank?
+        #     Tr8n::Config.set_translator(Tr8n::Translator.find_by_access_key(tr8n_access_key))
+        #   end
+        # end
 
         # register component and verify that the current user is authorized to view it
-        unless Tr8nClientSdk::Config.current_user_is_authorized_to_view_component?
-          trfe("You are not authorized to view this component")
-          return redirect_to(Tr8nClientSdk::Config.default_url)
-        end
+        # unless Tr8n::Config.current_user_is_authorized_to_view_component?
+        #   trfe("You are not authorized to view this component")
+        #   return redirect_to(Tr8n::Config.default_url)
+        # end
 
-        unless Tr8nClientSdk::Config.current_user_is_authorized_to_view_language?
-          Tr8nClientSdk::Config.set_language(Tr8nClientSdk::Config.default_language)
-        end
+        # unless Tr8n::Config.current_user_is_authorized_to_view_language?
+        #   Tr8n::Config.set_language(Tr8n::Config.default_language)
+        # end
+      end
+
+      def tr8n_register_key_sources
+        Tr8n::Source.register_missing_keys
       end
 
       ############################################################
@@ -146,11 +151,11 @@ module Tr8nClientSdk
         options.merge!(:url => request.url)
         options.merge!(:host => request.env['HTTP_HOST'])
 
-        unless Tr8nClientSdk::Config.enabled?
-          return Tr8nClientSdk::TranslationKey.substitute_tokens(label, tokens, options)
+        unless Tr8n::Config.enabled?
+          return Tr8n::TranslationKey.substitute_tokens(label, tokens, options)
         end
 
-        Tr8nClientSdk::Config.current_language.translate(label, desc, tokens, options)
+        Tr8n::Config.current_language.translate(label, desc, tokens, options)
       end
 
       # for translating labels
@@ -175,14 +180,14 @@ module Tr8nClientSdk
 
       # for admin translations
       def tra(label, desc = "", tokens = {}, options = {})
-        if Tr8nClientSdk::Config.enable_admin_translations?
-          if Tr8nClientSdk::Config.enable_admin_inline_mode?
+        if Tr8n::Config.enable_admin_translations?
+          if Tr8n::Config.enable_admin_inline_mode?
             tr(label, desc, tokens, options)
           else
             trl(label, desc, tokens, options)
           end
         else
-          Tr8nClientSdk::Config.default_language.translate(label, desc, tokens, options)
+          Tr8n::Config.default_language.translate(label, desc, tokens, options)
         end
       end
       
@@ -196,37 +201,37 @@ module Tr8nClientSdk
       ######################################################################
 
       def tr8n_current_user
-        Tr8nClientSdk::Config.current_user
+        Tr8n::Config.current_user
       end
 
       def tr8n_current_language
-        Tr8nClientSdk::Config.current_language
+        Tr8n::Config.current_language
       end
 
       def tr8n_default_language
-        Tr8nClientSdk::Config.default_language
+        Tr8n::Config.default_language
       end
 
       def tr8n_current_translator
-        Tr8nClientSdk::Config.current_translator
+        Tr8n::Config.current_translator
       end
     
       def tr8n_current_user_is_admin?
-        Tr8nClientSdk::Config.current_user_is_admin?
+        Tr8n::Config.current_user_is_admin?
       end
     
       def tr8n_current_user_is_translator?
-        Tr8nClientSdk::Config.current_user_is_translator?
+        Tr8n::Config.current_user_is_translator?
       end
 
       def tr8n_current_user_is_manager?
-        return true if Tr8nClientSdk::Config.current_user_is_admin?
-        return false unless Tr8nClientSdk::Config.current_user_is_translator?
+        return true if Tr8n::Config.current_user_is_admin?
+        return false unless Tr8n::Config.current_user_is_translator?
         tr8n_current_translator.manager?
       end
     
       def tr8n_current_user_is_guest?
-        Tr8nClientSdk::Config.current_user_is_guest?
+        Tr8n::Config.current_user_is_guest?
       end
 
     end

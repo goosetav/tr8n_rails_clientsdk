@@ -1,3 +1,26 @@
+#--
+# Copyright (c) 2010-2013 Michael Berkovich, tr8nhub.com
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+#++
+
 class SignupController < ApplicationController
 
   def index
@@ -49,66 +72,4 @@ class SignupController < ApplicationController
     end
   end
 
-
-  def forgot_password
-  #   if request.post?
-  #     if params[:email].blank?
-  #       trfe("Email must be provided")
-  #     else  
-  #       user = User.find_by_email(params[:email])
-  #       return trfe("We could not find this email in our system") unless user
-
-  #       @req = PasswordResetRequest.create(:email => params[:email])
-  #       @req.expire_in(5.minutes)
-  #       @req.delay.deliver
-
-  #       pp @req
-
-  #       trfn("We emailed you instructions on how to reset your password")
-  #       redirect_to("/login")
-  #     end  
-  #   end
-  end
-
-  def reset_password
-    # @req = PasswordResetRequest.find_by_key(params[:id])
-
-    # pp @req
-
-
-    # unless @req
-    #   trfe("This request is not valid")
-    #   return redirect_to("/")
-    # end
-
-    # if @req.expired?
-    #   trfe("This request has expired")
-    #   return redirect_to("/")
-    # end
-
-    # @user = User.find_by_email(@req.email)
-    # unless @user
-    #   trfe("This request is not valid")
-    #   return redirect_to("/")
-    # end
-
-    # if request.post?
-    #   if params[:user][:password].blank?
-    #     return trfe("Password may not be blank")
-    #   end
-
-    #   if params[:user][:password] != params[:user][:password_confirmation]
-    #     return trfe("Passwords don't match")
-    #   end
-
-    #   @user.password =  params[:user][:password]
-    #   @user.encrypt_password
-    #   @user.save
-
-    #   trfn("Your password has been reset")
-    #   return redirect_to("/login")
-    # end    
-  end
-
-      
 end

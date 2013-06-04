@@ -35,13 +35,13 @@ class Time
     present
   end
 
-  def translate(format = :default, language = Tr8nClientSdk::Config.current_language, options = {})
-    label = (format.is_a?(String) ? format.clone : Tr8nClientSdk::Config.default_date_formats[format].clone)
+  def translate(format = :default, language = Tr8n::Config.current_language, options = {})
+    label = (format.is_a?(String) ? format.clone : Tr8n::Config.default_date_formats[format].clone)
     symbols = label.scan(/(%\w)/).flatten.uniq
 
     selected_tokens = []
     symbols.each do |symbol|
-      token = Tr8nClientSdk::Config.strftime_symbol_to_token(symbol)
+      token = Tr8n::Config.strftime_symbol_to_token(symbol)
       next unless token
       selected_tokens << token
       label.gsub!(symbol, token)
@@ -57,10 +57,10 @@ class Time
         when "{week_days}" then tokens[:week_days] = strftime("%w")
         when "{short_years}" then tokens[:short_years] = strftime("%y")
         when "{years}" then tokens[:years] = year
-        when "{short_week_day_name}" then tokens[:short_week_day_name] = language.tr(Tr8nClientSdk::Config.default_abbr_day_names[wday], "Short name for a day of a week", {}, options)
-        when "{week_day_name}" then tokens[:week_day_name] = language.tr(Tr8nClientSdk::Config.default_day_names[wday], "Day of a week", {}, options)
-        when "{short_month_name}" then tokens[:short_month_name] = language.tr(Tr8nClientSdk::Config.default_abbr_month_names[month - 1], "Short month name", {}, options)
-        when "{month_name}" then tokens[:month_name] = language.tr(Tr8nClientSdk::Config.default_month_names[month - 1], "Month name", {}, options)
+        when "{short_week_day_name}" then tokens[:short_week_day_name] = language.tr(Tr8n::Config.default_abbr_day_names[wday], "Short name for a day of a week", {}, options)
+        when "{week_day_name}" then tokens[:week_day_name] = language.tr(Tr8n::Config.default_day_names[wday], "Day of a week", {}, options)
+        when "{short_month_name}" then tokens[:short_month_name] = language.tr(Tr8n::Config.default_abbr_month_names[month - 1], "Short month name", {}, options)
+        when "{month_name}" then tokens[:month_name] = language.tr(Tr8n::Config.default_month_names[month - 1], "Month name", {}, options)
         when "{am_pm}" then tokens[:am_pm] = language.tr(strftime("%p"), "Meridian indicator", {}, options)
         when "{full_hours}" then tokens[:full_hours] = hour
         when "{short_hours}" then tokens[:short_hours] = strftime("%I")
@@ -76,7 +76,7 @@ class Time
   end
   alias :tr :translate
 
-  def trl(format = :default, language = Tr8nClientSdk::Config.current_language, options = {})
+  def trl(format = :default, language = Tr8n::Config.current_language, options = {})
     tr(format, language, options.merge!(:skip_decorations => true))
   end
 end

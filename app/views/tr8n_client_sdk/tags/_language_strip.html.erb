@@ -1,4 +1,4 @@
-<% if Tr8nClientSdk::Config.enabled? %>
+<% if Tr8n::Config.enabled? %>
 <style>
 .tr8n_language_strip                            {text-align:center; color:#777;}
 .tr8n_language_strip a                          {text-decoration:none; color:#777; outline:none; border:0px; font-size:10px;}
@@ -6,7 +6,7 @@
 .tr8n_language_strip a:hover                    {text-decoration:underline}  
 </style>
 <div class="tr8n_language_strip" style="font-size:12px;">
-    <% featured_languages = Tr8nClientSdk::Language.featured_languages %>
+    <% featured_languages = Tr8n::Language.featured_languages %>
     
     <% featured_languages.each do |lang| %>
         <%= tr8n_language_name_tag(lang, opts) %> &nbsp;

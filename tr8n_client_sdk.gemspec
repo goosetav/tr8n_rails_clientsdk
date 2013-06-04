@@ -10,18 +10,16 @@ Gem::Specification.new do |s|
   s.authors     = ["Michael Berkovich"]
   s.email       = ["theiceberk@gmail.com"]
   s.homepage    = "http://www.tr8nhub.com"
-  s.summary     = "Tr8n Client SDK"
+  s.summary     = "Tr8n Client SDK for Ruby on Rails"
   s.description = "Client SDK for Tr8n translation engine."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency 'rails',     '~> 3.2.13'
-  s.add_dependency 'kaminari',  '>= 0'
   s.add_dependency 'sass',      '>= 0'
   s.add_dependency 'thor',      '>= 0'
   s.add_dependency 'faraday',   '>= 0'
-  s.add_dependency 'money',     '>= 0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'dalli'
   s.add_development_dependency 'aasm'
@@ -34,4 +32,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'watchr'
   s.add_development_dependency 'rr'
   s.add_development_dependency 'bcrypt-ruby'
+  # s.add_development_dependency 'tr8n_cli_tools'
 end

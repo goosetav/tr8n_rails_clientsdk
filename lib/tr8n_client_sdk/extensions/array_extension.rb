@@ -24,7 +24,7 @@
 class Array
 
   # translates an array of options for a select tag
-  def tro(description = "", options = {}, language = Tr8nClientSdk::Config.current_language)
+  def tro(description = "", options = {}, language = Tr8n::Config.current_language)
     return [] if empty?
 
     collect do |opt|
@@ -39,7 +39,7 @@ class Array
   end
 
   # translate array values 
-  def trl(description = "", options = {}, language = Tr8nClientSdk::Config.current_language)
+  def trl(description = "", options = {}, language = Tr8n::Config.current_language)
     return [] if empty?
 
     collect do |opt|
@@ -52,7 +52,7 @@ class Array
   end
 
   # creates a sentence with tr "and" joiner
-  def tr_sentence(options = {}, language = Tr8nClientSdk::Config.current_language)
+  def tr_sentence(options = {}, language = Tr8n::Config.current_language)
     return "" if empty?
     return first if size == 1
 
@@ -69,10 +69,6 @@ class Array
 
   def tr8n_translated?
     @tr8n_translated
-  end
-
-  def page(page)
-    Kaminari.paginate_array(self).page(page)
   end
 
 end

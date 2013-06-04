@@ -29,20 +29,6 @@ module Dummy
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.action_mailer.default_url_options = { host: "http://tr8nhub.com", only_path: false}
-    config.action_mailer.raise_delivery_errors = true
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.asset_host = 'http://tr8nhub.com'
-    config.action_mailer.smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "tr8nhub.com",
-      authentication: "plain",
-      enable_starttls_auto: true,
-      user_name: "noreply@tr8nhub.com",
-      password: "perestroika"
-    }
-
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 

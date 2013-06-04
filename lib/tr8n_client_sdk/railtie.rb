@@ -26,10 +26,20 @@ require 'pp'
 
 [
  ".",
- "./tokens"
-].each do |dir|
-    Dir[File.expand_path("#{File.dirname(__FILE__)}/#{dir}/*.rb")].sort.each do |file|
-      require(file)
+ "./namespace.rb",
+ "../tr8n/base.rb",
+ "../tr8n",
+ "../tr8n/rules/base.rb",
+ "../tr8n/rules",
+ "../tr8n/tokens/base.rb",
+ "../tr8n/tokens",
+].each do |path|
+    if path.index(".rb")
+      require(File.expand_path("#{File.dirname(__FILE__)}/#{path}"))
+    else
+      Dir[File.expand_path("#{File.dirname(__FILE__)}/#{path}/*.rb")].sort.each do |file|
+        require(file)
+      end
     end
 end
 

@@ -23,7 +23,7 @@
 
 class String
 
-  def translate(desc = "", tokens = {}, options = {}, language = Tr8nClientSdk::Config.current_language)
+  def translate(desc = "", tokens = {}, options = {}, language = Tr8n::Config.current_language)
     language.translate(self, desc, tokens, options)
   end
 
@@ -32,7 +32,7 @@ class String
     plural || pluralize
   end
 
-  def trl(desc = "", tokens = {}, options = {}, language = Tr8nClientSdk::Config.current_language)
+  def trl(desc = "", tokens = {}, options = {}, language = Tr8n::Config.current_language)
     translate(desc, tokens, options.merge(:skip_decorations => true), language)
   end
 

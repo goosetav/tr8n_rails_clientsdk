@@ -11,10 +11,9 @@
           <hr class="mvm" />
           <div class="line quiet">
             <div class="unit size1of2 txtL">
-              <%=link_to(tr("Login"), "/login")%>
             </div>
             <div class="unit size1of2 lastUnit txtR">
-              <%=tr("New user? [link: Register here].", "", :link => {:href => "/welcome/index"})%>
+              <%=link_to(tr("Already have an account?"), "/login")%>
             </div>
           </div>
       <% end %>
