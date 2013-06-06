@@ -23,6 +23,7 @@
 
 module Tr8nClientSdk
   module ActionControllerExtension
+
     def self.included(base)
       base.send(:include, InstanceMethods) 
       base.before_filter :tr8n_init_client_sdk
@@ -55,21 +56,15 @@ module Tr8nClientSdk
         end
         Tr8n::Config.default_locale
       end
-
-      def tr8n_request_remote_ip
-        @remote_ip ||= if request.env['HTTP_X_FORWARDED_FOR']
-          request.env['HTTP_X_FORWARDED_FOR'].split(',').first
-        else
-          request.remote_ip
-        end
-      end
       
+      # Overwrite this method in a controller to assign a custom source for all views
       def tr8n_source
         "#{self.class.name.underscore.gsub("_controller", "")}/#{self.action_name}"
       rescue
         self.class.name
       end
 
+      # Overwrite this method in a controller to assign a custom component for all views
       def tr8n_component
         nil
       end  
@@ -91,21 +86,27 @@ module Tr8nClientSdk
       def tr8n_init_client_sdk
         return unless Tr8n::Config.enabled?
 
-        req = request.cookies["tr8n_signed_request"]        
-        if req
-          elements = req.split(';')
-          locale = elements[0]
-          if elements.size > 1
-            # translator = Tr8n::Models::Translator.by_id(elements[1])
-          end
+        cookie_name = "tr8n_#{Tr8n::Config.app_key}"
+
+        if request.cookies[cookie_name]
+          cookie_params = Tr8n::Config.decode_and_verify_params(request.cookies[cookie_name], Tr8n::Config.app_secret)  
+          locale = cookie_params["locale"]
+          code = cookie_params["code"]
+          translator = Tr8n::Translator.new(cookie_params["translator"]) unless cookie_params["translator"].nil?
+          # {"locale"=>"ru",
+          #  "translator_id"=>2,
+          #  "inline"=>true,
+          #  "code"=>"d93e3654f158e04b4",
+          #  "algorithm"=>"HMAC-SHA256",
+          #  "ts"=>1370476528}          
         end
 
-        # locale ||= tr8n_init_current_locale
+        locale ||= tr8n_init_current_locale
         # user = tr8n_init_current_user
         # translator ||= Tr8n::Translator.for(user)
 
         # initialize request thread variables
-        Tr8n::Config.init(locale, tr8n_source, tr8n_component)
+        Tr8n::Config.init(locale, translator, tr8n_source, tr8n_component)
         
         # for logged out users, fallback onto tr8n_access_key
         # if Tr8n::Config.current_user_is_guest?  

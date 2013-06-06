@@ -29,7 +29,7 @@ class SignupRequest < Request
   end
 
   def lander_url
-    "#{Tr8nClientSdk::Config.base_url}/signup/lander/#{key}"
+    "#{Tr8n::Config.base_url}/signup/lander/#{key}"
   end
   
 end

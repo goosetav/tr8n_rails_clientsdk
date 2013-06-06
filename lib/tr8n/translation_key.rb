@@ -60,13 +60,7 @@ class Tr8n::TranslationKey < Tr8n::Base
       })
 
       # TODO: do we need all that?
-      level = options[:level] || Tr8n::Config.block_options[:level] || Tr8n::Config.default_translation_key_level
-      role_key = options[:role] || Tr8n::Config.block_options[:role] 
-      if role_key
-        level = Tr8n::Config.translator_roles[role_key]
-        raise Tr8n::Exception("Unknown translator role: #{role_key}") unless level 
-      end
-      missing_key.level = level
+      missing_key.level = options[:level] || Tr8n::Config.block_options[:level]
 
       # source  
       source = options[:source] || Tr8n::Config.current_source_from_block_options || Tr8n::Config.current_source
@@ -78,7 +72,7 @@ class Tr8n::TranslationKey < Tr8n::Base
   end
   
   def language
-    @language ||= (locale ? Tr8n::Language.for(locale) : Tr8n::Config.default_language)
+    @language ||= (locale ? Tr8n::Language.by_locale(locale) : Tr8n::Config.default_language)
   end
   
   def tokenized_label
@@ -155,13 +149,10 @@ class Tr8n::TranslationKey < Tr8n::Base
   
   def decorate_translation(language, translated_label, translated = true, options = {})
     return translated_label if options[:skip_decorations]
-    
-    # return translated_label if Tr8n::Config.current_user_is_guest?
-    # return translated_label unless Tr8n::Config.current_user_is_translator?
-    # return translated_label if Tr8n::Config.current_translator.blocked?
-    # return translated_label unless Tr8n::Config.current_translator.enable_inline_translations?
-    # return translated_label if self.language == language
-    # return translated_label if locked? and not Tr8n::Config.current_translator.manager?
+    return translated_label if self.language == language
+    return translated_label unless Tr8n::Config.current_translator
+    return translated_label unless Tr8n::Config.current_translator.inline?
+    return translated_label if locked? and not Tr8n::Config.current_translator.manager?
 
     if id.nil?
       html = "<tr8n style='border-bottom: 2px dotted #ff0000;'>"

@@ -139,18 +139,18 @@
   
   <div class="wood">
     <div class="container txtC ptl">
-      <h1><%=tr(Tr8nClientSdk::Config.site_title) %></h1>
+      <h1><%=tr(Tr8n::Config.site_title) %></h1>
       <div class="mtm" style="position:relative">
         <div class="markers">
-          <div class="marker left us"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/en-US.png'))%> Welcome</div>
-          <div class="marker left br"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/br.png'))%> Bem-vindos</div>
-          <div class="marker right jp"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/ja.png'))%>  ようこそ</div>
-          <div class="marker right cn"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/zh.png'))%>  歡迎光臨</div>
-          <div class="marker right ru"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/ru.png'))%> Добро пожаловать</div>
-          <div class="marker left es"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/es.png'))%> Bienvenidos</div>
-          <div class="marker left de"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/de.png'))%> Willkommen</div>
-          <div class="marker left fr"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/fr.png'))%> Bienvenue</div>
-          <div class="marker left za"><%=image_tag(Tr8nClientSdk::Config.url_for('/assets/tr8n/flags/af.png'))%> Welkom</div>
+          <div class="marker left us"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/en-US.png'))%> Welcome</div>
+          <div class="marker left br"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/br.png'))%> Bem-vindos</div>
+          <div class="marker right jp"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/ja.png'))%>  ようこそ</div>
+          <div class="marker right cn"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/zh.png'))%>  歡迎光臨</div>
+          <div class="marker right ru"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/ru.png'))%> Добро пожаловать</div>
+          <div class="marker left es"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/es.png'))%> Bienvenidos</div>
+          <div class="marker left de"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/de.png'))%> Willkommen</div>
+          <div class="marker left fr"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/fr.png'))%> Bienvenue</div>
+          <div class="marker left za"><%=image_tag(Tr8n::Config.url_for('/assets/tr8n/flags/af.png'))%> Welkom</div>
         </div>
         <%=image_tag('welcome/map.png', :class=>'map')%>
       </div>
@@ -174,7 +174,7 @@
         <%=link_to(tr("Already have an account?"), "/login") %>
       </div>
 
-      <% langs = ['en-US', 'es', 'de', 'ru', 'fr'].collect{ |locale| tr8n_language_name_tag(Tr8nClientSdk::Language.for(locale), {:name => :native}) } %>
+      <% langs = ['en-US', 'es', 'de', 'ru', 'fr'].collect{ |locale| tr8n_language_name_tag(Tr8n::Language.by_locale(locale), {:name => :native}) } %>
       <div class="languages">
         <%= raw(langs.join(" |&nbsp;&nbsp; ")) %>
       </div>

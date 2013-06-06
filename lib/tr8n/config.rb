@@ -29,10 +29,9 @@ class Tr8n::Config
   # Basic Stuff
   # initializes language, user and translator
   # the variables are kept in a thread safe form throughout the request
-  def self.init(locale, source = nil, component = nil)
+  def self.init(locale, translator, source = nil, component = nil)
     Thread.current[:tr8n_current_language]   = Tr8n::Language.by_locale(locale) || default_language
-    # Thread.current[:tr8n_current_user]       = site_current_user
-    # Thread.current[:tr8n_current_translator] = site_current_translator
+    Thread.current[:tr8n_current_translator] = translator
     Thread.current[:tr8n_current_source]     = Tr8n::Source.fetch_or_register(source || "undefined")
 
     # # register source with component
@@ -94,8 +93,8 @@ class Tr8n::Config
     Thread.current[:tr8n_current_language] = language
   end
 
-  def self.current_user_is_translator?
-    Thread.current[:tr8n_current_translator] != nil
+  def self.current_translator
+    Thread.current[:tr8n_current_translator]
   end
 
   def self.current_user_is_authorized_to_view_component?(component = current_component)
@@ -129,17 +128,6 @@ class Tr8n::Config
     end
     
     true
-  end
-
-  # when this method is called, we create the translator record right away
-  # and from this point on, will track the user
-  # this can happen any time user tries to translate something or enables inline translations
-  def self.current_translator
-    Thread.current[:tr8n_current_translator] ||= Tr8n::Translator.register
-  end
-
-  def self.set_translator(translator)
-    Thread.current[:tr8n_current_translator]  = translator
   end
 
   def self.default_language
@@ -633,6 +621,45 @@ class Tr8n::Config
         return Tr8n::Component.find_or_create(opts[:component]) unless opts[:component].blank?
       end
       Tr8n::Config.current_component
+    end
+
+    #########################################################
+    # Sharing
+    #########################################################
+
+    def self.sign_and_encode_params(params, secret)  
+      payload = Base64.encode64(params.merge(:algorithm => 'HMAC-SHA256', :ts => Time.now.to_i).to_json)
+      sig = OpenSSL::HMAC.digest('sha256', secret, payload)
+      encoded_sig = Base64.encode64(sig)
+      URI::encode("#{encoded_sig}.#{payload}")
+    end
+
+    def self.decode_and_verify_params(signed_request, secret)  
+      signed_request = URI::decode(signed_request)
+      pp :signed_request, signed_request
+
+      encoded_sig, payload = signed_request.split('.', 2)
+      pp :encoded_sig, encoded_sig
+      pp :secret, secret
+
+      sig = Base64.decode64(encoded_sig)
+
+      data = JSON.parse(Base64.decode64(payload))
+      pp :secret, secret
+
+      if data['algorithm'].to_s.upcase != 'HMAC-SHA256'
+        raise Tr8n::Exception.new("Bad signature algorithm: %s" % data['algorithm'])
+      end
+      expected_sig = OpenSSL::HMAC.digest('sha256', secret, payload)
+      pp :expected, expected_sig
+      pp :actual, sig
+
+      pp data
+
+      # if expected_sig != sig
+      #   raise Tr8n::Exception.new("Bad signature")
+      # end
+      HashWithIndifferentAccess.new(data)
     end
 
   end

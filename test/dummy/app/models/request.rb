@@ -90,7 +90,7 @@ class Request < ActiveRecord::Base
 protected
 
   def generate_key
-    self.key = Tr8nClientSdk::Config.guid if key.nil?
+    self.key = Tr8n::Config.guid if key.nil?
   end
   
 end

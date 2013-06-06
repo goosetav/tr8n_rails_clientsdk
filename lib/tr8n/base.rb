@@ -122,7 +122,7 @@ protected
   end
 
   def self.api(path, params = {}, opts = {})
-    params = params.merge(:app_key => Tr8n::Config.app_key)
+    params = params.merge(:client_id => Tr8n::Config.app_key)
 
     # pp [:api, path,  params, opts]
 
@@ -150,25 +150,5 @@ protected
 
     data
   end
-
-  # cookie = request.cookies["fbsr_#{@fb_app_id}"]
-
-  # fb_info = JSON.parse(urldecode64(cookie.split('.',2)[1]))
-
-  # def urldecode64(str)
-  #   encoded_str = str.tr('-_', '+/')
-  #   encoded_str += '=' while !(encoded_str.size % 4).zero?
-  #   Base64.decode64(encoded_str)
-  # end
-
-  # def valid_cookie?
-  #   return false unless cookie
-  #   return false if fb_info['algorithm'].to_s.upcase != 'HMAC-SHA256'
-  #   encoded_sig, payload = cookie.split('.', 2)
-  #   sig = urldecode64(encoded_sig)
-  #   expected_sig = OpenSSL::HMAC.digest('sha256', settings.fb_app_secret, payload)
-  #   expected_sig == sig
-  # end
-
 
 end

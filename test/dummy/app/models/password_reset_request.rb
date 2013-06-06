@@ -29,7 +29,7 @@ class PasswordResetRequest < Request
   end
 
   def lander_url
-    "#{Tr8nClientSdk::Config.base_url}/login/reset_password/#{key}"
+    "#{Tr8n::Config.base_url}/login/reset_password/#{key}"
   end
   
 end
