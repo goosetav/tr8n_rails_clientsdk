@@ -22,26 +22,19 @@
 #++
 
 class Tr8n::Rules::Base < Tr8n::Base
-  attributes :id, :locale, :definition
+  attributes :type, :keyword
 
   def self.rule_class(type)
-    # TODO: move it to the config for dynamic load
     {
       'number' => Tr8n::Rules::Number,
       'gender' => Tr8n::Rules::Gender,
       'date' => Tr8n::Rules::Date,
-      'list' => Tr8n::Rules::List
+      'list' => Tr8n::Rules::List,
+      'gender_list' => Tr8n::Rules::GenderList,
+      'value' => Tr8n::Rules::Value
     }[type]
   end
 
-  def self.cache_key(rule_id)
-    "language_rule_[#{rule_id}]"
-  end
-
-  def cache_key
-    self.class.cache_key(self.id)
-  end
-  
   def self.suffixes
     []  
   end

@@ -25,12 +25,14 @@ module Tr8nClientSdk
   module ActionControllerExtension
 
     def self.included(base)
+      base.send(:include, Tr8nClientSdk::ActionCommonMethods) 
       base.send(:include, InstanceMethods) 
       base.before_filter :tr8n_init_client_sdk
-      base.after_filter :tr8n_register_key_sources
+      base.after_filter :tr8n_reset_client_sdk
     end
 
     module InstanceMethods
+
       ######################################################################
       # Author: Iain Hecker
       # reference: http://github.com/iain/http_accept_language
@@ -59,7 +61,7 @@ module Tr8nClientSdk
       
       # Overwrite this method in a controller to assign a custom source for all views
       def tr8n_source
-        "#{self.class.name.underscore.gsub("_controller", "")}/#{self.action_name}"
+        Tr8n::Source.normalize_source(request.url)
       rescue
         self.class.name
       end
@@ -86,36 +88,20 @@ module Tr8nClientSdk
       def tr8n_init_client_sdk
         return unless Tr8n::Config.enabled?
 
-        cookie_name = "tr8n_#{Tr8n::Config.app_key}"
+        Tr8n::Config.application.update_cache_version
 
+        cookie_name = "tr8n_#{tr8n_application.key}"
         if request.cookies[cookie_name]
           cookie_params = Tr8n::Config.decode_and_verify_params(request.cookies[cookie_name], Tr8n::Config.app_secret)  
           locale = cookie_params["locale"]
-          code = cookie_params["code"]
           translator = Tr8n::Translator.new(cookie_params["translator"]) unless cookie_params["translator"].nil?
-          # {"locale"=>"ru",
-          #  "translator_id"=>2,
-          #  "inline"=>true,
-          #  "code"=>"d93e3654f158e04b4",
-          #  "algorithm"=>"HMAC-SHA256",
-          #  "ts"=>1370476528}          
         end
 
         locale ||= tr8n_init_current_locale
-        # user = tr8n_init_current_user
-        # translator ||= Tr8n::Translator.for(user)
+        user = tr8n_init_current_user
 
-        # initialize request thread variables
-        Tr8n::Config.init(locale, translator, tr8n_source, tr8n_component)
+        Tr8n::Config.init_request(locale, translator, tr8n_source, tr8n_component)
         
-        # for logged out users, fallback onto tr8n_access_key
-        # if Tr8n::Config.current_user_is_guest?  
-        #   tr8n_access_key = params[:tr8n_access_key] || session[:tr8n_access_key]
-        #   unless tr8n_access_key.blank?
-        #     Tr8n::Config.set_translator(Tr8n::Translator.find_by_access_key(tr8n_access_key))
-        #   end
-        # end
-
         # register component and verify that the current user is authorized to view it
         # unless Tr8n::Config.current_user_is_authorized_to_view_component?
         #   trfe("You are not authorized to view this component")
@@ -127,112 +113,10 @@ module Tr8nClientSdk
         # end
       end
 
-      def tr8n_register_key_sources
-        Tr8n::Source.register_missing_keys
-      end
-
-      ############################################################
-      # There are two ways to call the tr method
-      #
-      # tr(label, desc = "", tokens = {}, options = {})
-      # or 
-      # tr(label, {:desc => "", tokens => {},  ...})
-      ############################################################
-      def tr(label, desc = "", tokens = {}, options = {})
-
-        return label if label.tr8n_translated?
-
-        if desc.is_a?(Hash)
-          options = desc
-          tokens  = options[:tokens] || {}
-          desc    = options[:desc] || ""
-        end
-
-        options.merge!(:caller => caller)
-        options.merge!(:url => request.url)
-        options.merge!(:host => request.env['HTTP_HOST'])
-
-        unless Tr8n::Config.enabled?
-          return Tr8n::TranslationKey.substitute_tokens(label, tokens, options)
-        end
-
-        Tr8n::Config.current_language.translate(label, desc, tokens, options)
-      end
-
-      # for translating labels
-      def trl(label, desc = "", tokens = {}, options = {})
-        tr(label, desc, tokens, options.merge(:skip_decorations => true))
-      end
-
-      # flash notice
-      def trfn(label, desc = "", tokens = {}, options = {})
-        flash[:trfn] = tr(label, desc, tokens, options)
-      end
-
-      # flash error
-      def trfe(label, desc = "", tokens = {}, options = {})
-        flash[:trfe] = tr(label, desc, tokens, options)
-      end
-
-      # flash error
-      def trfw(label, desc = "", tokens = {}, options = {})
-        flash[:trfw] = tr(label, desc, tokens, options)
-      end
-
-      # for admin translations
-      def tra(label, desc = "", tokens = {}, options = {})
-        if Tr8n::Config.enable_admin_translations?
-          if Tr8n::Config.enable_admin_inline_mode?
-            tr(label, desc, tokens, options)
-          else
-            trl(label, desc, tokens, options)
-          end
-        else
-          Tr8n::Config.default_language.translate(label, desc, tokens, options)
-        end
-      end
-      
-      # for admin translations
-      def trla(label, desc = "", tokens = {}, options = {})
-        tra(label, desc, tokens, options.merge(:skip_decorations => true))
-      end
-  
-      ######################################################################
-      ## Common methods
-      ######################################################################
-
-      def tr8n_current_user
-        Tr8n::Config.current_user
-      end
-
-      def tr8n_current_language
-        Tr8n::Config.current_language
-      end
-
-      def tr8n_default_language
-        Tr8n::Config.default_language
-      end
-
-      def tr8n_current_translator
-        Tr8n::Config.current_translator
-      end
-    
-      def tr8n_current_user_is_admin?
-        Tr8n::Config.current_user_is_admin?
-      end
-    
-      def tr8n_current_user_is_translator?
-        Tr8n::Config.current_user_is_translator?
-      end
-
-      def tr8n_current_user_is_manager?
-        return true if Tr8n::Config.current_user_is_admin?
-        return false unless Tr8n::Config.current_user_is_translator?
-        tr8n_current_translator.manager?
-      end
-    
-      def tr8n_current_user_is_guest?
-        Tr8n::Config.current_user_is_guest?
+      def tr8n_reset_client_sdk
+        Tr8n::Config.application.submit_missing_keys
+        Tr8n::Config.current_source.reset_translator_keys
+        Tr8n::Config.reset_request
       end
 
     end

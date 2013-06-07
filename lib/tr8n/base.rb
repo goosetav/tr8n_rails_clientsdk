@@ -64,8 +64,9 @@ class Tr8n::Base
     super
   end      
 
-  def to_api_hash
-    attributes
+  def to_api_hash(*attrs)
+    return attributes if attrs.nil?
+    attributes.slice(*attrs)
   end
 
   def to_json
@@ -75,14 +76,13 @@ class Tr8n::Base
 protected
 
   def self.object_class(opts)
-    opts[:class] ||= self
+    return unless opts[:class]
     opts[:class].is_a?(String) ? opts[:class].constantize : opts[:class]
   end
 
-  def self.get(path, params = {}, opts = {})
-    data = api(path, params, opts)
-
+  def self.process_response(data, opts)
     if data["results"]
+      return data["results"] unless object_class(opts)
       objects = []
       data["results"].each do |data|
         objects << object_class(opts).new(data)
@@ -90,7 +90,13 @@ protected
       return objects
     end
 
+    return data unless object_class(opts)
     object_class(opts).new(data)
+  end
+
+  def self.get(path, params = {}, opts = {})
+    data = api(path, params, opts)
+    process_response(data, opts)
   end
 
   def get(path, params = {}, opts = {})
@@ -99,18 +105,7 @@ protected
 
   def self.post(path, params = {}, opts = {})
     data = api(path, params, opts.merge(:method => :post))
-
-    return data unless opts[:fetch]
-
-    if data["results"]
-      objects = []
-      data["results"].each do |data|
-        objects << object_class(opts).new(data)
-      end
-      return objects
-    end
-
-    object_class(opts).new(data)
+    process_response(data, opts)
   end
 
   def post(path, params = {}, opts = {})
@@ -124,7 +119,7 @@ protected
   def self.api(path, params = {}, opts = {})
     params = params.merge(:client_id => Tr8n::Config.app_key)
 
-    # pp [:api, path,  params, opts]
+    pp [:api, path,  params, opts]
 
     # TODO: sign request
 

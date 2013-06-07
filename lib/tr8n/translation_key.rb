@@ -25,7 +25,7 @@ require 'digest/md5'
 # require 'tr8n_client_sdk/api'
 
 class Tr8n::TranslationKey < Tr8n::Base
-  attributes :id, :key, :label, :description, :admin, :locale, :level, :locked, :translations
+  attributes :id, :key, :label, :description, :locale, :level, :locked, :translations
 
   def initialize(attrs = {})
     super
@@ -45,30 +45,27 @@ class Tr8n::TranslationKey < Tr8n::Base
   end
 
   def self.fetch_or_register(label, desc = "", options = {})
-    key = generate_key(label, desc).to_s
+    hash = generate_key(label, desc).to_s
 
-    tkey = Tr8n::Config.current_source.cache[key]
-    # return tkey if tkey
+    source = Tr8n::Config.application.source_by_key(options[:source] || Tr8n::Config.current_source_from_block_options || Tr8n::Config.current_source.source) 
+    tkey = source.translation_key_by_language_and_hash(Tr8n::Config.current_language, hash)
+    return tkey if tkey
+    tkey = Tr8n::Config.application.traslation_key_by_language_and_hash(Tr8n::Config.current_language, hash)
+    if tkey
+      Tr8n::Config.application.register_missing_key(tkey, source)
+      return tkey
+    end
 
-    tkey ||= begin
-      missing_key = Tr8n::TranslationKey.new({
-        :key => key, 
+    tkey = Tr8n::TranslationKey.new({
+        :key => hash, 
         :label => label, 
         :description => desc,
         :admin => Tr8n::Config.block_options[:admin],
-        :locale => options[:locale] || Tr8n::Config.block_options[:default_locale] || Tr8n::Config.default_locale
-      })
-
-      # TODO: do we need all that?
-      missing_key.level = options[:level] || Tr8n::Config.block_options[:level]
-
-      # source  
-      source = options[:source] || Tr8n::Config.current_source_from_block_options || Tr8n::Config.current_source
-      source = Tr8n::Source.fetch_or_register(source)
-      Tr8n::Config.register_missing_key(missing_key, source)
-
-      missing_key
-    end
+        :locale => options[:locale] || Tr8n::Config.block_options[:default_locale] || Tr8n::Config.default_locale,
+        :level => options[:level] || Tr8n::Config.block_options[:level]
+    })
+    Tr8n::Config.application.register_missing_key(tkey, source)
+    tkey
   end
   
   def language
@@ -79,14 +76,8 @@ class Tr8n::TranslationKey < Tr8n::Base
     @tokenized_label ||= Tr8n::TokenizedLabel.new(label)
   end
 
-  # delegate :tokens, :tokens?, :to => :tokenized_label
-  # delegate :data_tokens, :data_tokens?, :to => :tokenized_label
-  # delegate :decoration_tokens, :decoration_tokens?, :to => :tokenized_label
-  # delegate :translation_tokens, :translation_tokens?, :to => :tokenized_label
-  # delegate :sanitized_label, :tokenless_label, :suggestion_tokens, :words, :to => :tokenized_label
-
   def find_first_valid_translation(language, token_values)
-    tkey =  Tr8n::Config.current_source.cache(language)[self.key]
+    tkey = Tr8n::Config.current_source.translation_key_by_language_and_hash(language, key)
     return nil unless tkey and tkey.translations
 
     tkey.translations.each do |translation|
@@ -132,13 +123,13 @@ class Tr8n::TranslationKey < Tr8n::Base
   def substitute_tokens(translated_label, token_values, options = {}, language = Tr8n::Config.current_language)
     processed_label = translated_label.to_s.dup
 
-    # substitute all data tokens
+    # substitute data tokens
     Tr8n::TokenizedLabel.new(processed_label).data_tokens.each do |token|
       next unless allowed_token?(token)
       processed_label = token.substitute(processed_label, token_values, options, language) 
     end
 
-    # substitute all decoration tokens
+    # substitute decoration tokens
     Tr8n::TokenizedLabel.new(processed_label).decoration_tokens.each do |token|
       next unless allowed_token?(token)
       processed_label = token.substitute(processed_label, token_values, options, language) 

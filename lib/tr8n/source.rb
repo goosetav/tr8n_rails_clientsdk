@@ -23,7 +23,7 @@
 
 class Tr8n::Source < Tr8n::Base
   attributes :source, :url, :name, :description
-  
+
   def self.normalize_source(url)
     return nil if url.blank?
     uri = URI.parse(url)
@@ -38,52 +38,35 @@ class Tr8n::Source < Tr8n::Base
     path
   end
 
-  def self.cache_key(source)
-    "source_[#{source.to_s}]"
-  end
-
-  def cache_key
-    self.class.cache_key(Tr8n::Config.current_application, source)
-  end
-  
-  def self.fetch_or_register(source)
-    return source if source.is_a?(Tr8n::Source)
-
-    Tr8n::Cache.fetch(cache_key(source)) do 
-      post("source/register", {:source => source}, {:fetch => true})
-    end  
-  end
-
-  def cache_key_for_language(language = Tr8n::Config.current_language)
-    "translations_for_[#{self.source}]_[#{language.locale}]"
-  end
-
-  def cache(language = Tr8n::Config.current_language)
-    @cache ||= {}
-    @cache[language.locale] ||= begin
-      Tr8n::Cache.fetch(cache_key_for_language(language)) do 
-        keys_with_translations = get("source/translations", {:source => source, :locale => language.locale}, {:class => Tr8n::TranslationKey})
-        hash = {}
-        keys_with_translations.each do |tkey|
-          hash[tkey.key] = tkey
-        end
-        hash
-      end
+  def fetch_keys_for_language(language, opts = {})
+    keys_with_translations = get("source/translations", {:source => source, :locale => language.locale}, {:class => Tr8n::TranslationKey})
+    keys = {}
+    keys_with_translations.each do |tkey|
+      # building global translation hash along the way, for fallback
+      Tr8n::Config.application.register_translation_key(language, tkey) if opts[:global]
+      keys[tkey.key] = tkey
     end
+    keys
   end
 
-  def clear_cache_for_language(language = Tr8n::Config.current_language)
-    Tr8n::Cache.delete(cache_key_for_language(language))
+  def translation_key_by_language_and_hash(language, hash)
+    if Tr8n::Config.current_translator and Tr8n::Config.current_translator.inline?
+      # for inline translator do this always
+      @translator_keys ||= fetch_keys_for_language(language)
+      return @translator_keys[hash]
+    end
+
+    @translation_keys_by_language ||= {}
+    @translation_keys_by_language[language.locale] ||= fetch_keys_for_language(language, :global => true)
+    @translation_keys_by_language[language.locale][hash]
   end
 
-  # TODO: move offline
-  def self.register_missing_keys
-    return if Tr8n::Config.missing_keys_by_sources.empty?
-    params = []
-    Tr8n::Config.missing_keys_by_sources.each do |source, keys|
-      params << {:source => source, :keys => keys.values.collect{|tkey| tkey.to_api_hash}}
-    end 
-    post('source/register_keys', {:source_keys => params.to_json}, :method => :post)
+  def reset_translator_keys
+    @translator_keys = nil
+  end
+
+  def reset
+    @translation_keys_by_language = {}
   end
 
 end

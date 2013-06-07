@@ -25,58 +25,6 @@ module Tr8nClientSdk
   module ActionViewExtension
     extend ActiveSupport::Concern
 
-    # Creates an instance of tr8nProxy object
-    def tr8n_client_sdk_tag(opts = {})
-      #TODO - add a javascript source
-      ""
-    end
-
-    # translation functions
-    def tr(label, desc = "", tokens = {}, options = {})
-      return label if label.tr8n_translated?
-
-      if desc.is_a?(Hash)
-        options = desc
-        tokens  = options[:tokens] || {}
-        desc    = options[:context] || ""
-      end
-
-      options.merge!(:caller => caller)
-      if request
-        options.merge!(:url => request.url)
-        options.merge!(:host => request.env['HTTP_HOST'])
-      end
-
-      unless Tr8n::Config.enabled?
-        return Tr8n::TranslationKey.substitute_tokens(label, tokens, options).html_safe
-      end
-
-      Tr8n::Config.current_language.translate(label, desc, tokens, options)
-    end
-
-    # for translating labels
-    def trl(label, desc = "", tokens = {}, options = {})
-      tr(label, desc, tokens, options.merge(:skip_decorations => true))
-    end
-
-    # for admin translations
-    def tra(label, desc = "", tokens = {}, options = {})
-      if Tr8n::Config.enable_admin_translations?
-        if Tr8n::Config.enable_admin_inline_mode?
-          tr(label, desc, tokens, options)
-        else
-          trl(label, desc, tokens, options)
-        end
-      else
-        Tr8n::Config.default_language.translate(label, desc, tokens, options)
-      end
-    end
-    
-    # for admin translations
-    def trla(label, desc = "", tokens = {}, options = {})
-      tra(label, desc, tokens, options.merge(:skip_decorations => true))
-    end
-
     def tr8n_options_for_select(options, selected = nil, description = nil, lang = Tr8n::Config.current_language)
       options_for_select(options.tro(description), selected)
     end
@@ -84,10 +32,9 @@ module Tr8nClientSdk
     def tr8n_phrases_link_tag(search = "", phrase_type = :without, phrase_status = :any)
       return unless Tr8n::Config.enabled?
       return if Tr8n::Config.current_language.default?
-      return unless Tr8n::Config.open_registration_mode? or Tr8n::Config.current_user_is_translator?
-      return unless Tr8n::Config.current_translator.enable_inline_translations?
+      return unless Tr8n::Config.current_translator.inline?
 
-      link_to(image_tag("tr8n/translate_icn.gif", :style => "vertical-align:middle; border: 0px;", :title => search), 
+      link_to(image_tag(Tr8n::Config.url_for("/assets/tr8n/translate_icn.gif"), :style => "vertical-align:middle; border: 0px;", :title => search), 
              :controller => "/tr8n/phrases", :action => :index, 
              :search => search, :phrase_type => phrase_type, :phrase_status => phrase_status).html_safe
     end
@@ -140,12 +87,6 @@ module Tr8nClientSdk
       opts[:javascript] = opts[:javascript].nil? ? false : opts[:javascript] 
 
       render(:partial => '/tr8n_client_sdk/tags/language_strip', :locals => {:opts => opts})    
-    end
-
-    def tr8n_language_table_tag(opts = {})
-      opts[:cols] = opts[:cols].nil? ? 4 : opts[:cols]
-      opts[:col_size] = opts[:col_size].nil? ? "300px" : opts[:col_size]
-      render(:partial => '/tr8n_client_sdk/tags/language_table', :locals => {:opts => opts.merge(:name => :english)})    
     end
 
     def tr8n_flashes_tag(opts = {})
@@ -234,68 +175,6 @@ module Tr8nClientSdk
       ret
     end
 
-    ######################################################################
-    ## Language Direction Support
-    ######################################################################
-
-    def tr8n_style_attribute_tag(attr_name = 'float', default = 'right', lang = Tr8n::Config.current_language)
-      "#{attr_name}:#{lang.align(default)}".html_safe
-    end
-
-    def tr8n_style_directional_attribute_tag(attr_name = 'padding', default = 'right', value = '5px', lang = Tr8n::Config.current_language)
-      "#{attr_name}-#{lang.align(default)}:#{value}".html_safe
-    end
-
-    def tr8n_dir_attribute_tag(lang = Tr8n::Config.current_language)
-      "dir='#{lang.dir}'".html_safe
-    end
-
-    ######################################################################
-    ## Common methods
-    ######################################################################
-
-    def tr8n_request_remote_ip
-      @remote_ip ||= if request.env['HTTP_X_FORWARDED_FOR']
-        request.env['HTTP_X_FORWARDED_FOR'].split(',').first
-      else
-        request.remote_ip
-      end
-    end
-
-    def tr8n_current_user
-      Tr8n::Config.current_user
-    end
-
-    def tr8n_current_language
-      Tr8n::Config.current_language
-    end
-
-    def tr8n_default_language
-      Tr8n::Config.default_language
-    end
-
-    def tr8n_current_translator
-      Tr8n::Config.current_translator
-    end
-  
-    def tr8n_current_user_is_admin?
-      Tr8n::Config.current_user_is_admin?
-    end
-  
-    def tr8n_current_user_is_translator?
-      Tr8n::Config.current_user_is_translator?
-    end
-
-    def tr8n_current_user_is_manager?
-      return true if Tr8n::Config.current_user_is_admin?
-      return false unless Tr8n::Config.current_user_is_translator?
-      tr8n_current_translator.manager?
-    end
-  
-    def tr8n_current_user_is_guest?
-      Tr8n::Config.current_user_is_guest?
-    end
-
     def tr8n_when_string_tag(time, opts = {})
       elapsed_seconds = Time.now - time
       if elapsed_seconds < 0
@@ -323,5 +202,21 @@ module Tr8nClientSdk
       end
     end
     
+    ######################################################################
+    ## Language Direction Support
+    ######################################################################
+
+    def tr8n_style_attribute_tag(attr_name = 'float', default = 'right', lang = Tr8n::Config.current_language)
+      "#{attr_name}:#{lang.align(default)}".html_safe
+    end
+
+    def tr8n_style_directional_attribute_tag(attr_name = 'padding', default = 'right', value = '5px', lang = Tr8n::Config.current_language)
+      "#{attr_name}-#{lang.align(default)}:#{value}".html_safe
+    end
+
+    def tr8n_dir_attribute_tag(lang = Tr8n::Config.current_language)
+      "dir='#{lang.dir}'".html_safe
+    end
+
   end
 end

@@ -43,19 +43,25 @@ require 'pp'
     end
 end
 
+# Rails Extensions
 require File.join(File.dirname(__FILE__), 'extensions/array_extension')
 require File.join(File.dirname(__FILE__), 'extensions/date_extension')
 require File.join(File.dirname(__FILE__), 'extensions/fixnum_extension')
 require File.join(File.dirname(__FILE__), 'extensions/hash_extension')
 require File.join(File.dirname(__FILE__), 'extensions/string_extension')
 require File.join(File.dirname(__FILE__), 'extensions/time_extension')
+
+require File.join(File.dirname(__FILE__), 'extensions/action_common_methods')
 require File.join(File.dirname(__FILE__), 'extensions/action_view_extension')
 require File.join(File.dirname(__FILE__), 'extensions/action_controller_extension')
 
 module Tr8nClientSdk
   class Railtie < ::Rails::Railtie #:nodoc:
     initializer 'tr8n_client_sdk' do |app|
+      Tr8n::Config.application   
+
       ActiveSupport.on_load(:action_view) do
+        ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods
         ::ActionView::Base.send :include, Tr8nClientSdk::ActionViewExtension
       end
       ActiveSupport.on_load(:action_controller) do

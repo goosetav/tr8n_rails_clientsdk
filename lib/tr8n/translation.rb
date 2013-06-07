@@ -51,14 +51,5 @@ class Tr8n::Translation < Tr8n::Base
     
     true
   end
-  
-  # used by the permutation generator
-  def matches_rule_definitions?(new_rules_hash)
-    rules_hash == new_rules_hash
-  end
-
-  def blank?
-    self.label.blank?    
-  end
 
 end
