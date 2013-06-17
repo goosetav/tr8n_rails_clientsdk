@@ -126,13 +126,13 @@ class Tr8n::TranslationKey < Tr8n::Base
     # substitute data tokens
     Tr8n::TokenizedLabel.new(processed_label).data_tokens.each do |token|
       next unless allowed_token?(token)
-      processed_label = token.substitute(processed_label, token_values, options, language) 
+      processed_label = token.substitute(self, processed_label, token_values, options, language) 
     end
 
     # substitute decoration tokens
     Tr8n::TokenizedLabel.new(processed_label).decoration_tokens.each do |token|
       next unless allowed_token?(token)
-      processed_label = token.substitute(processed_label, token_values, options, language) 
+      processed_label = token.substitute(self, processed_label, token_values, options, language) 
     end
     
     processed_label

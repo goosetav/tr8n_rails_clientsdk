@@ -97,7 +97,7 @@ class Tr8n::Language < Tr8n::Base
   def case_keyword_maps
     @case_keyword_maps ||= begin
       hash = {} 
-      cases.each do |lcase| 
+      language_cases.each do |lcase| 
         hash[lcase.keyword] = lcase
       end
       hash

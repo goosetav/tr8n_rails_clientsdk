@@ -47,29 +47,36 @@ class Tr8n::Rules::Number < Tr8n::Rules::Base
     token.send(number_method_name)
   end
 
-  # FORM: [object, singular, plural]
+  # FORM: [singular(, plural)]
   # {count | message}
   # {count | person, people}
-  def self.transform(*args)
-    unless [2, 3].include?(args.size)
-      raise Tr8n::Exception.new("Invalid transform arguments for number token")
+  # {count | one: person, other: people}
+  # "У вас есть {count|| one: сообщение, few: сообщения, many: сообщений}"
+  def self.transform_params_to_options(params)
+    options = {}
+    if params[0].index(':')
+      params.each do |arg|
+        parts = arg.split(':')
+        options[parts.first.strip.to_sym] = parts.last.strip
+      end
+    else # default falback to {|| singular} or {|| singular, plural} - mostly for English support
+      if params.size == 1 # {|| singular}
+        options[:one] = params[0]
+        options[:many] = params[0].pluralize
+      elsif params.size == 2
+        options[:one] = params[0]
+        options[:many] = params[1]
+      else
+        raise Tr8n::Exception.new("Invalid number of parameters in the transform token #{token}")
+      end  
     end
-    
-    object = args[0]
-    object_value = token_value(object)
-    unless object_value
-      raise Tr8n::Exception.new("Token #{object.class.name} does not respond to #{number_method_name}")
-    end
-    
-    if object_value == 1
-      return args[1]
-    elsif args.size == 2
-      return args[1].pluralize
-    end
-    
-    args[2]
+    options
   end
-  
+
+  def multipart?
+    self.multipart == 'true'
+  end
+
   def evaluate_rule_fragment(token_value, name, values)
     if name == :is
       return true if values.include?(token_value)
@@ -118,7 +125,7 @@ class Tr8n::Rules::Number < Tr8n::Rules::Base
     
     result1 = evaluate_rule_fragment(value.to_s, part1.to_sym, sanitize_values(value1))
     return result1 unless multipart?
-    
+
     result2 = evaluate_rule_fragment(value.to_s, part2.to_sym, sanitize_values(value2))
     return (result1 or result2) if operator == "or"
     return (result1 and result2)

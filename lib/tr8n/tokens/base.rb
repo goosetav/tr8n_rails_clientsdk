@@ -410,18 +410,18 @@ class Tr8n::Tokens::Base
   #
   ##############################################################################
   def apply_case(object, value, options, language)
-    return value unless Tr8n::Config.enable_language_cases?
+    return value unless Tr8n::Config.application.enable_language_cases?
     lcase = language.case_for(case_key)
     return value unless lcase
     lcase.apply(object, value, options)
   end
 
-  def substitute(label, values = {}, options = {}, language = Tr8n::Config.current_language)
+  def substitute(translation_key, label, values = {}, options = {}, language = Tr8n::Config.current_language)
     # get the object from the values
     object = values[name_key]
 
     # see if the token is a default html token  
-    object = Tr8n::Config.default_data_tokens[name_key] if object.nil?
+    object = Tr8n::Config.application.default_data_token(name_key) if object.nil?
 
     if object.nil? and not values.key?(name_key) 
       raise Tr8n::Exception.new("Missing value for a token: #{full_name}")
@@ -435,16 +435,6 @@ class Tr8n::Tokens::Base
   
     value = token_value(object, options, language)
     label.gsub(full_name, value)
-  end
-
-  # return sanitized form
-  def prepare_label_for_translator(label)
-    label.gsub(full_name, sanitized_name)
-  end
-
-  # return tokenless form
-  def prepare_label_for_suggestion(label, index)
-    label.gsub(full_name, "(#{index})")
   end
 
   def to_s

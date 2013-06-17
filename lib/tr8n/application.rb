@@ -88,11 +88,11 @@ class Tr8n::Application < Tr8n::Base
   end
 
   def default_decoration_tokens
-    @default_decoration_tokens ||= Tr8n::Config.load_yml("/config/tr8n/tokens/decorations.yml", nil)
+    definition["default_decoration_tokens"]
   end
 
   def default_data_tokens
-    @default_data_tokens ||= Tr8n::Config.load_yml("/config/tr8n/tokens/data.yml", nil)
+    definition["default_data_tokens"]
   end
 
   def enable_language_cases?
@@ -106,13 +106,19 @@ class Tr8n::Application < Tr8n::Base
   end
 
   def default_data_tokens
-    # TODO: add a mechanism to overwrite the default tokens
-    self.definition["default_data_tokens"]
+    @default_data_tokens ||= self.definition["default_data_tokens"].merge(Tr8n::Config.load_yml("/config/tr8n/tokens/data.yml", nil))
+  end
+
+  def default_data_token(token)
+    default_data_tokens[token.to_s]
   end
 
   def default_decoration_tokens
-    # TODO: add a mechanism to overwrite the default tokens
-    self.definition["default_decoration_tokens"]
+    @default_decoration_tokens ||= self.definition["default_decoration_tokens"].merge(Tr8n::Config.load_yml("/config/tr8n/tokens/decoration.yml", nil))
+  end
+
+  def default_decoration_token(token)
+    default_decoration_tokens[token.to_s]
   end
 
   def rules

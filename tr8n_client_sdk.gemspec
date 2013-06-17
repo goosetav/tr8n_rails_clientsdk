@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Michael Berkovich"]
   s.email       = ["theiceberk@gmail.com"]
   s.homepage    = "http://www.tr8nhub.com"
-  s.summary     = "Tr8n Client SDK for Ruby on Rails"
+  s.summary     = "Tr8n Client SDK for Ruby"
   s.description = "Client SDK for Tr8n translation engine."
 
   s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
@@ -22,15 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday',   '>= 0'
   s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'dalli'
-  s.add_development_dependency 'aasm'
-  s.add_development_dependency 'fssm'
-  s.add_development_dependency 'pry'
   s.add_development_dependency 'bundler',     '>= 1.0.0'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails', '>= 2.1.0'
-  s.add_development_dependency 'spork'
-  s.add_development_dependency 'watchr'
   s.add_development_dependency 'rr'
   s.add_development_dependency 'bcrypt-ruby'
-  # s.add_development_dependency 'tr8n_cli_tools'
 end

@@ -45,32 +45,6 @@ defaults:
   enable_translator_tabs:     true      # enables translation tools tabs 
 
   #############################################################################
-  # Google translation suggestions is now a paid feature by Google.
-  # 
-  # In order to enable this useful feauture, visit:
-  # http://code.google.com/apis/language/translate/overview.html  
-  #
-  # Provide your billing information and register for an API key.
-  # 
-  # Put your API key in the box below.
-  #############################################################################
-  enable_google_suggestions:  false      # uses google for suggestions
-  google_api_key: "YOUR GOOGLE API KEY"  # get this API key from Google.
-
-  #############################################################################
-  # Featured languages can be added as a bottom strip bar on all pages using
-  #
-  #  <%= tr8n_language_strip_tag %>
-  # 
-  # The featured languages can be configured in the admin tool.
-  # Alternatively, you can provide the list of languages here, and run:
-  # 
-  #  rake tr8n:featured_languages 
-  #
-  #############################################################################
-  featured_languages:         ["en-US", "es", "pt", "fr", "de", "it", "ru", "et", "iw", "zh-TW"]
-  
-  #############################################################################
   # Set the following flag to true if you would like to allow any registered 
   # user to become a translator. The users become translators as soon as they
   # enable inline translation mode, submit a translation, or vote on a 
@@ -183,17 +157,17 @@ defaults:
     value_rule:               
       token_suffixes:         "*"
       object_method:          "to_s"
-    
+
     # minimal rank makes the translation acceptable for subsitution and counts towards the translator rank
     translation_threshold:    1
-    
+
     viewing_user_token:       "viewing_user"
     translation_rank_styles:  
       -1000..-5:              "color:red;font-weight:bold;"
       -4..-1:                 "color:red;"
       1..10:                  "color:green;"
       11..1000:               "color:green;font-weight:bold;"
-  
+
   #############################################################################
   # API Settings
   #############################################################################
@@ -204,7 +178,7 @@ defaults:
     skip_before_filters:      []       # filters from application controller
     before_filters:           []       # filters from application controller
     after_filters:            []       # filters from application controller
-  
+
   #############################################################################
   # Translator Roles         - manager level is set at 1000 and anything above
   # 
@@ -236,7 +210,7 @@ defaults:
     admin:                    10000     # reserved for admin tools
     application:              100000    # reserved for applications
     system:                   1000000   # reserved for system
-  
+
   default_translation_key_level: 0
   #############################################################################
   # Localization Settings
@@ -257,7 +231,7 @@ defaults:
       monthname_abbr:         '%b %d'               # Jul 4
       monthname_abbr_year:    '%b %d, %Y'           # Jul 4, 2008
       date_time:              '%m/%d/%Y at %H:%M'   # 01/03/1010 at 5:30
- 
+
   #############################################################################
   # You can synchronize your translation keys and translations with the 
   # tr8n.net service. This way you can get your site translated by 
@@ -281,15 +255,15 @@ defaults:
     all_languages:            false              # use only enabled languages, or all languages
     enable_push:              false              # allows translations to be pushed from the main server using the sync API        
     push_servers:             ["tr8n.net"]       # only allows those servers to push translations
-          
+
 #############################################################################
 # Environment Settings
 # You can overload any feature defined in the defaults for any environment
 #############################################################################
 development:
-  
+
 test:
-      
+
 qa:
 
 stage:

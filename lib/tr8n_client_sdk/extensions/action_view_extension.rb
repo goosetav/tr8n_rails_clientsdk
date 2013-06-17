@@ -40,7 +40,7 @@ module Tr8nClientSdk
     end
 
     def tr8n_language_flag_tag(lang = Tr8n::Config.current_language, opts = {})
-      return "" unless Tr8n::Config.enable_language_flags?
+      return "" unless Tr8n::Config.application.enable_language_flags?
       html = image_tag(Tr8n::Config.url_for("/assets/tr8n/flags/#{lang.flag}.png"), :style => "vertical-align:middle;", :title => lang.native_name)
       html << "&nbsp;".html_safe 
       html.html_safe

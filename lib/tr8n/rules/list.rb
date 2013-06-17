@@ -41,26 +41,25 @@ class Tr8n::Rules::List < Tr8n::Rules::Base
     token.send(list_method_name)
   end
 
-  # params: [object, one element, at least two elements]
-  # {user_list | one element, at least two elements}
-  def self.transform(*args)
-    unless args.size == 3
-      raise Tr8n::Exception.new("Invalid transform arguments")
+  # FORM: [one, many]
+  # {actors|| likes, like} this story
+  def self.transform_params_to_options(params)
+    options = {}
+    if params[0].index(':')
+      params.each do |arg|
+        parts = arg.split(':')
+        options[parts.first.strip.to_sym] = parts.last.strip
+      end
+    else # default falback to {|| male, female} or {|| male, female, unknown} 
+      if params.size == 2 # doesn't matter
+        options[:one] = params[0]
+        options[:other] = params[1]
+      else
+        raise Tr8n::Exception.new("Invalid number of parameters in the transform token #{token}")
+      end  
     end
-    
-    object = args[0]
-    list_size = token_value(object)
-
-    unless list_size
-      raise Tr8n::Exception.new("Token #{object.class.name} does not respond to #{list_method_name}")
-    end
-    
-    list_size = list_size.to_i
-    
-    return args[1] if list_size == 1
-    
-    args[2]
-  end  
+    options    
+  end
   
   def evaluate(token)
     return false unless token.kind_of?(Enumerable)

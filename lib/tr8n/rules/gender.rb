@@ -55,33 +55,35 @@ class Tr8n::Rules::Gender < Tr8n::Rules::Base
     self.class.gender_object_value_for(type)
   end
   
-  # FORM: [object, male, female, unknown]
+  # FORM: [male, female(, unknown)]
   # {user | registered on}
   # {user | he, she}
   # {user | he, she, he/she}
-  def self.transform(*args)
-    unless [2, 3, 4].include?(args.size)
-      raise Tr8n::Exception.new("Invalid transform arguments for gender token")
+  # {user | male: he, female: she, unknown: he/she}
+  # {user | female: she, other: he}
+  def self.transform_params_to_options(params)
+    options = {}
+    if params[0].index(':')
+      params.each do |arg|
+        parts = arg.split(':')
+        options[parts.first.strip.to_sym] = parts.last.strip
+      end
+    else # default falback to {|| male, female} or {|| male, female, unknown} 
+      if params.size == 1 # doesn't matter
+        options[:other] = params[0]
+      elsif params.size == 2 # {|| singular}
+        options[:male] = params[0]
+        options[:female] = params[1]
+        options[:other] = "#{params[0]}/#{params[1]}"
+      elsif params.size == 3
+        options[:male] = params[0]
+        options[:female] = params[1]
+        options[:other] = params[2]
+      else
+        raise Tr8n::Exception.new("Invalid number of parameters in the transform token #{token}")
+      end  
     end
-    
-    return args[1] if args.size == 2
-    
-    object = args[0]
-    object_value = gender_token_value(object)
-    
-    unless object_value
-      raise Tr8n::Exception.new("Token #{object.class.name} does not respond to #{gender_method_name}")
-    end
-    
-    if (object_value == gender_object_value_for("male"))
-      return args[1]
-    elsif (object_value == gender_object_value_for("female"))
-      return args[2]
-    end
-
-    return args[3] if args.size == 4
-    
-    "#{args[1]}/#{args[2]}"  
+    options    
   end
   
   def evaluate(token)

@@ -29,4 +29,7 @@ class HomeController < ApplicationController
 
   end
 
+  def info
+    render(:text => Tr8n::Config.application.to_json, :content_type => "text/json")
+  end
 end

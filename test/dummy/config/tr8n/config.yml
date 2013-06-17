@@ -17,7 +17,7 @@
 
 defaults: 
   enable_tr8n:                true      # enables the engine
-  host:                       geni.berkovich.net
+  host:                       sandbox.tr8nhub.com
   app_key:                    29adc3257b6960703
   app_secret:                 a5af33d9d691ce0a6
 
@@ -145,18 +145,6 @@ defaults:
         link:                   "link"
         locale:                 "locale"
 
-
-  #############################################################################
-  # API Settings
-  #############################################################################
-  api:  
-    enabled:                  true
-    response_encoding:        "json"     # options: xml, json
-    allow_key_registration:   true
-    skip_before_filters:      []       # filters from application controller
-    before_filters:           []       # filters from application controller
-    after_filters:            []       # filters from application controller
-
   #############################################################################
   # Localization Settings
   #############################################################################
@@ -176,30 +164,6 @@ defaults:
       monthname_abbr:         '%b %d'               # Jul 4
       monthname_abbr_year:    '%b %d, %Y'           # Jul 4, 2008
       date_time:              '%m/%d/%Y at %H:%M'   # 01/03/1010 at 5:30
-
-  #############################################################################
-  # You can synchronize your translation keys and translations with the 
-  # tr8n.net service. This way you can get your site translated by 
-  # millions of users from around the internet. Visit the following url and 
-  # register as a developer, register your application and copy your app key
-  # and secret in the lines below:
-  #
-  #  http://tr8n.net
-  # 
-  # To sychronize your translations run the following command: 
-  # 
-  #  rake tr8n:sync
-  #
-  # You can run this command as often as your account on tr8n.net permits you.
-  #############################################################################
-  synchronization:
-    server:                   "http://tr8nhub.com"  # visit this url to register your application
-    key:                      "YOUR APP KEY"     # replace with your application key
-    secret:                   "YOUR APP SECRET"  # replace with your application secret   
-    batch_size:               50                 # how many keys to send to the server at a time - if your site supports many language, decrease the batch size
-    all_languages:            false              # use only enabled languages, or all languages
-    enable_push:              false              # allows translations to be pushed from the main server using the sync API        
-    push_servers:             ["tr8n.net"]       # only allows those servers to push translations
 
 #############################################################################
 # Environment Settings

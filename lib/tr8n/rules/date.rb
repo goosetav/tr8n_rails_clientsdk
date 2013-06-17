@@ -45,30 +45,26 @@ class Tr8n::Rules::Date < Tr8n::Rules::Base
     token.send(date_method_name)
   end
 
-  # params: [object, past, present, future]
-  # form: {date | did, is doing, will do}
-  def self.transform(*args)
-    if args.size != 4
-      raise Tr8n::Exception.new("Invalid transform arguments")
+  # FORM: [past, present, future]
+  # This event {date| past: took place, present: is taking place, future: will take place} on {date}.
+  def self.transform_params_to_options(params)
+    options = {}
+    if params[0].index(':')
+      params.each do |arg|
+        parts = arg.split(':')
+        options[parts.first.strip.to_sym] = parts.last.strip
+      end
+    else # default falback to {|| male, female} or {|| male, female, unknown} 
+      if params.size == 3 # doesn't matter
+        options[:past] = params[0]
+        options[:present] = params[1]
+        options[:other] = params[2]
+      else
+        raise Tr8n::Exception.new("Invalid number of parameters in the transform token #{token}")
+      end  
     end
-    
-    object = args[0]
-    object_date = token_value(object)
-
-    unless object_date
-      raise Tr8n::Exception.new("Token #{object.class.name} does not respond to #{date_method_name}")
-    end
-
-    current_date = Date.today
-    
-    if object_date < current_date
-      return args[1]
-    elsif object_date > current_date
-      return args[3]
-    end
-    
-    args[2]
-  end  
+    options    
+  end
 
   def evaluate(token)
     return false unless token.is_a?(Date) or token.is_a?(Time)

@@ -72,4 +72,37 @@ class Tr8n::Rules::Base < Tr8n::Base
     true
   end
 
+  def self.transform_params_to_options(params)
+    raise Tr8n::Exception.new("This method must be implemented in the extending rule") 
+  end
+
+  def self.transform(token, object, params, language)
+    if params.empty?
+      raise Tr8n::Exception.new("Invalid form for token #{token}")
+    end
+
+    options = transform_params_to_options(params)
+
+    matched_key = nil
+    options.keys.each do |keyword|
+      next if keyword == :other  # other is a special keyword - don't process it
+      rule = language.context_rules_by_type_and_keyword(self.key, keyword)
+
+      unless rule
+        raise Tr8n::Exception.new("Invalid rule name #{keyword} for transform token #{token}")
+      end
+
+      if rule.evaluate(object)
+        matched_key = keyword.to_sym
+        break
+      end
+    end
+
+    unless matched_key
+      return options[:other] if options[:other]
+      raise Tr8n::Exception.new("No rules matched for transform token #{token} : #{options.inspect} : #{object}")
+    end
+
+    options[matched_key]
+  end
 end

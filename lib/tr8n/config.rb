@@ -342,10 +342,10 @@ class Tr8n::Config
     @language_rule_dependencies ||= begin
       depts = HashWithIndifferentAccess.new
       language_rule_classes.each do |cls|
-        if depts[cls.dependency]
-          raise Tr8n::Exception.new("The same dependency key #{cls.dependency} has been registered for multiple rules. This is not allowed.")
+        if depts[cls.key]
+          raise Tr8n::Exception.new("The same dependency key #{cls.key} has been registered for multiple rules. This is not allowed.")
         end  
-        depts[cls.dependency] = cls
+        depts[cls.key] = cls
       end
       depts
     end
@@ -491,25 +491,25 @@ class Tr8n::Config
 
   def self.decode_and_verify_params(signed_request, secret)  
     signed_request = URI::decode(signed_request)
-    pp :signed_request, signed_request
+    # pp :signed_request, signed_request
 
     encoded_sig, payload = signed_request.split('.', 2)
-    pp :encoded_sig, encoded_sig
-    pp :secret, secret
+    # pp :encoded_sig, encoded_sig
+    # pp :secret, secret
 
     sig = Base64.decode64(encoded_sig)
 
     data = JSON.parse(Base64.decode64(payload))
-    pp :secret, secret
+    # pp :secret, secret
 
     if data['algorithm'].to_s.upcase != 'HMAC-SHA256'
       raise Tr8n::Exception.new("Bad signature algorithm: %s" % data['algorithm'])
     end
     expected_sig = OpenSSL::HMAC.digest('sha256', secret, payload)
-    pp :expected, expected_sig
-    pp :actual, sig
+    # pp :expected, expected_sig
+    # pp :actual, sig
 
-    pp data
+    # pp data
 
     # if expected_sig != sig
     #   raise Tr8n::Exception.new("Bad signature")

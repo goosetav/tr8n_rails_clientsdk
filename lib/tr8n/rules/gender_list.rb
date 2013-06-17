@@ -67,42 +67,30 @@ class Tr8n::Rules::GenderList < Tr8n::Rules::Base
     self.class.male_female_occupants(arr)
   end
   
-  # params: [object, one element male, one element female, at least two elements]
-  # or: [object, one element, at least two elements]
-
-  # {user_list | one element male, one element female, at least two elements}
-  # {user_list | one element, at least two elements}
-  def self.transform(*args)
-    unless [3, 4].include?(args.size)
-      raise Tr8n::Exception.new("Invalid transform arguments")
-    end
-    
-    object = args[0]
-    list_size = token_value(object)
-
-    unless list_size
-      raise Tr8n::Exception.new("Token #{object.class.name} does not respond to #{Tr8n::Config.rules_engine[:gender_list_rule][:object_method]}")
-    end
-    
-    list_size = list_size.to_i
-    
-    if args.size == 3
-      return args[1] if list_size == 1
-      return args[2]
-    end
-    
-    if list_size == 1
-      list_object = object.first
-      list_object_gender = Tr8n::Rules::Gender.gender_token_value(list_object)
-      if list_object_gender == Tr8n::Rules::Gender.gender_object_value_for("male")
-        return args[1]
-      elsif list_object_gender == Tr8n::Rules::Gender.gender_object_value_for("female")
-        return args[2]
+  # FORM: [one element male, one element female, at least two elements]
+  # or: [one element, at least two elements]
+  # {actors:gender_list|| likes, like} this story
+  def self.transform_params_to_options(params)
+    options = {}
+    if params[0].index(':')
+      params.each do |arg|
+        parts = arg.split(':')
+        options[parts.first.strip.to_sym] = parts.last.strip
       end
+    else # default falback to {|| male, female} or {|| male, female, unknown} 
+      if params.size == 2 # doesn't matter
+        options[:one] = params[0]
+        options[:other] = params[1]
+      else
+        raise Tr8n::Exception.new("Invalid number of parameters in the transform token #{token}")
+      end  
     end
-    
-    args[3]
-  end  
+    options    
+  end
+
+  def multipart?
+    self.multipart == 'true'
+  end
 
   def one_element?
     value1 == 'one_element'
