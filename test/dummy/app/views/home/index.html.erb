@@ -2,7 +2,9 @@
     <div class="page size1of1 mha ptl mbxl">
       <div class="shadowBox whiteBkgd pal mtl txtL" style="min-height:300px;">
 
-         <%=tr("[link: Hello {ndash}]", nil, :link => {:href => "http://www.google.com"}) %>
+        <%= tr8n_with_options_tag(:component => :home_banner) do %>
+          <%=tr("[link: Hello {ndash}]", nil, :link => {:href => "http://www.google.com"}) %>
+        <% end %>
 
       </div>
     </div>        

@@ -44,15 +44,15 @@ class Tr8n::Config
     set_translator(translator)
     set_language(application.language_by_locale(locale) || default_language)
     set_source(application.source_by_key(source || "undefined"))
-
-    # # register source with component
-    # unless component.nil?
-    #   Thread.current[:tr8n_current_component]  = Tr8n::Component.find_or_create(component) 
-    #   Tr8n::ComponentSource.find_or_create(current_component, current_source)
-    # else
-    #   Thread.current[:tr8n_current_component]  = nil
-    # end
     Thread.current[:tr8n_block_options]           = []
+
+    # register source with component
+    unless component.nil?
+      set_component(application.component_by_key(component))
+      current_component.register_source(current_source)
+    else
+      set_component(nil)
+    end
   end
 
   def self.current_user
@@ -95,38 +95,31 @@ class Tr8n::Config
     Thread.current[:tr8n_current_component] = component
   end
 
-  # def self.current_user_is_authorized_to_view_component?(component = current_component)
-  #   return true if component.nil? # no component present, so be it
+  def self.current_user_is_authorized_to_view_component?(component = current_component)
+    return true if component.nil? # no component present, so be it
+    component = application.component_by_key(component.to_s) if component.is_a?(Symbol)
 
-  #   component = Tr8n::Component.find_by_key(component.to_s) if component.is_a?(Symbol)
+    return true unless component.restricted?
+    return false unless Tr8n::Config.current_translator
+    return true if component.translator_authorized?
 
-  #   return true unless component.restricted?
-  #   return false unless Tr8n::Config.current_user_is_translator?
-  #   return true if component.translator_authorized?
+    false
+  end
 
-  #   if Tr8n::Config.current_user_is_admin?
-  #     Tr8n::ComponentTranslator.find_or_create(component, Tr8n::Config.current_translator)
-  #     return true
-  #   end
+  def self.current_user_is_authorized_to_view_language?(component = current_component, language = current_language)
+    return true if component.nil? # no component present, so be it
+    component = application.component_by_key(component.to_s) if component.is_a?(Symbol)
+
+    if Tr8n::Config.current_translator
+      return true if component.translator_authorized?
+    end
+
+    # component.component_languages.each do |cl|
+    #   return cl.live? if cl.language_id == language.id 
+    # end
     
-  #   false
-  # end
-
-  # def self.current_user_is_authorized_to_view_language?(component = current_component, language = current_language)
-  #   return true if component.nil? # no component present, so be it
-
-  #   component = Tr8n::Component.find_by_key(component.to_s) if component.is_a?(Symbol)
-
-  #   if Tr8n::Config.current_user_is_translator? 
-  #     return true if component.translators.include?(Tr8n::Config.current_translator)
-  #   end
-
-  #   component.component_languages.each do |cl|
-  #     return cl.live? if cl.language_id == language.id 
-  #   end
-    
-  #   true
-  # end
+    true
+  end
 
   def self.default_language
     return Tr8n::Language.new(:locale => default_locale, :default => true) if disabled?
@@ -465,7 +458,7 @@ class Tr8n::Config
   def self.current_source_from_block_options
     arr = Thread.current[:tr8n_block_options] || []
     arr.reverse.each do |opts|
-      return Tr8n::Source.find_or_create(opts[:source]) unless opts[:source].blank?
+      return application.source_by_key(opts[:source]) unless opts[:source].blank?
     end
     nil
   end
@@ -473,7 +466,7 @@ class Tr8n::Config
   def self.current_component_from_block_options
     arr = Thread.current[:tr8n_block_options] || []
     arr.reverse.each do |opts|
-      return Tr8n::Component.find_or_create(opts[:component]) unless opts[:component].blank?
+      return application.component_by_key(opts[:component]) unless opts[:component].blank?
     end
     Tr8n::Config.current_component
   end

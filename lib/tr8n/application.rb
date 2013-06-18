@@ -53,6 +53,7 @@ class Tr8n::Application < Tr8n::Base
     @language_by_locale = nil
     @featured_languages = nil
     @sources = nil
+    @components = nil
     @traslation_keys_by_language = nil
   end
 
@@ -78,12 +79,6 @@ class Tr8n::Application < Tr8n::Base
   def translators
     Tr8n::Cache.fetch("application_translators") do 
       get("application/translators")
-    end
-  end
-
-  def components
-    Tr8n::Cache.fetch("application_components") do 
-      get("application/components")
     end
   end
 
@@ -114,7 +109,7 @@ class Tr8n::Application < Tr8n::Base
   end
 
   def default_decoration_tokens
-    @default_decoration_tokens ||= self.definition["default_decoration_tokens"].merge(Tr8n::Config.load_yml("/config/tr8n/tokens/decoration.yml", nil))
+    @default_decoration_tokens ||= self.definition["default_decoration_tokens"].merge(Tr8n::Config.load_yml("/config/tr8n/tokens/decorations.yml", nil))
   end
 
   def default_decoration_token(token)
@@ -132,6 +127,15 @@ class Tr8n::Application < Tr8n::Base
   def source_by_key(key)
     @sources ||= {}
     @sources[key] ||= post("source/register", {:source => key}, {:class => Tr8n::Source})
+  end
+
+  def components
+    @components ||= {}
+  end
+
+  def component_by_key(key)
+    @components ||= {}
+    @components[key] ||= post("component/register", {:component => key}, {:class => Tr8n::Component})
   end
 
   def traslation_key_by_language_and_hash(language, hash)

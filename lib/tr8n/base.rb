@@ -118,7 +118,7 @@ protected
   def self.api(path, params = {}, opts = {})
     params = params.merge(:client_id => Tr8n::Config.app_key)
 
-    # pp [:api, path,  params, opts]
+    pp [:api, path,  params, opts]
 
     # TODO: sign request
 
@@ -136,7 +136,7 @@ protected
 
     data = JSON.parse(response.body)
 
-    # pp data
+    pp data
 
     unless data["error"].nil?
       raise Tr8n::Exception.new("Error: #{data["error"]}")

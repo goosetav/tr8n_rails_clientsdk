@@ -22,6 +22,35 @@
 #++
 
 class Tr8n::Component < Tr8n::Base
-  attributes :id, :key, :name, :description, :state
+  attributes :key, :name, :description, :state
   
+  def sources
+    get("component/sources", {:key => key}, {:class => Tr8n::Source})
+  end
+
+  def translators
+    get("component/translators", {:key => key}, {:class => Tr8n::Translator})
+  end
+
+  def languages
+    get("component/languages", {:key => key}, {:class => Tr8n::Language})
+  end
+
+  def register_source(source)
+    get("component/register_source", {:key => key, :source => source.source})
+  end
+
+  def restricted?
+    state == 'restricted'
+  end
+
+  def live?
+    state == 'live'
+  end
+
+  def translator_authorized?(translator = Tr8n::Config.current_translator)
+    return true unless restricted?
+    translators.include?(translator)
+  end
+
 end
