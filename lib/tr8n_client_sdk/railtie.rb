@@ -24,25 +24,6 @@
 require 'rails'
 require 'pp'
 
-[
- ".",
- "./namespace.rb",
- "../tr8n/base.rb",
- "../tr8n",
- "../tr8n/rules/base.rb",
- "../tr8n/rules",
- "../tr8n/tokens/base.rb",
- "../tr8n/tokens",
-].each do |path|
-    if path.index(".rb")
-      require(File.expand_path("#{File.dirname(__FILE__)}/#{path}"))
-    else
-      Dir[File.expand_path("#{File.dirname(__FILE__)}/#{path}/*.rb")].sort.each do |file|
-        require(file)
-      end
-    end
-end
-
 # Rails Extensions
 require File.join(File.dirname(__FILE__), 'extensions/array_extension')
 require File.join(File.dirname(__FILE__), 'extensions/date_extension')
@@ -58,7 +39,9 @@ require File.join(File.dirname(__FILE__), 'extensions/action_controller_extensio
 module Tr8nClientSdk
   class Railtie < ::Rails::Railtie #:nodoc:
     initializer 'tr8n_client_sdk' do |app|
-      Tr8n::Config.application   
+      require "tr8n_client_sdk/config"
+      Tr8n.config = Tr8nClientSdk::Config.new
+      Tr8n.config.init_application
 
       ActiveSupport.on_load(:action_view) do
         ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods

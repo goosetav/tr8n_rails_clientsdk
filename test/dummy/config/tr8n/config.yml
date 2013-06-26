@@ -17,7 +17,7 @@
 
 defaults: 
   enable_tr8n:                true      # enables the engine
-  host:                       geni.berkovich.net
+  host:                       http://geni.berkovich.net
   app_key:                    29adc3257b6960703
   app_secret:                 a5af33d9d691ce0a6
 

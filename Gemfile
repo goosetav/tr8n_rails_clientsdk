@@ -15,3 +15,5 @@ gem "jquery-rails"
 
 # To use debugger
 # gem 'debugger'
+
+gem 'tr8n_core', :path => '../tr8n_core'

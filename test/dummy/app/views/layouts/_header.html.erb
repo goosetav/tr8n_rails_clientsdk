@@ -35,7 +35,7 @@
         <% if current_user %>
           <li>
             <a href="#" onClick="Tr8n.UI.LanguageSelector.show(true)" class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag(Tr8n::Config.url_for("/assets/tr8n/flags/#{language.flag}.png"), :style => "align:middle") %>
+              <%= image_tag(Tr8n.config.url_for("/assets/tr8n/flags/#{language.locale}.png"), :style => "align:middle") %>
               &nbsp; 
               <%= language.native_name %>
             </a>

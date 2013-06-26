@@ -1,4 +1,4 @@
-<% if Tr8n::Config.enabled? %>
+<% if Tr8n.config.enabled? %>
 
   <style type="text/css">
   .tr8n_fltr {
@@ -15,6 +15,6 @@
   }
   </style>
 
-  <script src="//<%=Tr8n::Config.host%>/tr8n/api/v1/proxy/boot.js?debug=true&tml=true"></script>
+  <script src="<%=Tr8n.config.host%>/tr8n/api/proxy/boot.js?debug=true&tml=true"></script>
 
 <% end %>

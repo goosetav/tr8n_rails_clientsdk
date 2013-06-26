@@ -31,7 +31,6 @@ module Tr8nClientSdk
     # tr(label, {:desc => "", tokens => {},  ...})
     ############################################################
     def tr(label, desc = "", tokens = {}, options = {})
-
       return label if label.tr8n_translated?
 
       if desc.is_a?(Hash)
@@ -44,11 +43,7 @@ module Tr8nClientSdk
       options.merge!(:url => request.url)
       options.merge!(:host => request.env['HTTP_HOST'])
 
-      unless Tr8n::Config.enabled?
-        return Tr8n::TranslationKey.substitute_tokens(label, tokens, options)
-      end
-
-      Tr8n::Config.current_language.translate(label, desc, tokens, options)
+      Tr8n.config.current_language.translate(label, desc, tokens, options)
     end
 
     # for translating labels
@@ -76,31 +71,31 @@ module Tr8nClientSdk
     ######################################################################
 
     def tr8n_application
-      Tr8n::Config.application
+      Tr8n.config.application
     end
 
     def tr8n_current_user
-      Tr8n::Config.current_user
+      Tr8n.config.current_user
     end
 
     def tr8n_current_language
-      Tr8n::Config.current_language
+      Tr8n.config.current_language
     end
 
     def tr8n_default_language
-      Tr8n::Config.default_language
+      Tr8n.config.default_language
     end
 
     def tr8n_current_translator
-      Tr8n::Config.current_translator
+      Tr8n.config.current_translator
     end
 
     def tr8n_current_user_is_guest?
-      Tr8n::Config.current_user_is_guest?
+      Tr8n.config.current_user_is_guest?
     end
 
     def tr8n_current_user_is_translator?
-      Tr8n::Config.current_user_is_translator?
+      Tr8n.config.current_user_is_translator?
     end
 
   end

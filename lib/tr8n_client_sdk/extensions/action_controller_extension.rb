@@ -53,15 +53,15 @@ module Tr8nClientSdk
 
       def tr8n_user_preffered_locale
         tr8n_browser_accepted_locales.each do |locale|
-          lang = Tr8n::Language.by_locale(locale)
+          lang = Tr8n.config.application.language_by_locale(locale)
           return locale if lang and lang.enabled?
         end
-        Tr8n::Config.default_locale
+        Tr8n.config.application.default_language
       end
       
       # Overwrite this method in a controller to assign a custom source for all views
       def tr8n_source
-        Tr8n::Source.normalize_source(request.url)
+        Tr8n::Source.normalize(request.url)
       rescue
         self.class.name
       end
@@ -72,7 +72,7 @@ module Tr8nClientSdk
       end  
 
       def tr8n_init_current_locale
-        self.send(Tr8n::Config.current_locale_method)
+        self.send(Tr8n.config.current_locale_method)
       rescue
         # fallback to the default session based locale implementation
         # choose the first language from the accepted languages header
@@ -82,41 +82,41 @@ module Tr8nClientSdk
       end
 
       def tr8n_init_current_user
-        self.send(Tr8n::Config.current_user_method)
+        self.send(Tr8n.config.current_user_method)
       end
 
       def tr8n_init_client_sdk
-        return unless Tr8n::Config.enabled?
+        return unless Tr8n.config.enabled?
 
-        Tr8n::Config.application.update_cache_version
+        tr8n_application.update_cache_version
 
         cookie_name = "tr8n_#{tr8n_application.key}"
         if request.cookies[cookie_name]
-          cookie_params = Tr8n::Config.decode_and_verify_params(request.cookies[cookie_name], Tr8n::Config.app_secret)  
+          cookie_params = Tr8n.config.decode_and_verify_params(request.cookies[cookie_name], Tr8n.config.app_secret)  
           locale = cookie_params["locale"]
-          translator = Tr8n::Translator.new(cookie_params["translator"]) unless cookie_params["translator"].nil?
+          translator = Tr8n::Translator.new(cookie_params["translator"].merge(:application => tr8n_application)) unless cookie_params["translator"].nil?
         end
 
         locale ||= tr8n_init_current_locale
         user = tr8n_init_current_user
 
-        Tr8n::Config.init_request(locale, translator, tr8n_source, tr8n_component)
+        Tr8n.config.init_request(locale, translator, tr8n_source, tr8n_component)
         
         # register component and verify that the current user is authorized to view it
-        # unless Tr8n::Config.current_user_is_authorized_to_view_component?
+        # unless Tr8n.config.current_user_is_authorized_to_view_component?
         #   trfe("You are not authorized to view this component")
-        #   return redirect_to(Tr8n::Config.default_url)
+        #   return redirect_to(Tr8n.config.default_url)
         # end
 
-        # unless Tr8n::Config.current_user_is_authorized_to_view_language?
-        #   Tr8n::Config.set_language(Tr8n::Config.default_language)
+        # unless Tr8n.config.current_user_is_authorized_to_view_language?
+        #   Tr8n.config.set_language(Tr8n.config.default_language)
         # end
       end
 
       def tr8n_reset_client_sdk
-        Tr8n::Config.application.submit_missing_keys
-        Tr8n::Config.current_source.reset_translator_keys
-        Tr8n::Config.reset_request
+        tr8n_application.submit_missing_keys
+        # Tr8n.config.current_source.reset_translator_keys
+        Tr8n.config.reset_request
       end
 
     end

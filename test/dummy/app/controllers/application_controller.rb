@@ -60,7 +60,7 @@ private
   helper_method :current_locale
 
   def language
-    Tr8n::Config.current_language
+    Tr8n.config.current_language
   end
   helper_method :language
 

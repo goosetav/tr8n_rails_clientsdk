@@ -1,5 +1,5 @@
-<% if Tr8n::Config.enabled? %>
-  <% featured_languages = Tr8n::Config.application.featured_languages %>
+<% if Tr8n.config.enabled? %>
+  <% featured_languages = Tr8n.config.application.featured_languages %>
   <% if featured_languages.any? %> 
     <style>
     .tr8n_language_strip                            {text-align:center; color:#777;}
