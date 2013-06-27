@@ -52,7 +52,7 @@ module Tr8nClientSdk
 
     def init_request(locale, translator, source = nil, component = nil)
       self.current_translator = translator
-      self.current_language = (application.language_by_locale(locale) || default_language)
+      self.current_language = (application.language(locale) || default_language)
       self.current_source = application.source_by_key(source || "undefined")
 
       # # register source with component
@@ -92,7 +92,7 @@ module Tr8nClientSdk
 
     def default_language
       return Tr8n::Language.new(:locale => default_locale, :default => true) if disabled?
-      @default_language ||= application.language_by_locale(default_locale) 
+      @default_language ||= application.language(default_locale) 
     end
 
     def decorator_class
@@ -109,6 +109,14 @@ module Tr8nClientSdk
 
     def env
       Rails.env
+    end
+
+    def enable_logger?
+      true
+    end
+
+    def log_path
+      "#{root}/log/tr8n.log"
     end
 
     def url_for(path)

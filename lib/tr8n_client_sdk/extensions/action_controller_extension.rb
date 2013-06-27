@@ -53,7 +53,7 @@ module Tr8nClientSdk
 
       def tr8n_user_preffered_locale
         tr8n_browser_accepted_locales.each do |locale|
-          lang = Tr8n.config.application.language_by_locale(locale)
+          lang = Tr8n.config.application.language(locale)
           return locale if lang and lang.enabled?
         end
         Tr8n.config.application.default_language
