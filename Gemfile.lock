@@ -6,6 +6,7 @@ PATH
       rails (~> 3.2.13)
       sass
       thor
+      tr8n_core
 
 PATH
   remote: ../tr8n_core

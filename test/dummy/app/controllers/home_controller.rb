@@ -32,4 +32,20 @@ class HomeController < ApplicationController
   def info
     render(:text => Tr8n::Config.application.to_json, :content_type => "text/json")
   end
+
+  def names
+    file_path = "/Users/michael/Projects/Tr8n/tr8n_core/spec/fixtures/translations/ru/names.json"
+    if request.post?
+      names = {}
+      params[:names].keys.each do |name|
+        names[name] = params[:names][name]
+      end
+      File.open(file_path, "w") do |output|
+        output.write(names.to_json)
+      end
+      trfn("File has been saved")
+    end
+    @names = Tr8n::Helper.load_json(file_path)
+  end
+
 end
