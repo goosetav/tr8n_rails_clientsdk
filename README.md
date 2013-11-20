@@ -36,7 +36,51 @@ Make sure you edit the config/tr8n/config.yml file and provide the correct appli
   $ rails s -p 3001
 ```
 
+Alternatively, you can see the same sample application as a stand alone app:
 
-Open your browser and point to:
+https://github.com/tr8n/tr8n_rails_clientsdk_sample
 
-  http://localhost:3001
+
+# Integration Instructions
+
+Here are a few points on how to integrate Tr8n into your app:
+
+Add the following gems to your Gemfile:
+
+```ruby
+  gem 'tr8n_core'
+  gem 'tr8n_client_sdk'
+```
+
+Install the gems:
+
+```sh
+  $ bundle
+```
+
+Generate config file:
+
+```sh
+  $ rails g tr8n_client_sdk
+```
+
+Open the config file and provide your application credentials:
+
+```
+  application:
+    host:         http://localhost:3000
+    key:          YOUR_APP_KEY
+    secret:       YOUR_APP_SECRET
+```
+
+In the HEAD section of your layout, add:
+
+```ruby
+  <%= tr8n_scripts_tag %>
+```
+
+You are done, tr8n is now running in your app.
+
+To read more about what you can do with it, visit the wiki site:
+
+http://wiki.tr8nhub.com
