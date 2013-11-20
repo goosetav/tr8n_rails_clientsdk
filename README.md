@@ -2,7 +2,7 @@
 
 This Client SDK provides all tools and extensions necessary for translating any Rails application using the Tr8n service.
 
-The service must be available and running in order for the SDK to work. You can download and install the service by following these instructions:
+You can use http://sandbox.tr8nhub.com or download and install the service locally by following these instructions:
 
 ```sh
   $ git clone https://github.com/tr8n/tr8n.git
