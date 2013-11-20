@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2010-2013 Michael Berkovich, tr8nhub.com
+# Copyright (c) 2013 Michael Berkovich, tr8nhub.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -45,24 +45,19 @@ private
       elsif current_user and current_user.locale != nil
         session[:locale] = current_user.locale
       elsif session[:locale] == nil
-        session[:locale] = tr8n_user_preffered_locale
+        session[:locale] = tr8n_user_preferred_locale
         save_locale = (session[:locale] != Tr8n::Config.default_locale)
       end
 
       if save_locale and current_user
         current_user.update_attributes(:locale => session[:locale])
-        # Tr8n::LanguageUser.find_or_create(current_user, Tr8n::Language.for(session[:locale]))
+        Tr8n::LanguageUser.find_or_create(current_user, Tr8n::Language.by_locale(session[:locale]))
       end
 
       session[:locale]
     end
   end
   helper_method :current_locale
-
-  def language
-    Tr8n.config.current_language
-  end
-  helper_method :language
 
   def login(email, password, opts = {})
     user = User.authenticate(email, password)
@@ -78,16 +73,10 @@ private
     session[:user_id] = nil
     @current_user = nil
     # Tr8n::Config.reset!
-    # Platform::Config.reset!
-  end  
+  end
   
   def redirect_if_not_logged_in
-    redirect_to("/welcome") unless current_user
-  end
-
-  def redirect_back_or_to(url)
-    return redirect_to(request.env['HTTP_REFERER']) unless request.env['HTTP_REFERER'].blank?
-    redirect_to(url)
+    redirect_to("/home") unless current_user
   end
 
 end

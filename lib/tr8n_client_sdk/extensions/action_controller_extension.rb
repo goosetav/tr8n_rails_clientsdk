@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2010-2013 Michael Berkovich, tr8nhub.com
+# Copyright (c) 2013 Michael Berkovich, tr8nhub.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -33,35 +33,21 @@ module Tr8nClientSdk
 
     module InstanceMethods
 
-      ######################################################################
-      # Author: Iain Hecker
-      # reference: http://github.com/iain/http_accept_language
-      ######################################################################
       def tr8n_browser_accepted_locales
-        @accepted_languages ||= request.env['HTTP_ACCEPT_LANGUAGE'].split(/\s*,\s*/).collect do |l|
-          l += ';q=1.0' unless l =~ /;q=\d+\.\d+$/
-          l.split(';q=')
-        end.sort do |x,y|
-          raise Tr8n::Exception.new("Not correctly formatted") unless x.first =~ /^[a-z\-]+$/i
-          y.last.to_f <=> x.last.to_f
-        end.collect do |l|
-          l.first.downcase.gsub(/-[a-z]+$/i) { |x| x.upcase }
-        end
-      rescue 
-        []
+        @tr8n_browser_accepted_locales ||= Tr8n::Utils.browser_accepted_locales(request)
       end
 
-      def tr8n_user_preffered_locale
+      def tr8n_user_preferred_locale
         tr8n_browser_accepted_locales.each do |locale|
-          lang = Tr8n.config.application.language(locale)
-          return locale if lang and lang.enabled?
+          next unless Tr8n.config.application.locales.include?(locale)
+          return locale
         end
-        Tr8n.config.application.default_language
+        Tr8n.config.default_locale
       end
       
       # Overwrite this method in a controller to assign a custom source for all views
       def tr8n_source
-        Tr8n::Source.normalize(request.url)
+        "/#{controller_name}/#{action_name}"
       rescue
         self.class.name
       end
@@ -76,7 +62,7 @@ module Tr8nClientSdk
       rescue
         # fallback to the default session based locale implementation
         # choose the first language from the accepted languages header
-        session[:locale] = tr8n_user_preffered_locale unless session[:locale]
+        session[:locale] = tr8n_user_preferred_locale unless session[:locale]
         session[:locale] = params[:locale] if params[:locale]
         session[:locale]
       end
@@ -88,35 +74,48 @@ module Tr8nClientSdk
       def tr8n_init_client_sdk
         return unless Tr8n.config.enabled?
 
+        Tr8n.logger.info("Initializing request...")
+        @tr8n_started_at = Time.now
+
+        Tr8n.config.init_application
         tr8n_application.update_cache_version
+
+        translator = nil
 
         cookie_name = "tr8n_#{tr8n_application.key}"
         if request.cookies[cookie_name]
-          cookie_params = Tr8n.config.decode_and_verify_params(request.cookies[cookie_name], Tr8n.config.app_secret)  
+          Tr8n.logger.info("Cookie exists:")
+          cookie_params = Tr8n::Utils.decode_and_verify_params(request.cookies[cookie_name], Tr8n.config.app_secret)
+          Tr8n.logger.info(cookie_params.inspect)
           locale = cookie_params["locale"]
           translator = Tr8n::Translator.new(cookie_params["translator"].merge(:application => tr8n_application)) unless cookie_params["translator"].nil?
+        else
+          Tr8n.logger.info("Cookie does not exist")
         end
 
         locale ||= tr8n_init_current_locale
         user = tr8n_init_current_user
 
-        Tr8n.config.init_request(locale, translator, tr8n_source, tr8n_component)
-        
+        Tr8n.config.init_request(user, translator, locale, tr8n_source, tr8n_component)
+
         # register component and verify that the current user is authorized to view it
-        # unless Tr8n.config.current_user_is_authorized_to_view_component?
+        #unless Tr8n.config.current_user_is_authorized_to_view_component?
         #   trfe("You are not authorized to view this component")
         #   return redirect_to(Tr8n.config.default_url)
-        # end
-
-        # unless Tr8n.config.current_user_is_authorized_to_view_language?
+        #end
+        #unless Tr8n.config.current_user_is_authorized_to_view_language?
         #   Tr8n.config.set_language(Tr8n.config.default_language)
-        # end
+        #end
       end
 
       def tr8n_reset_client_sdk
+        @tr8n_finished_at = Time.now
+
+        Tr8n.logger.info("Resetting request...")
         tr8n_application.submit_missing_keys
-        # Tr8n.config.current_source.reset_translator_keys
         Tr8n.config.reset_request
+
+        Tr8n.logger.info("Request took #{@tr8n_finished_at - @tr8n_started_at} mls")
       end
 
     end

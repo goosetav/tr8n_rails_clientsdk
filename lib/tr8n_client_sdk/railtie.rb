@@ -25,12 +25,12 @@ require 'rails'
 require 'pp'
 
 # Rails Extensions
-require File.join(File.dirname(__FILE__), 'extensions/array_extension')
-require File.join(File.dirname(__FILE__), 'extensions/date_extension')
-require File.join(File.dirname(__FILE__), 'extensions/fixnum_extension')
-require File.join(File.dirname(__FILE__), 'extensions/hash_extension')
-require File.join(File.dirname(__FILE__), 'extensions/string_extension')
-require File.join(File.dirname(__FILE__), 'extensions/time_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/array_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/date_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/fixnum_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/hash_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/string_extension')
+#require File.join(File.dirname(__FILE__), 'extensions/time_extension')
 
 require File.join(File.dirname(__FILE__), 'extensions/action_common_methods')
 require File.join(File.dirname(__FILE__), 'extensions/action_view_extension')
@@ -41,7 +41,6 @@ module Tr8nClientSdk
     initializer 'tr8n_client_sdk' do |app|
       require "tr8n_client_sdk/config"
       Tr8n.config = Tr8nClientSdk::Config.new
-      Tr8n.config.init_application
 
       ActiveSupport.on_load(:action_view) do
         ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods

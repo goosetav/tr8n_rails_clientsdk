@@ -1,31 +1,29 @@
-<div class="page size1of3 mha ptl mbxl">
-	<div class="shadowBox whiteBkgd pal mtl txtC">
-		<h3 class="mbl strong"><%=tr("Login to #{Tr8n::Config.site_title}") %></h3>
-		
-			<%= form_tag(:controller=>:login, :action=>:index) do %>
+<div style="padding-top:40px;padding-bottom:40px;">
+  <div class="row">
+    <div class="span4 offset4 well">
+      <legend><%= tr("Login to Tr8n") %></legend>
+      <%= form_tag(:controller=>:login, :action=>:index) do %>
+        <%=hidden_field_tag(:mode, params[:mode]) %>
+        <%=hidden_field_tag(:origin, params[:origin]) %>
+        <%=hidden_field_tag(:app_key, params[:app_key]) %>
 
-					<div class="mbm">
-						<%=text_field_tag :email, params[:email], :class => "xlarge h4 pam", :placeholder => trl("Email") %>
-					</div>
-					<div class="mbm">
-						<%=password_field_tag :password, "", :class => "xlarge h4 pam", :placeholder => trl("Password")  %>
-					</div>
+        <% if lightbox? %>
+          <%=render :partial => "/layouts/flashes" %>
+        <% end %>
 
-					<button class="btn primary large fullWidth mbm"><%=tr('Login') %></button>				
+        <%=text_field_tag :email, params[:email], :class => "span4", :placeholder => trl("Email") %>
+        <%=password_field_tag :password, "", :class => "span4", :placeholder => trl("Password")  %>
 
-					<hr class="mvm" />
-					<div class="line quiet">
-						<div class="unit size1of2 txtL">
-							<%=link_to(tr("Forgot your password?"), "/login/forgot_password")%>
-						</div>
-            <div class="unit size1of2 lastUnit txtR">
-              <%=tr("New user? [link: Register here].", "", :link => {:href => "/signup/index"})%>
-            </div>
-					</div>
+        <button type="submit" name="submit" class="btn btn-block"><%= tr("Login") %></button>
 
-			<% end %>
-		
-	</div>
+        <br>
+
+        <div style="float:right">
+        </div>
+        <div style="float:left">
+          <%=tr("New user? [link: Register here].", "", :link => lambda{|text| link_to(text, :controller => :signup, :action => :index, :mode => params[:mode], :origin => params[:origin])})%>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-

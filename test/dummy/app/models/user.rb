@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   include BCrypt
 
-  attr_accessible :email, :name, :password, :password_confirmation, :gender, :locale
+  attr_accessible :email, :name, :first_name, :last_name, :password, :password_confirmation, :gender, :locale
 
   attr_accessor :password, :password_confirmation
   before_save :encrypt_password
@@ -44,7 +44,8 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, password)
     user = find_by_email(email)
-    return nil if user.nil? or user.crypted_password.nil? or user.salt.nil?
+    return nil if user.nil? 
+    return user if user.crypted_password.nil?
     if user.crypted_password == BCrypt::Engine.hash_secret(password, user.salt)
       user
     else
@@ -58,15 +59,10 @@ class User < ActiveRecord::Base
     save!
   end
 
-  def password_set?
-    not password_set_at.nil?
-  end
-
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
       self.crypted_password = BCrypt::Engine.hash_secret(password, salt)
-      self.password_set_at = Time.now
     end
   end
     
@@ -81,5 +77,13 @@ class User < ActiveRecord::Base
   
   def guest?
     id.nil?
+  end
+
+  def admin?
+    true
+  end
+
+  def link
+    ""
   end
 end

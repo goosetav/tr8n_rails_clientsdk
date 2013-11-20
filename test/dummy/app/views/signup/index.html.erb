@@ -1,23 +1,22 @@
-<div class="page size1of3 mha ptl mbxl">
-  <div class="shadowBox whiteBkgd pal mtl txtC">
-    <h3 class="mbl strong"><%=tr('Sign Up') %></h3>
-      <%=form_tag({}, {:method => :post}) do %> 
-          <div class="mbm">
-            <%=text_field_tag :email, params[:email], :class => "xlarge h4 pam", :placeholder => trl("Email") %>
-          </div>
+<div style="padding-top:40px;padding-bottom:40px;">
+  <div class="row">
+    <div class="span4 offset4 well">
+      <legend><%= tr("Sign Up") %></legend>
+      <%= form_for(@user, :as=>:user, :url => {}, :html => {:method => :post}) do |f| %>
+        <%=f.text_field :email, :class => "span4", :placeholder => trl("Email") %>
+        <%=f.text_field :name, :class => "span4", :placeholder => trl('Name') %>
+        <%=password_field_tag "user[password]", '', :class => "span4", :placeholder => trl('Password') %>
+        <%=password_field_tag "user[password_confirmation]", '', :class => "span4", :placeholder => trl('Confirm Password') %>
+        <button type="submit" name="submit" class="btn btn-block"><%= tr("Register") %></button>
 
-          <button class="btn primary large fullWidth mbm"><%=tr('Submit') %></button>        
+        <br>
 
-          <hr class="mvm" />
-          <div class="line quiet">
-            <div class="unit size1of2 txtL">
-            </div>
-            <div class="unit size1of2 lastUnit txtR">
-              <%=link_to(tr("Already have an account?"), "/login")%>
-            </div>
-          </div>
+        <div style="float:right">
+        </div>
+        <div style="float:left">
+          <%=link_to(tr("Already have an account?"), :controller => :login, :mode => params[:mode], :origin => params[:origin])%>
+        </div>
       <% end %>
+    </div>
   </div>
 </div>
-
-

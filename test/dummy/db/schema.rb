@@ -11,34 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506225643) do
-
-  create_table "requests", :force => true do |t|
-    t.string   "type"
-    t.string   "state"
-    t.string   "key"
-    t.integer  "from_id"
-    t.integer  "to_id"
-    t.string   "email"
-    t.text     "data"
-    t.datetime "expires_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "requests", ["from_id", "to_id"], :name => "index_requests_on_from_id_and_to_id"
-  add_index "requests", ["type", "key", "state"], :name => "index_requests_on_type_and_key_and_state"
+ActiveRecord::Schema.define(:version => 20130506202619) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "crypted_password"
-    t.string   "salt"
     t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "gender"
     t.string   "locale"
-    t.datetime "password_set_at"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

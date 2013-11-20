@@ -1,12 +1,31 @@
-<div class="container">
-  <div class="mod mbl">
-    <ul class="fltR hList txtSmall strong">
-      <li><%=link_to(tr("Home"), "/home", :class => "quiet")%></li>
+<style>
+  #navlist li {
+    display: inline;
+    list-style-type: none;
+    padding-right: 10px;
+  }
+</style>
+
+<footer>
+  <div class="container">
+    <ul id="navlist" style="float:right;">
+      <li><%=link_to(tr("Documentation"), "http://wiki.tr8nhub.com", :class => "quiet")%></li>
+
+      <li><%=image_tag('github.png')%> <%=link_to(tr("Source"), "http://github.com/tr8n", :class => "quiet")%></li>
+      <li><%=image_tag('wordpress.png')%> <%=link_to(tr("Blog"), "http://blog.tr8nhub.com", :class => "quiet")%></li>
+      <li><%=image_tag('facebook.png')%> <%=link_to(tr("Facebook"), "http://www.facebook.com/pages/Tr8n-Translation-Engine/138407706218622", :class => "quiet")%></li>
+      <li><%=image_tag('twitter.png')%> <%=link_to(tr("Twitter"), "http://twitter.com/Tr8nHub", :class => "quiet")%></li>
+      <li><%=image_tag('linkedin.png')%> <%=link_to(tr("LinkedIn"), "http://www.linkedin.com/groups/Internationalizing-your-application-using-Tr8n-4090552?gid=4090552", :class => "quiet")%></li>
+
+      <!-- li><%=link_to(tr("Extensions"), "/extensions", :class => "quiet")%></li -->
     </ul>
-    <div class="quiet txtSmall strong" style="width:300px;">
-      &copy; Copyright 2010-2013 tr8nhub.com
-    </div>
+
+    &copy; <%=link_to("Tr8nHub.com", "http://www.tr8nhub.com", :class => "quiet")%> 2013
   </div>
+</footer>
+
+<div style="padding-top:30px;">
+  <%= tr8n_language_strip_tag %>
 </div>
 
-<p><%= tr8n_language_strip_tag %></p>
+<%= render :partial => "/tr8n_client_sdk/tags/powered_by_tr8n" %>

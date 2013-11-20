@@ -24,52 +24,35 @@
 class SignupController < ApplicationController
 
   def index
+    layout = lightbox? ? 'lightbox' : 'application'
+
     if request.post?
-      email = params[:email].to_s.strip
-      if email.blank?
+      @user = User.new(params[:user])
+
+      @user.email.strip!
+      if @user.email.blank?
         trfe("Email must be provided.")
-        return redirect_to(:controller => :welcome)
+        return render(:layout=>layout)
       end
 
-      user = User.find_by_email(email)
-      return trfe("This email has already been registered.") if user
+      if User.find_by_email(@user.email)
+        trfe("This email has already been registered.") 
+        return render(:layout=>layout)
+      end
 
-      SignupRequest.find_or_create(email).deliver
-
-      trfn("We have emailed you instructions on how to complete your registration.")
-      return redirect_to(:controller => :login)
-    end
-  end
-
-  def lander
-    @req = SignupRequest.find_by_key(params[:id]) if params[:id]
-
-    unless @req
-      trfe("Signup request was not found")
-      return redirect_to(:controller => :login)
-    end
-
-    if @req.accepted?
-      trfe("You have already accepted this request. Please sign in with your email and password.")
-      return redirect_to(:controller => :login)
-    end
-    
-    if request.post?
-      user = User.new(params[:user].merge(:email => @req.email))
-      if user.save
-        @req.mark_as_accepted!
-        @req.update_attributes(:to => user)
-
-        login!(user)
-
-        trfn('Thank you for registering.')
-        return redirect_to(:controller => :home)
-      else
-        trfe(user.errors.full_messages.first)
-      end  
-    else
+      unless @user.save
+        trfe(@user.errors.full_messages.first)
+        return render(:layout=>layout)
+      end
+      
+      login!(@user)
+      trfn('Thank you for registering.')
+      return redirect_to(:controller => :home)
+    else 
       @user = User.new
     end
+
+    render(:layout=>layout)
   end
 
 end

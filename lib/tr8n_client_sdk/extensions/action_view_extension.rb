@@ -34,14 +34,13 @@ module Tr8nClientSdk
       return if Tr8n.config.current_language.default?
       return unless Tr8n.config.current_translator.inline?
 
-      link_to(image_tag(Tr8n.config.url_for("/assets/tr8n/translate_icn.gif"), :style => "vertical-align:middle; border: 0px;", :title => search), 
-             :controller => "/tr8n/phrases", :action => :index, 
-             :search => search, :phrase_type => phrase_type, :phrase_status => phrase_status).html_safe
+      link_to(image_tag(Tr8n.config.url_for("/assets/tr8n/translate_icn.gif"), :style => "vertical-align:middle; border: 0px;", :title => search),
+                        Tr8n.config.url_for("/tr8n/app/phrases/index?search=#{search}")).html_safe
     end
 
     def tr8n_language_flag_tag(lang = Tr8n.config.current_language, opts = {})
-      return "" unless Tr8n.config.application.enable_language_flags?
-      html = image_tag(Tr8n.config.url_for("/assets/tr8n/flags/#{lang.flag}.png"), :style => "vertical-align:middle;", :title => lang.native_name)
+      return "" unless Tr8n.config.application.feature_enabled?(:language_flags)
+      html = image_tag(lang.flag_url, :style => "vertical-align:middle;", :title => lang.native_name)
       html << "&nbsp;".html_safe 
       html.html_safe
     end
@@ -62,22 +61,15 @@ module Tr8nClientSdk
         else lang.full_name
       end
 
-      if linked
-        html << link_to(name.html_safe, "/tr8n/language/switch?locale=#{lang.locale}&language_action=switch_language&source_url=#{CGI.escape(opts[:source_url]||'')}")
-      else    
+#      if linked
+#        # Todo: use language selector
+##        html << link_to(name.html_safe, "/tr8n/language/switch?locale=#{lang.locale}&language_action=switch_language&source_url=#{CGI.escape(opts[:source_url]||'')}")
+#      else
         html << name
-      end
+      #end
 
       html << "</span></span>"
       html.html_safe
-    end
-
-    def tr8n_language_selector_tag(opts = {})
-      opts[:lightbox] ||= false
-      opts[:style] ||= "color:#1166bb;"
-      opts[:show_arrow] ||= true
-      opts[:arrow_style] ||= "font-size:8px;"
-      render(:partial => '/tr8n_client_sdk/tags/language_selector', :locals => {:opts => opts})    
     end
 
     def tr8n_language_strip_tag(opts = {})
@@ -110,34 +102,38 @@ module Tr8nClientSdk
         return ""
       end
 
-      Thread.current[:tr8n_block_options] ||= []   
-      Thread.current[:tr8n_block_options].push(opts)
+      Thread.current[:block_options] ||= []
+      Thread.current[:block_options].push(opts)
 
-      component = Tr8n.config.current_component_from_block_options
-      if component
-        source = Tr8n.config.current_source_from_block_options
-        unless source.nil?
-          Tr8n::ComponentSource.find_or_create(component, source)
-        end
+      #component = Tr8n.config.current_component_from_block_options
+      #if component
+      #  source = Tr8n.config.current_source_from_block_options
+      #  unless source.nil?
+      #    Tr8n::ComponentSource.find_or_create(component, source)
+      #  end
+      #end
+      #
+      #if Tr8n.config.current_user_is_authorized_to_view_component?(component)
+      #  selected_language = Tr8n.config.current_language
+      #
+      #  unless Tr8n.config.current_user_is_authorized_to_view_language?(component, selected_language)
+      #    Tr8n.config.set_language(Tr8n.config.default_language)
+      #  end
+      #
+      #  if block_given?
+      #    ret = capture(&block)
+      #  end
+      #
+      #  Tr8n.config.current_language = selected_language
+      #else
+      #  ret = ""
+      #end
+
+      if block_given?
+        ret = capture(&block)
       end
 
-      if Tr8n.config.current_user_is_authorized_to_view_component?(component)
-        selected_language = Tr8n.config.current_language
-        
-        unless Tr8n.config.current_user_is_authorized_to_view_language?(component, selected_language)
-          Tr8n.config.set_language(Tr8n.config.default_language)
-        end
-
-        if block_given?
-          ret = capture(&block) 
-        end
-
-        Tr8n.config.current_language = selected_language
-      else
-        ret = ""
-      end
-
-      Thread.current[:tr8n_block_options].pop
+      Thread.current[:block_options].pop
       ret
     end
 

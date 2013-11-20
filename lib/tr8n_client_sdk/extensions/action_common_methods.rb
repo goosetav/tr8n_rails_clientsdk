@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2010-2013 Michael Berkovich, tr8nhub.com
+# Copyright (c) 2013 Michael Berkovich, tr8nhub.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -24,46 +24,66 @@
 module Tr8nClientSdk
   module ActionCommonMethods
     ############################################################
-    # There are two ways to call the tr method
+    # There are three ways to call the tr method
     #
     # tr(label, desc = "", tokens = {}, options = {})
-    # or 
-    # tr(label, {:desc => "", tokens => {},  ...})
+    # or
+    # tr(label, tokens = {}, options = {})
+    # or
+    # tr(:label => label, :description => "", :tokens => {}, :options => {})
     ############################################################
-    def tr(label, desc = "", tokens = {}, options = {})
+    def tr(label, description = "", tokens = {}, options = {})
       return label if label.tr8n_translated?
 
-      if desc.is_a?(Hash)
-        options = desc
-        tokens  = options[:tokens] || {}
-        desc    = options[:desc] || ""
+      params = Tr8n::Utils.normalize_tr_params(label, description, tokens, options)
+      params[:options][:caller] = caller
+
+      if request
+        params[:options][:url]  = request.url
+        params[:options][:host] = request.env['HTTP_HOST']
       end
 
-      options.merge!(:caller => caller)
-      options.merge!(:url => request.url)
-      options.merge!(:host => request.env['HTTP_HOST'])
+      if Tr8n.config.disabled?
+        return Tr8n::TranslationKey.substitute_tokens(params[:label], params[:tokens], params[:options]).tr8n_translated.html_safe
+      end
 
-      Tr8n.config.current_language.translate(label, desc, tokens, options)
+      # Translate individual sentences
+      if params[:options][:split]
+        text = params[:label]
+        sentences = Tr8n::Utils.split_by_sentence(text)
+        sentences.each do |sentence|
+          text = text.gsub(sentence, Tr8n.config.current_language.translate(sentence, params[:description], params[:tokens], params[:options]))
+        end
+        return text.tr8n_translated.html_safe
+      end
+
+      Tr8n.config.current_language.translate(params).tr8n_translated.html_safe
+    rescue Tr8n::Exception => ex
+      Tr8n::Logger.error("ERROR: #{label}")
+      Tr8n::Logger.error(ex.message + "\n=> " + ex.backtrace.join("\n=> "))
+      label
     end
 
     # for translating labels
-    def trl(label, desc = "", tokens = {}, options = {})
-      tr(label, desc, tokens, options.merge(:skip_decorations => true))
+    def trl(label, description = "", tokens = {}, options = {})
+      params = Tr8n::Utils.normalize_tr_params(label, description, tokens, options)
+      params[:options][:skip_decorations] = true
+      tr(params)
     end
 
     # flash notice
     def trfn(label, desc = "", tokens = {}, options = {})
-      flash[:trfn] = tr(label, desc, tokens, options)
+      flash[:trfn] = tr(Tr8n::Utils.normalize_tr_params(label, desc, tokens, options))
     end
 
     # flash error
     def trfe(label, desc = "", tokens = {}, options = {})
-      flash[:trfe] = tr(label, desc, tokens, options)
+      flash[:trfe] = tr(Tr8n::Utils.normalize_tr_params(label, desc, tokens, options))
     end
 
     # flash warning
     def trfw(label, desc = "", tokens = {}, options = {})
-      flash[:trfw] = tr(label, desc, tokens, options)
+      flash[:trfw] = tr(Tr8n::Utils.normalize_tr_params(label, desc, tokens, options))
     end
 
     ######################################################################
@@ -95,7 +115,7 @@ module Tr8nClientSdk
     end
 
     def tr8n_current_user_is_translator?
-      Tr8n.config.current_user_is_translator?
+      not Tr8n.config.current_translator.nil?
     end
 
   end

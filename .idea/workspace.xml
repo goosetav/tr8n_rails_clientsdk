@@ -2,28 +2,119 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c135f10-e270-4773-8953-345772451675" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/facebook.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/github.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/linkedin.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/silhouette.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/images/tr8n/tr8n_logo.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/twitter.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/wordpress.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/images/youtube.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/tr8n_client_sdk/tags/_powered_by_tr8n.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap/bootstrap.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap/bootstrap.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/views/docs/installation.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/jquery.tocify.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/prism.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/sh.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/views/docs/tml.html.erb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/dummy/app/views/docs/tml_content.html.erb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/array_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/date_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/fixnum_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/hash_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/string_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/time_extension.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/fb_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/li_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/map.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/map_mobile.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/tw_icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/images/welcome/wood_bkgd.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/alerts.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/buttons.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/components.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/forms.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/layout.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/mixins.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/navigation.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/style.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/tables.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/core/type.css.scss" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/account_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/examples_controller.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/models/password_reset_request.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/models/request.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/models/signup_request.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/account/close_account.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/account/email_password.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/account/index.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/examples/index.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/home/cache.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/home/names.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/home/test.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/account.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/mailer.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/login/forgot_password.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/login/reset_password.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/request_mailer/reset_password.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/request_mailer/reset_password.text.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/request_mailer/signup.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/request_mailer/signup.text.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/signup/lander.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/app/views/welcome/index.html.erb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/dummy/db/migrate/20130506225643_create_requests.rb" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/application.css.scss" afterPath="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/application.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/public/favicon.ico" afterPath="$PROJECT_DIR$/test/dummy/public/favicon.ico" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/db/migrate/20130506202619_create_users.rb" afterPath="$PROJECT_DIR$/test/dummy/db/migrate/20130506202619_create_users.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/login/_common.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/login/_common.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/_footer.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/layouts/_footer.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/_head.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/layouts/_head.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/_header.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/layouts/_header.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tr8n_client_sdk/tags/_scripts.html.erb" afterPath="$PROJECT_DIR$/app/views/tr8n_client_sdk/tags/_scripts.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_common_methods.rb" afterPath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_common_methods.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb" afterPath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_view_extension.rb" afterPath="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_view_extension.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/layouts/application.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/test/dummy/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/test/dummy/app/controllers/application_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/config.rb" afterPath="$PROJECT_DIR$/lib/tr8n_client_sdk/config.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/config/tr8n/config.yml" afterPath="$PROJECT_DIR$/test/dummy/config/tr8n/config.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/config/tr8n/tokens/data.yml" afterPath="$PROJECT_DIR$/test/dummy/config/tr8n/tokens/data.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/config/tr8n/tokens/decorations.yml" afterPath="$PROJECT_DIR$/test/dummy/config/tr8n/tokens/decorations.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/test/dummy/app/controllers/home_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tr8n_client_sdk.gemspec" afterPath="$PROJECT_DIR$/tr8n_client_sdk.gemspec" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/home/index.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/home/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/signup/index.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/signup/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/login_controller.rb" afterPath="$PROJECT_DIR$/test/dummy/app/controllers/login_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/views/login/out.html.erb" afterPath="$PROJECT_DIR$/test/dummy/app/views/login/out.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tr8n_client_sdk/railtie.rb" afterPath="$PROJECT_DIR$/lib/tr8n_client_sdk/railtie.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/db/schema.rb" afterPath="$PROJECT_DIR$/test/dummy/db/schema.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/signup_controller.rb" afterPath="$PROJECT_DIR$/test/dummy/app/controllers/signup_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/tr8n_client_sdk.iml" afterPath="$PROJECT_DIR$/.idea/tr8n_client_sdk.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/models/user.rb" afterPath="$PROJECT_DIR$/test/dummy/app/models/user.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/dummy/app/controllers/welcome_controller.rb" afterPath="$PROJECT_DIR$/test/dummy/app/controllers/welcome_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tr8n_client_sdk.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="0c135f10-e270-4773-8953-345772451675" time="1382404529022" ignored="false" />
+    <file path="/Dummy.txt" changelist="0c135f10-e270-4773-8953-345772451675" time="1384885190804" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/extensions/action_common_methods.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377730373498" ignored="false" />
-    <file path="/action_common_methods.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377730340085" ignored="false" />
+    <file path="/action_common_methods.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384893952710" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/extensions/action_controller_extension.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377714560840" ignored="false" />
-    <file path="/action_controller_extension.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377714338604" ignored="false" />
+    <file path="/action_controller_extension.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384898452873" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/extensions/action_view_extension.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377714674523" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/railtie.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377714758488" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/javascripts/vendor/keyboard_1_49.js" changelist="0c135f10-e270-4773-8953-345772451675" time="1377715933647" ignored="false" />
     <file path="/keyboard_1_49.js" changelist="0c135f10-e270-4773-8953-345772451675" time="1377715929371" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/assets/javascripts/tr8n/tr8n.debug.js" changelist="0c135f10-e270-4773-8953-345772451675" time="1377715969782" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/test/dummy/app/views/docs/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728445073" ignored="false" />
-    <file path="/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377743858089" ignored="false" />
+    <file path="/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384907376365" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/tools/translator/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377716581228" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/models/tr8n/language.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377730615010" ignored="false" />
-    <file path="/language.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728340277" ignored="false" />
-    <file path="/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377737299165" ignored="false" />
+    <file path="/language.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384908742429" ignored="false" />
+    <file path="/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384910755602" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/common/_permutations.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717124785" ignored="false" />
     <file path="/_permutations.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377716950160" ignored="false" />
     <file path="/a.dummy" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717039180" ignored="false" />
@@ -33,26 +124,26 @@
     <file path="/spec_helper.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377721254692" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/spec/models/language_context_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717782585" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/models/tr8n/language_context_rule.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717586423" ignored="false" />
-    <file path="/language_context_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717777780" ignored="false" />
+    <file path="/language_context_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384738426506" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/spec/models/language_context_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377717934152" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/tokens/transform.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377718123881" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/spec/models/translation_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377718246861" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/spec/models/translation_key_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377725598586" ignored="false" />
-    <file path="/translation_key_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377725412890" ignored="false" />
+    <file path="/translation_key_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754755458" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/models/tr8n/translation_key.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377730270409" ignored="false" />
-    <file path="/translation_key.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377730080181" ignored="false" />
+    <file path="/translation_key.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384908259944" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/spec/lib/extensions/hash_extension_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377720104032" ignored="false" />
     <file path="/hash_extension_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377719863962" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/tools/translator/permutations.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377726853948" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/Gemfile" changelist="0c135f10-e270-4773-8953-345772451675" time="1377727113181" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/test/dummy/config/tr8n/config.yml" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728306436" ignored="false" />
-    <file path="/config.yml" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728303409" ignored="false" />
+    <file path="/config.yml" changelist="0c135f10-e270-4773-8953-345772451675" time="1384890321482" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/lib/tr8n/logger.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728775976" ignored="false" />
-    <file path="/logger.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377728769329" ignored="false" />
+    <file path="/logger.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384831380490" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/models/tr8n/translation.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377729415635" ignored="false" />
-    <file path="/translation.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377729394998" ignored="false" />
+    <file path="/translation.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384826728002" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/models/tr8n/language_context.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377729507992" ignored="false" />
-    <file path="/language_context.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377729504820" ignored="false" />
+    <file path="/language_context.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384828145062" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/language/context_rules.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377756834619" ignored="false" />
     <file path="/context_rules.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377756834339" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/test/dummy/config/initializers/miniprofiler.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377731971326" ignored="false" />
@@ -60,7 +151,7 @@
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/test/dummy/config/routes.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377732652972" ignored="false" />
     <file path="/routes.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377732462710" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/assets/stylesheets/tr8n/bootstrap_and_overrides.css.scss" changelist="0c135f10-e270-4773-8953-345772451675" time="1377736745090" ignored="false" />
-    <file path="/bootstrap_and_overrides.css.scss" changelist="0c135f10-e270-4773-8953-345772451675" time="1377736745090" ignored="false" />
+    <file path="/bootstrap_and_overrides.css.scss" changelist="0c135f10-e270-4773-8953-345772451675" time="1384896793539" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/assets/stylesheets/tr8n/tr8n_container.css.scss" changelist="0c135f10-e270-4773-8953-345772451675" time="1377736780438" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/common/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377737301154" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/common/_footer.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377736909110" ignored="false" />
@@ -78,6 +169,170 @@
     <file path="/language_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377744433613" ignored="false" />
     <file path="$PROJECT_DIR$/../translation/vendor/tr8n/app/views/tr8n/language/censorship.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377754825066" ignored="false" />
     <file path="/censorship.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1377754806982" ignored="false" />
+    <file path="/Gemfile" changelist="0c135f10-e270-4773-8953-345772451675" time="1384563159205" ignored="false" />
+    <file path="/application.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384901273533" ignored="false" />
+    <file path="/language_context_rule.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829607928" ignored="false" />
+    <file path="/source.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384828822811" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/translator.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897496389" ignored="false" />
+    <file path="/translator.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897488940" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/decoration_tokenizer.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384644636641" ignored="false" />
+    <file path="/decoration_tokenizer.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384644631061" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/data_tokenizer.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384808021809" ignored="false" />
+    <file path="/data_tokenizer.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384730372788" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384630449573" ignored="false" />
+    <file path="/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897229240" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/data.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384904572611" ignored="false" />
+    <file path="/hidden.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384630503124" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/hidden.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384808026060" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/method.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384907579263" ignored="false" />
+    <file path="/method.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384907508843" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/tokens/transform.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384903080486" ignored="false" />
+    <file path="/transform.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384902981047" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/data_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384640069206" ignored="false" />
+    <file path="/data_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384640068357" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/data_tokenizer_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384639148921" ignored="false" />
+    <file path="/data_tokenizer_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384639123637" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807324468" ignored="false" />
+    <file path="/tr8n_core.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807324468" ignored="false" />
+    <file path="/data.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384904433336" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/Gemfile" changelist="0c135f10-e270-4773-8953-345772451675" time="1384638754208" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/helper.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384640205146" ignored="false" />
+    <file path="/helper.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384640205146" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/decoration_tokenizer_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384657134020" ignored="false" />
+    <file path="/decoration_tokenizer_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384657129315" ignored="false" />
+    <file path="/config.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384904263440" ignored="false" />
+    <file path="/utils.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384890439240" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/utils_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384643531885" ignored="false" />
+    <file path="/utils_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384643526611" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/db/migrate/20130814212903_create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384646541222" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/db/migrate/20130506202619_create_users.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384646645130" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/Gemfile" changelist="0c135f10-e270-4773-8953-345772451675" time="1384650814422" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/lib/generators/tr8n/templates/db/create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384651300010" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/db/migrate/20130501010037_create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384647529559" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/db/migrate/20130516191105_create_tr8n_oauth_tokens.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384647567205" ignored="false" />
+    <file path="/create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384650987374" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/db/migrate/20131117010607_create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384651429234" ignored="false" />
+    <file path="/20131117010607_create_tr8n_tables.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384651310200" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/assets/stylesheets/bootstrap/bootstrap_and_overrides.css.scss" changelist="0c135f10-e270-4773-8953-345772451675" time="1384651519942" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/views/home/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656203750" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/views/layouts/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656059611" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/config/tr8n/config.yml" changelist="0c135f10-e270-4773-8953-345772451675" time="1384651814028" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/views/layouts/_footer.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384652075044" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/app/views/tr8n/common/_language_strip.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384652136792" ignored="false" />
+    <file path="/_language_strip.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384652136792" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/views/docs/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384653939739" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/lib/tr8n/config.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384652668105" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/lib/tr8n/tokens/transform.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384654132256" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/lib/tr8n/tokens/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384653840098" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/config/data/languages/en.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384654334989" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/controllers/welcome_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384654927037" ignored="false" />
+    <file path="/welcome_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384654547834" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/views/welcome/index.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384655760785" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/app/views/tr8n/common/_powered_by_tr8n.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384655711618" ignored="false" />
+    <file path="$PROJECT_DIR$/../temp/tr8n/test/dummy/app/controllers/home_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656238887" ignored="false" />
+    <file path="/home_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656238887" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8nhub/vendor/tr8n/lib/tr8n/tokens/transform.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656745813" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8nhub/app/views/layouts/_header.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656747220" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8nhub/vendor/tr8n/app/views/tr8n/common/_powered_by_tr8n.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384656759381" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/language_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754437724" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/fixtures/application.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384729852710" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/application_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829259135" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/fixtures/languages/en-US.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384753479787" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/fixtures/languages/ru.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384753449297" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/fixtures/languages/es.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384753497435" ignored="false" />
+    <file path="/application_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384728895682" ignored="false" />
+    <file path="/application.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384727778503" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/base_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384728371303" ignored="false" />
+    <file path="/base_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384728365925" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/translation_key_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754998062" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8nhub/vendor/tr8n/app/models/tr8n/application.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384729259702" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/translation_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384733974198" ignored="false" />
+    <file path="/translation_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384733960509" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/language_case_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384744207481" ignored="false" />
+    <file path="/language_case_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384744123043" ignored="false" />
+    <file path="/language_case_rule.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384743907039" ignored="false" />
+    <file path="/language_case.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384828502097" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/language_context_rule_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384753613091" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/rules_engine/evaluator.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829461332" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/rules/language_case.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384737690114" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/rules/evaluator.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384737693087" ignored="false" />
+    <file path="/temp.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807291676" ignored="false" />
+    <file path="/evaluator.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384738085694" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/rules_engine/parser.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384738144443" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/language_context_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384753658614" ignored="false" />
+    <file path="/language_context_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384743584401" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/language_case_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754380743" ignored="false" />
+    <file path="/language_case_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754369198" ignored="false" />
+    <file path="/language_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384754435494" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384795540515" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache/file.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384795553048" ignored="false" />
+    <file path="/file.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807510007" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache/generators/file.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384759025450" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache/generators/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384758925056" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/generators/cache/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384760532034" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/generators/cache/file.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384760608317" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/tasks/tr8n/cache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384759358114" ignored="false" />
+    <file path="/cache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384827944559" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/Rakefile" changelist="0c135f10-e270-4773-8953-345772451675" time="1384759396008" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/tasks/tr8n/cache.rake" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807291676" ignored="false" />
+    <file path="/cache.rake" changelist="0c135f10-e270-4773-8953-345772451675" time="1384759916512" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/generators/cache/cdb.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384760597392" ignored="false" />
+    <file path="/cdb.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807546625" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache/memcache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384795558952" ignored="false" />
+    <file path="/memcache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384888128710" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache_adapters/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807495990" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache_adapters/file.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807510807" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache_adapters/memcache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384888142069" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384827951411" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache_adapters/redis.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807539013" ignored="false" />
+    <file path="/redis.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807524646" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/cache_adapters/cdb.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384807546625" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/logger.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384831612681" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/decorators/base.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897231193" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/decorators/default.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897184122" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/decorators/html.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897609277" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/component.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384828882728" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/exception.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384808054784" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/helper.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384827501391" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/.gitignore" changelist="0c135f10-e270-4773-8953-345772451675" time="1384830546417" ignored="false" />
+    <file path="/.gitignore" changelist="0c135f10-e270-4773-8953-345772451675" time="1384830527805" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/config/config.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829077865" ignored="false" />
+    <file path="/config.json" changelist="0c135f10-e270-4773-8953-345772451675" time="1384827562024" ignored="false" />
+    <file path="/component.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384827870019" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/hidden_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829179437" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/method_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829185513" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/tokens/transform_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829191025" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/rules_engine/evaluator_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384829223652" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/config/config.yml" changelist="0c135f10-e270-4773-8953-345772451675" time="1384889925277" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/tr8n_core.gemspec" changelist="0c135f10-e270-4773-8953-345772451675" time="1384830755844" ignored="false" />
+    <file path="/tr8n_core.gemspec" changelist="0c135f10-e270-4773-8953-345772451675" time="1384830743254" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/spec/config_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384831263611" ignored="false" />
+    <file path="/config_spec.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384831263611" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/README.rdoc" changelist="0c135f10-e270-4773-8953-345772451675" time="1384888777420" ignored="false" />
+    <file path="/README.rdoc" changelist="0c135f10-e270-4773-8953-345772451675" time="1384888774044" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/ext/hash.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384890781645" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/ext/string.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384890785405" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n_core/ext/array.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384890769586" ignored="false" />
+    <file path="/fixnum.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384891103045" ignored="false" />
+    <file path="/date.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384891233897" ignored="false" />
+    <file path="/time.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384891169061" ignored="false" />
+    <file path="/action_view_extension.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384891473210" ignored="false" />
+    <file path="/20130506202619_create_users.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384893584630" ignored="false" />
+    <file path="/_footer.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384893883031" ignored="false" />
+    <file path="/_scripts.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384895449926" ignored="false" />
+    <file path="/_head.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384895715102" ignored="false" />
+    <file path="/bootstrap.css" changelist="0c135f10-e270-4773-8953-345772451675" time="1384896715189" ignored="false" />
+    <file path="/html.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384897602818" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/config.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384904282750" ignored="false" />
+    <file path="/docs_controller.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384900451240" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8nhub/vendor/tr8n/app/views/tr8n/app/components/sources.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384899215133" ignored="false" />
+    <file path="/installation.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384899746361" ignored="false" />
+    <file path="/tml.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384907820595" ignored="false" />
+    <file path="/tml_content.html.erb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384900782188" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/application.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384901273533" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/translation_key.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384908523401" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/language.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384908785182" ignored="false" />
+    <file path="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/language_case.rb" changelist="0c135f10-e270-4773-8953-345772451675" time="1384909032512" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,28 +352,217 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="action_common_methods.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_common_methods.rb">
+      <file leaf-file-name="action_controller_extension.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="55" selection-start="1852" selection-end="1852" vertical-scroll-proportion="0.0">
+            <state line="76" column="196" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tr8n_client_sdk_tasks.rake" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tasks/tr8n_client_sdk_tasks.rake">
+      <file leaf-file-name="tml.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/tml.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="22" column="25" selection-start="1386" selection-end="1386" vertical-scroll-proportion="-4.177215">
+              <folding>
+                <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Gemfile" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Gemfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="170" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tr8n_client_sdk_generator.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/generators/tr8n_client_sdk/tr8n_client_sdk_generator.rb">
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="87" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.0">
+            <state line="546" column="0" selection-start="21571" selection-end="21571" vertical-scroll-proportion="-8.583333">
+              <folding>
+                <marker date="1384909374000" expanded="true" signature="12:106" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="107:21520" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="127:21513" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="161:199" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="223:21504" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="261:279" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="280:470" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="314:378" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="522:804" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="1636:1877" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="1664:1871" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="1963:2170" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="1991:2164" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2290:2416" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2318:2410" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2482:2618" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2510:2612" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2780:2939" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="2808:2933" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3177:3320" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3205:3314" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3480:3637" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3554:3624" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3752:3904" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="3826:3891" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4035:4203" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4109:4190" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4327:4488" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4401:4475" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4637:4823" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4711:4810" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="4985:5184" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="5059:5171" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="5373:5555" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="5447:5542" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="5724:5888" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="5798:5875" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6026:6200" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6100:6187" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6350:6536" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6424:6523" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6737:6974" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="6811:6961" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="7398:7572" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="7472:7559" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="7723:7910" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="7797:7897" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8031:8188" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8105:8175" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8495:8693" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8569:8680" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8847:9025" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="8921:9012" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9133:9277" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9207:9264" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9474:9707" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9548:9694" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9720:10019" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="9748:10013" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="10048:10448" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="10122:10435" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="10670:10887" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="10744:10874" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11093:11335" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11167:11322" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11418:11624" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11446:11618" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11767:11971" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="11841:11958" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="12139:12343" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="12213:12330" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="12518:12729" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="12592:12716" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="12946:13178" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13020:13165" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13269:13392" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13297:13386" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13420:13643" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13494:13630" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13691:13839" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13719:13833" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13867:14115" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="13941:14102" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14161:14420" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14189:14414" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14448:14823" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14522:14810" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14869:15011" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="14897:15005" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15039:15306" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15113:15293" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15519:15694" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15597:15679" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15745:15993" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="15773:15987" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16023:16406" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16101:16391" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16457:16582" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16485:16576" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16612:16864" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16690:16849" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16879:17008" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="16907:17002" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17038:17295" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17116:17280" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17310:17444" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17338:17438" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17472:17720" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17546:17707" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17914:18134" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="17942:18128" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18393:18521" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18421:18515" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18549:18752" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18623:18739" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18798:18967" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18826:18961" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="18995:19239" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19069:19226" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19283:19557" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19311:19551" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19585:19953" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19659:19940" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="19999:20162" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20027:20156" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20190:20428" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20264:20415" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20475:20616" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20503:20610" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20644:20860" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20718:20847" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20905:21137" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="20933:21131" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="21165:21491" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="21239:21478" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="21809:22277" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="21822:21901" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="21920:22159" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="22181:22204" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="22211:22238" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="22247:22269" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="22287:22381" placeholder="..." />
+                <marker date="1384909374000" expanded="true" signature="22304:22370" placeholder="{...}" />
+                <marker date="1384909374000" expanded="true" signature="22327:22364" placeholder="{&quot;selectors&quot;: &quot;h1,h2,h3&quot;...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_header.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/views/layouts/_header.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="54" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.26673532">
               <folding />
             </state>
           </provider>
@@ -127,62 +571,46 @@
       <file leaf-file-name="action_view_extension.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_view_extension.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="0" selection-start="1175" selection-end="1209" vertical-scroll-proportion="0.0">
+            <state line="125" column="37" selection-start="5192" selection-end="5192" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="railtie.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/railtie.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="75" selection-start="1660" selection-end="1681" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.rb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="config.rb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/config.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="369" column="33" selection-start="10072" selection-end="10072" vertical-scroll-proportion="0.015873017">
+            <state line="179" column="32" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="array_extension.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/array_extension.rb">
+      <file leaf-file-name="installation.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/installation.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="13" column="33" selection-start="457" selection-end="457" vertical-scroll-proportion="-8.125">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="date_extension.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/date_extension.rb">
+      <file leaf-file-name="login_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/controllers/login_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="34" column="41" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tr8n_client_sdk.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk.rb">
+      <file leaf-file-name="tml_content.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/tml_content.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="engine.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/engine.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="30" column="34" selection-start="791" selection-end="791" vertical-scroll-proportion="-18.75">
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,10 +630,32 @@
       <MyDateState />
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/app/views/tr8n_client_sdk/tags/_scripts.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/layouts/_head.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/home/index.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap/bootstrap.css" />
+        <option value="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap/bootstrap_and_overrides.css.scss" />
+        <option value="$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/application.rb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/assets/javascripts/application.js" />
+        <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/test/dummy/app/controllers/docs_controller.rb" />
+        <option value="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_view_extension.rb" />
+        <option value="$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/docs/tml_content.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/docs/tml.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/docs/index.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/docs/installation.html.erb" />
+        <option value="$PROJECT_DIR$/test/dummy/app/views/layouts/_header.html.erb" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1274" />
-    <option name="height" value="1129" />
+    <option name="width" value="1920" />
+    <option name="height" value="1133" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -233,6 +683,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="RailsProjectView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,7 +699,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -257,29 +709,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tr8n_client_sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tr8n_client_sdk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -289,7 +723,119 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
               <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -297,15 +843,251 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helpers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="stylesheets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="javascripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dummy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_rails_clientsdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tr8n_client_sdk" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extensions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="RailsProjectView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/dummy/app/assets/stylesheets" />
+      <recent name="$PROJECT_DIR$/test/dummy/public" />
+      <recent name="$PROJECT_DIR$/app/assets/images/tr8n" />
+      <recent name="$PROJECT_DIR$/test/dummy/app/assets/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap" />
+    </key>
   </component>
   <component name="RunManager" selected="Rails.Development: tr8n_client_sdk">
     <configuration default="true" type="RakeRunConfigurationType" factoryName="Rake">
@@ -356,6 +1138,82 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="Default" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
+      <predefined_log_file id="RUBY_RSPEC" enabled="true" />
+      <module name="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_RUNNER_PATH" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="**/*_spec.rb" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_EXAMPLE_NAME" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="SPEC_ARGS" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_VERSION" VALUE="" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="USE_CUSTOM_SPEC_RUNNER" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RSPEC_RUN_CONFIG_SETTINGS_ID NAME="FULL_BACKTRACE" VALUE="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="RubyRunConfigurationType" factoryName="Ruby">
+      <module name="" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest">
+      <predefined_log_file id="RUBY_TESTUNIT" enabled="true" />
+      <module name="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TESTS_FOLDER_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_SCRIPT_PATH" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_FILE_MASK" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_METHOD_NAME" VALUE="" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="TEST_TEST_TYPE" VALUE="TEST_SCRIPT" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="DRB" VALUE="false" />
+      <RTEST_RUN_CONFIG_SETTINGS_ID NAME="RUNNER_OPTIONS" VALUE="" />
       <method />
     </configuration>
     <configuration default="false" name="test" type="RakeRunConfigurationType" factoryName="Rake">
@@ -477,14 +1335,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1274" height="1129" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="22" width="1920" height="1133" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291506" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26872963" sideWeight="0.74848485" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17929563" sideWeight="0.67084944" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -493,7 +1352,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25151515" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -561,112 +1419,293 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/railtie.rb">
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/test.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="75" selection-start="1660" selection-end="1681" vertical-scroll-proportion="0.0">
+        <state line="16" column="30" selection-start="629" selection-end="629" vertical-scroll-proportion="0.24390244">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/array_extension.rb">
+    <entry file="file://$PROJECT_DIR$/../tr8n_ruby_core/lib/tr8n/application.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="195" column="84" selection-start="6283" selection-end="6290" vertical-scroll-proportion="0.39285713">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="31" selection-start="0" selection-end="454" vertical-scroll-proportion="-8.75">
+          <folding>
+            <marker date="1383802629000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1383802629000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1383802629000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1383802629000" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1383802629000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/layouts/_head.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/date_extension.rb">
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/assets/stylesheets/bootstrap/bootstrap_and_overrides.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="5" column="0" selection-start="34" selection-end="81" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk.rb">
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/controllers/docs_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="38" column="27" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/engine.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="68" selection-start="3711" selection-end="3711" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_view_extension.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="1175" selection-end="1209" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/engine.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/railtie.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="75" selection-start="1660" selection-end="1681" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/array_extension.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/date_extension.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_common_methods.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="55" selection-start="1852" selection-end="1852" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tasks/tr8n_client_sdk_tasks.rake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/generators/tr8n_client_sdk/tr8n_client_sdk_generator.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="87" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="125" column="37" selection-start="5192" selection-end="5192" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/config.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="369" column="33" selection-start="10072" selection-end="10072" vertical-scroll-proportion="0.015873017">
+        <state line="179" column="32" selection-start="5498" selection-end="5498" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/tr8n_client_sdk/extensions/action_controller_extension.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="196" selection-start="2813" selection-end="2813" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/tml_content.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="34" selection-start="791" selection-end="791" vertical-scroll-proportion="-18.75">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="170" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/tml.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="25" selection-start="1386" selection-end="1386" vertical-scroll-proportion="-4.177215">
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#li#0;n#ul#0;n#div#1;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#td#0;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#td#2;n#tr#0;n#table#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#iframe#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="546" column="0" selection-start="21571" selection-end="21571" vertical-scroll-proportion="-8.583333">
+          <folding>
+            <marker date="1384909374000" expanded="true" signature="12:106" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="107:21520" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="127:21513" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="161:199" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="223:21504" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="261:279" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="280:470" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="314:378" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="522:804" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="1636:1877" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="1664:1871" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="1963:2170" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="1991:2164" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2290:2416" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2318:2410" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2482:2618" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2510:2612" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2780:2939" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="2808:2933" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3177:3320" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3205:3314" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3480:3637" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3554:3624" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3752:3904" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="3826:3891" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4035:4203" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4109:4190" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4327:4488" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4401:4475" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4637:4823" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4711:4810" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="4985:5184" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="5059:5171" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="5373:5555" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="5447:5542" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="5724:5888" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="5798:5875" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6026:6200" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6100:6187" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6350:6536" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6424:6523" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6737:6974" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="6811:6961" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="7398:7572" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="7472:7559" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="7723:7910" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="7797:7897" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8031:8188" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8105:8175" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8495:8693" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8569:8680" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8847:9025" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="8921:9012" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9133:9277" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9207:9264" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9474:9707" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9548:9694" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9720:10019" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="9748:10013" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="10048:10448" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="10122:10435" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="10670:10887" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="10744:10874" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11093:11335" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11167:11322" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11418:11624" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11446:11618" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11767:11971" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="11841:11958" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="12139:12343" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="12213:12330" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="12518:12729" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="12592:12716" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="12946:13178" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13020:13165" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13269:13392" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13297:13386" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13420:13643" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13494:13630" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13691:13839" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13719:13833" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13867:14115" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="13941:14102" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14161:14420" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14189:14414" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14448:14823" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14522:14810" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14869:15011" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="14897:15005" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15039:15306" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15113:15293" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15519:15694" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15597:15679" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15745:15993" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="15773:15987" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16023:16406" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16101:16391" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16457:16582" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16485:16576" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16612:16864" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16690:16849" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16879:17008" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="16907:17002" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17038:17295" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17116:17280" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17310:17444" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17338:17438" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17472:17720" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17546:17707" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17914:18134" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="17942:18128" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18393:18521" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18421:18515" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18549:18752" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18623:18739" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18798:18967" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18826:18961" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="18995:19239" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19069:19226" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19283:19557" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19311:19551" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19585:19953" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19659:19940" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="19999:20162" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20027:20156" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20190:20428" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20264:20415" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20475:20616" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20503:20610" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20644:20860" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20718:20847" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20905:21137" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="20933:21131" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="21165:21491" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="21239:21478" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="21809:22277" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="21822:21901" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="21920:22159" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="22181:22204" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="22211:22238" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="22247:22269" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="22287:22381" placeholder="..." />
+            <marker date="1384909374000" expanded="true" signature="22304:22370" placeholder="{...}" />
+            <marker date="1384909374000" expanded="true" signature="22327:22364" placeholder="{&quot;selectors&quot;: &quot;h1,h2,h3&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/docs/installation.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="33" selection-start="457" selection-end="457" vertical-scroll-proportion="-8.125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/controllers/login_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="41" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/dummy/app/views/layouts/_header.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="54" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.26673532">
           <folding />
         </state>
       </provider>
