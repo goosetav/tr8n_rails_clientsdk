@@ -1,3 +1,0 @@
-= Tr8n Client SDK for Ruby on Rails
-
-This project rocks and uses MIT-LICENSE.
