@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Tr8n Client SDK for Ruby"
   s.description = "Client SDK for Tr8n translation engine."
 
-  s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
   s.licenses = "MIT-LICENSE"
 

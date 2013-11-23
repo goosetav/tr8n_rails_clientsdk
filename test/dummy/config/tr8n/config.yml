@@ -13,6 +13,8 @@ defaults:
     enabled:      false
     adapter:      memcache
     host:         localhost:11211
+#    adapter:      redis
+#    host:         localhost:6379
     path:         /cache
     version:      1
     timeout:      3600

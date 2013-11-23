@@ -26,4 +26,9 @@ class HomeController < ApplicationController
   def index
   end
 
+  def upgrade_cache
+    Tr8n.cache.upgrade_version
+    trfn("Cache has been upgraded")
+    redirect_to(request.env['HTTP_REFERER'])
+  end
 end

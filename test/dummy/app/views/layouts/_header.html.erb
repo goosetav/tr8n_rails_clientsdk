@@ -44,6 +44,9 @@
 
                 <li class="divider"></li>
                 <li><%= link_to_function tr("Shortcuts"), "Tr8n.UI.Lightbox.show('/tr8n/help/lb_shortcuts', {width:400})" %></li>
+                <% if Tr8n.cache.enabled? and not Tr8n.cache.read_only? %>
+                  <li><%= link_to(tr("Upgrade Cache ({num})", :num => Tr8n.cache.version), :controller => :home, :action => :upgrade_cache) %></li>
+                <% end %>
 
                 <li class="divider"></li>
                 <li><%=link_to_function(tr("Logout"), "Tr8n.UI.Lightbox.show('/login/out?mode=lightbox', {width:400});")%></li>

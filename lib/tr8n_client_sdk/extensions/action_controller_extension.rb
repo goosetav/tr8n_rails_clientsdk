@@ -78,7 +78,6 @@ module Tr8nClientSdk
         @tr8n_started_at = Time.now
 
         Tr8n.config.init_application
-        tr8n_application.update_cache_version
 
         translator = nil
 

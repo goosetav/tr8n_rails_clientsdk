@@ -7,12 +7,15 @@ gemspec
 
 #gem 'tr8n_core', :path => '../tr8n_ruby_core'
 
-gem 'tr8n_core'
+gem 'tr8n_core', '1.1.0'
 
 gem 'bundler'
 
 gem 'puma'
 gem 'unicorn'
+
+gem 'dalli'
+gem 'redis'
 
 group :development, :test do
   gem 'rspec'
