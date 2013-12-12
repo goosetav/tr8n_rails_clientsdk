@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tr8n_client_sdk (1.0.0)
+    tr8n_client_sdk (1.1.0)
       rails (~> 3.2.13)
       sass
       tr8n_core
@@ -59,7 +59,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.25)
+    mime-types (1.25.1)
     multi_json (1.7.3)
     multipart-post (1.2.0)
     polyglot (0.3.3)
