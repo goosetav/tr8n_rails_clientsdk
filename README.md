@@ -1,28 +1,16 @@
-# Tr8n Client SDK for Ruby on Rails
+<p align="center">
+  <img src="https://raw.github.com/tr8n/tr8n/master/doc/screenshots/tr8nlogo.png">
+</p>
 
-This Client SDK provides all tools and extensions necessary for translating any Rails application using the Tr8n service.
+Tr8n Client SDK for Ruby on Rails
+===================================
 
-You can use http://sandbox.tr8nhub.com or download and install the service locally by following these instructions:
-
-```sh
-  $ git clone https://github.com/tr8n/tr8n.git
-  $ cd tr8n/test/dummy
-  $ bundle install
-  $ rake db:migrate
-  $ rake tr8n:init
-  $ rails s
-```
-
-Open your browser and point to:
-
-  http://localhost:3000
-
-This is your Tr8n Service Instance.
-
-Now you can install and run the Client SDK sample.
+This Client SDK provides tools and extensions necessary for translating any Rails application using the Tr8n service.
 
 
-# Runing the Client SDK Sample
+Runing the Client SDK Sample
+===================================
+
 
 To run the gem as a stand-alone application follow these:
 
