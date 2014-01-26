@@ -6,7 +6,6 @@
       </a>
 
        <ul class="nav">
-        <li class="<%= "active" if controller.controller_name.to_s == 'docs' and controller.action_name.to_s == 'installation' %>"><%=link_to(tr("Installation Instructions"), :controller => :docs, :action => :installation) %></li>
         <li class="<%= "active" if controller.controller_name.to_s == 'docs' and controller.action_name.to_s == 'index' %>"><%=link_to(tr("Documentation & Samples"), :controller => :docs, :action => :index) %></li>
         <li class="<%= "active" if controller.controller_name.to_s == 'docs' and controller.action_name.to_s == 'tml' %>"><%=link_to(tr("TML Interactive Console"), :controller => :docs, :action => :tml) %></li>
       </ul>
