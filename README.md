@@ -24,13 +24,16 @@ Make sure you edit the config/tr8n/config.yml file and provide the correct appli
   $ cd tr8n_rails_clientsdk/test/dummy
   $ bundle install
   $ rake db:migrate
-  $ rails s -p 3001
+  $ rails s
 ```
 
 Alternatively, you can see the same sample application as a stand alone app:
 
 https://github.com/tr8n/tr8n_rails_clientsdk_sample
 
+This application is running at:
+
+http://rails.tr8nhub.com
 
 # Integration Instructions
 
