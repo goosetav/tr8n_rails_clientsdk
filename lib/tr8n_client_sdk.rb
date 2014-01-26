@@ -25,4 +25,5 @@ require "tr8n_client_sdk/railtie"
 require "tr8n_client_sdk/engine"
 
 module Tr8nClientSdk
+
 end

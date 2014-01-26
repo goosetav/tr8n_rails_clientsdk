@@ -27,4 +27,13 @@ namespace :tr8n_client_sdk do
     
   end
 
+  task :cache do
+    require "tr8n_client_sdk/config"
+    Tr8n.config = Tr8nClientSdk::Config.new
+
+    Tr8n.config.init_application
+    g = Tr8nCore::Generators::Cache::File.new
+    g.run
+  end
+
 end
