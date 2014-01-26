@@ -7,6 +7,8 @@ Tr8n Client SDK for Ruby on Rails
 
 This Client SDK provides tools and extensions necessary for translating any Rails application using the Tr8n service.
 
+[![Dependency Status](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f/badge.png)](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f)
+
 
 Runing the Client SDK Sample
 ===================================
