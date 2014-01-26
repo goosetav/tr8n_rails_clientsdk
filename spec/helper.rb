@@ -1,6 +1,7 @@
 require 'rspec'
 require 'json'
-require 'tr8n_rails_clientsdk'
+require 'tr8n_core'
+require 'tr8n_client_sdk'
 
 def fixtures_root
   File.join(File.dirname(__FILE__), 'fixtures')
