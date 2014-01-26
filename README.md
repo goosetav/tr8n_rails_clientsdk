@@ -1,4 +1,9 @@
-# Tr8n Client SDK for Ruby on Rails
+<p align="center">
+  <img src="https://raw.github.com/tr8n/tr8n/master/doc/screenshots/tr8nlogo.png">
+</p>
+
+Tr8n Client SDK for Ruby on Rails
+===================================
 
 This Client SDK provides all tools and extensions necessary for translating any Rails application using the Tr8n service.
 
