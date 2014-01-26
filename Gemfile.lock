@@ -2,8 +2,7 @@ PATH
   remote: .
   specs:
     tr8n_client_sdk (1.1.1)
-      rails (~> 3.2.13)
-      sass
+      rails
       tr8n_core
 
 GEM
