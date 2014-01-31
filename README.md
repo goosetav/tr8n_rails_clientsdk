@@ -9,6 +9,7 @@ This Client SDK provides tools and extensions necessary for translating any Rail
 
 [![Build Status](https://travis-ci.org/tr8n/tr8n_rails_clientsdk.png?branch=master)](https://travis-ci.org/tr8n/tr8n_rails_clientsdk)
 [![Dependency Status](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f/badge.png)](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f)
+[![Gem Version](https://badge.fury.io/rb/tr8n_client_sdk.png)](http://badge.fury.io/rb/tr8n_client_sdk)
 
 
 Runing the Client SDK Sample
