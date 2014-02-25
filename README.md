@@ -8,7 +8,10 @@ Tr8n Client SDK for Ruby on Rails
 This Client SDK provides tools and extensions necessary for translating any Rails application using the Tr8n service.
 
 [![Build Status](https://travis-ci.org/tr8n/tr8n_rails_clientsdk.png?branch=master)](https://travis-ci.org/tr8n/tr8n_rails_clientsdk)
+[![Coverage Status](https://coveralls.io/repos/tr8n/tr8n_rails_clientsdk/badge.png)](https://coveralls.io/r/tr8n/tr8n_rails_clientsdk)
+[![Gem Version](https://badge.fury.io/rb/tr8n_rails_clientsdk.png)](http://badge.fury.io/rb/tr8n_rails_clientsdk)
 [![Dependency Status](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f/badge.png)](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f)
+[![Project status](http://stillmaintained.com/tr8n/tr8n_ruby_core.png)](http://stillmaintained.com/tr8n/tr8n_ruby_core.png)
 
 
 Runing the Client SDK Sample

@@ -1,4 +1,8 @@
 require 'rspec'
+
+require 'coveralls'
+Coveralls.wear!
+
 require 'json'
 require 'tr8n_core'
 require 'tr8n_client_sdk'
