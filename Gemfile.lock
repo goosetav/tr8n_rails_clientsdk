@@ -5,12 +5,6 @@ PATH
       rails (~> 4.0.0)
       tr8n_core (~> 4.0.1)
 
-PATH
-  remote: ../tr8n_ruby_core
-  specs:
-    tr8n_core (4.0.1)
-      faraday
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -128,6 +122,8 @@ GEM
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
     tins (1.0.0)
+    tr8n_core (4.0.1)
+      faraday
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -154,5 +150,4 @@ DEPENDENCIES
   simplecov (~> 0.7.1)
   sqlite3
   tr8n_client_sdk!
-  tr8n_core!
   unicorn
