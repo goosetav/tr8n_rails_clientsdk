@@ -31,4 +31,5 @@ class HomeController < ApplicationController
     trfn("Cache has been upgraded")
     redirect_to(request.env['HTTP_REFERER'])
   end
+
 end

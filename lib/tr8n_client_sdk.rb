@@ -23,6 +23,7 @@
 
 require "tr8n_client_sdk/railtie"
 require "tr8n_client_sdk/engine"
+require "tr8n_core"
 
 module Tr8nClientSdk
 

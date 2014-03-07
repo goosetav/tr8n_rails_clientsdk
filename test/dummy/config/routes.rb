@@ -4,5 +4,13 @@ Rails.application.routes.draw do
 
   root :to => 'home#index'
 
-  match ':controller(/:action(/:id))(.:format)'
+  get 'home' => 'home#index'
+  get 'home/index' => 'home#index'
+  get 'home/upgrade_cache' => 'home#upgrade_cache'
+
+  get 'docs/index' => 'docs#index'
+  get 'docs/installation' => 'docs#installation'
+  get 'docs/tml' => 'docs#tml'
+  get 'docs/tml_content' => 'docs#tml_content'
+
 end

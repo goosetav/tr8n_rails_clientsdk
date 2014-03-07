@@ -59,24 +59,4 @@ private
   end
   helper_method :current_locale
 
-  def login(email, password, opts = {})
-    user = User.authenticate(email, password)
-    login!(user) if user
-    user
-  end
-
-  def login!(user)
-    session[:user_id] = user.id
-  end
-
-  def logout!
-    session[:user_id] = nil
-    @current_user = nil
-    # Tr8n::Config.reset!
-  end
-  
-  def redirect_if_not_logged_in
-    redirect_to("/home") unless current_user
-  end
-
 end

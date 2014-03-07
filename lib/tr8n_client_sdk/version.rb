@@ -23,5 +23,5 @@
 
 
 module Tr8nClientSdk
-  VERSION = "1.1.1"
+  VERSION = "4.0.1"
 end

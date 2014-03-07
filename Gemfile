@@ -5,9 +5,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-#gem 'tr8n_core', :path => '../tr8n_ruby_core'
-
-gem 'tr8n_core', '1.1.3'
+gem 'tr8n_core', :path => '../tr8n_ruby_core'
 
 gem 'bundler'
 
@@ -25,6 +23,7 @@ group :development, :test do
   gem "rspec-mocks", "~> 2.14.4"
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'simplecov', '~> 0.7.1', :require => false
 end
 
 group :assets do

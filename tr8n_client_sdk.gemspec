@@ -8,15 +8,15 @@ Gem::Specification.new do |s|
   s.name        = "tr8n_client_sdk"
   s.version     = Tr8nClientSdk::VERSION
   s.authors     = ["Michael Berkovich"]
-  s.email       = ["theiceberk@gmail.com"]
-  s.homepage    = "http://www.tr8nhub.com"
-  s.summary     = "Tr8n Client SDK for Ruby"
+  s.email       = ["michael@tr8nhub.com"]
+  s.homepage    = "https://tr8nhub.com"
+  s.summary     = "Tr8n Client SDK for Ruby on Rails"
   s.description = "Client SDK for Tr8n translation engine."
 
-  s.files = Dir["{app,config,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,lib}/**/*"] + ["LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["test/**/*"]
   s.licenses = "MIT-LICENSE"
 
-  s.add_dependency 'rails'
-  s.add_dependency 'tr8n_core'
+  s.add_dependency 'rails', '~> 4.0.0'
+  s.add_dependency 'tr8n_core', '~> 4.0.1'
 end

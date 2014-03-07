@@ -33,7 +33,7 @@ module Tr8nClientSdk
     # tr(:label => label, :description => "", :tokens => {}, :options => {})
     ############################################################
     def tr(label, description = "", tokens = {}, options = {})
-      return label if label.tr8n_translated?
+      return label.html_safe if label.tr8n_translated?
 
       params = Tr8n::Utils.normalize_tr_params(label, description, tokens, options)
       params[:options][:caller] = caller
