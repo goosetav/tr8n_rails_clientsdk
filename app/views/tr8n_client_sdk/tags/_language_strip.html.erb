@@ -1,5 +1,5 @@
 <% if Tr8n.config.enabled? %>
-  <% featured_languages = Tr8n.config.application.featured_languages %>
+  <% featured_languages = tr8n_application.featured_languages %>
   <% if featured_languages.any? %> 
     <style>
     .tr8n_language_strip                            {text-align:center; color:#777;}
@@ -13,7 +13,7 @@
       <% end %>
       
       <% if featured_languages.size > 0 %>
-          <%=link_to_function("&raquo;".html_safe, "Tr8n.UI.LanguageSelector.show(true)") %>
+          <%=link_to_function("&raquo;".html_safe, "Tr8n.UI.LanguageSelector.show()") %>
       <% end %> 
     </div>
   <% end %>

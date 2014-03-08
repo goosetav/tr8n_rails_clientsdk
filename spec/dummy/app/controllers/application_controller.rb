@@ -21,24 +21,30 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'rails'
-require 'pp'
 
-# Rails Extensions
-require File.join(File.dirname(__FILE__), 'extensions/action_common_methods')
-require File.join(File.dirname(__FILE__), 'extensions/action_view_extension')
-require File.join(File.dirname(__FILE__), 'extensions/action_controller_extension')
+class ApplicationController < ActionController::Base
+  protect_from_forgery
 
-module Tr8nClientSdk
-  class Railtie < ::Rails::Railtie #:nodoc:
-    initializer 'tr8n_client_sdk' do |app|
-      ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionViewExtension
-      end
-      ActiveSupport.on_load(:action_controller) do
-        include Tr8nClientSdk::ActionControllerExtension
-      end      
+  rescue_from StandardError do |e|
+    pp e, e.backtrace
+    raise e
+  end
+
+private 
+
+  # For this demo we are just using a dummy user object
+  def current_user
+    @current_user ||= User.new("Michael", "male")
+  end
+  helper_method :current_user
+
+  # For this demo we are using the locale stored in the session
+  def current_locale
+    @current_locale ||= begin
+      session[:locale] = params[:locale] if params[:locale]
+      session[:locale]
     end
   end
+  helper_method :current_locale
+
 end

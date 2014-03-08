@@ -52,12 +52,12 @@ module Tr8nClientSdk
         text = params[:label]
         sentences = Tr8n::Utils.split_by_sentence(text)
         sentences.each do |sentence|
-          text = text.gsub(sentence, Tr8n.config.current_language.translate(sentence, params[:description], params[:tokens], params[:options]))
+          text = text.gsub(sentence, tr8n_current_language.translate(sentence, params[:description], params[:tokens], params[:options]))
         end
         return text.tr8n_translated.html_safe
       end
 
-      Tr8n.config.current_language.translate(params).tr8n_translated.html_safe
+      tr8n_current_language.translate(params).tr8n_translated.html_safe
     rescue Tr8n::Exception => ex
       Tr8n::Logger.error("ERROR: #{label}")
       Tr8n::Logger.error(ex.message + "\n=> " + ex.backtrace.join("\n=> "))
@@ -91,31 +91,19 @@ module Tr8nClientSdk
     ######################################################################
 
     def tr8n_application
-      Tr8n.config.application
+      Tr8n.session.application
     end
 
     def tr8n_current_user
-      Tr8n.config.current_user
-    end
-
-    def tr8n_current_language
-      Tr8n.config.current_language
-    end
-
-    def tr8n_default_language
-      Tr8n.config.default_language
+      Tr8n.session.current_user
     end
 
     def tr8n_current_translator
-      Tr8n.config.current_translator
+      Tr8n.session.current_translator
     end
 
-    def tr8n_current_user_is_guest?
-      Tr8n.config.current_user_is_guest?
-    end
-
-    def tr8n_current_user_is_translator?
-      not Tr8n.config.current_translator.nil?
+    def tr8n_current_language
+      Tr8n.session.current_language
     end
 
   end

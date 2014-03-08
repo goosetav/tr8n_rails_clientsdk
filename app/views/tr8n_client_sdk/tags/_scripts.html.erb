@@ -15,21 +15,89 @@
   }
   </style>
 
-  <script type="text/javascript">
-    (function() {
-      function async_load(){
-        var s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = '<%= Tr8n.config.application.js_boot_url %>';
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
+  <script>
+    function tr8n_add_css(doc, value, inline) {
+      var css = null;
+      if (inline) {
+        css = doc.createElement('style');
+        css.type = 'text/css';
+        if (css.styleSheet){
+          css.styleSheet.cssText = value;
+        } else {
+          css.appendChild(document.createTextNode(value));
+        }
+      } else {
+        css = doc.createElement('link');
+        css.setAttribute('type', 'text/css');
+        css.setAttribute('rel', 'stylesheet');
+        css.setAttribute('media', 'screen');
+
+        if (value.indexOf('//') != -1) {
+          css.setAttribute('href', value);
+        } else {
+          css.setAttribute('href', '<%= tr8n_application.host %>' + value);
+        }
       }
-      if (window.attachEvent)
-        window.attachEvent('onload', async_load);
-      else
-        window.addEventListener('load', async_load, false);
+      doc.getElementsByTagName('head')[0].appendChild(css);
+      return css;
+    }
+
+    function tr8n_add_script(doc, id, src, onload) {
+      var script = doc.createElement('script');
+      script.setAttribute('id', id);
+      script.setAttribute('type', 'application/javascript');
+      if (src.indexOf('//') != -1) {
+        script.setAttribute('src', src);
+      } else {
+        script.setAttribute('src', '<%= tr8n_application.host %>' + src);
+      }
+      script.setAttribute('charset', 'UTF-8');
+      if (onload) script.onload = onload;
+      doc.getElementsByTagName('head')[0].appendChild(script);
+      return script;
+    }
+
+    (function() {
+      if (window.addEventListener) window.addEventListener('load', tr8n_init, false); // Standard
+      else if (window.attachEvent) window.attachEvent('onload', tr8n_init); // Microsoft
+      window.setTimeout(function() {  // just in case, hit it one more time a second later
+        tr8n_init();
+      }, 1000);
+
+      function tr8n_init() {
+        if (window.tr8n_already_initialized) return;
+        window.tr8n_already_initialized = true;
+
+        tr8n_add_css(window.document, '/assets/tr8n/tools.css', false);
+        tr8n_add_css(window.document, "<%= tr8n_application.css %>", true);
+
+        tr8n_add_script(window.document, 'tr8n-jssdk', '/assets/tools.js?t=<%=Time.now%>', function() {
+          Tr8n.app_key = '<%= tr8n_application.key %>';
+          Tr8n.host = '<%= tr8n_application.host %>';
+          Tr8n.sources = [];
+          Tr8n.default_locale = '<%= tr8n_application.default_locale %>';
+          Tr8n.page_locale = '<%= tr8n_current_language.locale %>';
+          Tr8n.locale = '<%= tr8n_current_language.locale %>';
+
+          <%
+            if tr8n_application.feature_enabled?(:shortcuts)
+               tr8n_application.shortcuts.each do |key, script|
+          %>
+          shortcut.add('<%=key.html_safe%>', function() {
+            <%= script.html_safe %>
+          });
+          <%
+               end
+            end
+          %>
+
+          if (typeof(tr8n_on_ready) === 'function') {
+            tr8n_on_ready();
+          }
+        });
+      }
     })();
   </script>
+
 
 <% end %>

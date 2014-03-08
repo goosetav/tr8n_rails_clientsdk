@@ -1,5 +1,5 @@
 #--
-# Copyright (c) 2014 Michael Berkovich, tr8nhub.com
+# Copyright (c) 2010-2013 Michael Berkovich, tr8nhub.com
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -21,24 +21,19 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'rails'
-require 'pp'
-
-# Rails Extensions
-require File.join(File.dirname(__FILE__), 'extensions/action_common_methods')
-require File.join(File.dirname(__FILE__), 'extensions/action_view_extension')
-require File.join(File.dirname(__FILE__), 'extensions/action_controller_extension')
-
-module Tr8nClientSdk
-  class Railtie < ::Rails::Railtie #:nodoc:
-    initializer 'tr8n_client_sdk' do |app|
-      ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionViewExtension
-      end
-      ActiveSupport.on_load(:action_controller) do
-        include Tr8nClientSdk::ActionControllerExtension
-      end      
-    end
+class DocsController < ApplicationController
+  
+  def index
   end
+
+  def installation
+  end
+
+  def tml
+  end
+
+  def tml_content
+    render :layout => false
+  end
+
 end

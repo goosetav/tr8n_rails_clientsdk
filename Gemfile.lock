@@ -5,6 +5,12 @@ PATH
       rails (~> 4.0.0)
       tr8n_core (~> 4.0.1)
 
+PATH
+  remote: ../tr8n_ruby_core
+  specs:
+    tr8n_core (4.0.2)
+      faraday
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -77,7 +83,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.1.1)
-    redis (3.0.7)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.14.1)
@@ -122,8 +127,6 @@ GEM
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
     tins (1.0.0)
-    tr8n_core (4.0.1)
-      faraday
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -141,7 +144,6 @@ DEPENDENCIES
   coveralls
   dalli
   puma
-  redis
   rspec (~> 2.14.1)
   rspec-core (~> 2.14.7)
   rspec-mocks (~> 2.14.4)
@@ -150,4 +152,5 @@ DEPENDENCIES
   simplecov (~> 0.7.1)
   sqlite3
   tr8n_client_sdk!
+  tr8n_core!
   unicorn

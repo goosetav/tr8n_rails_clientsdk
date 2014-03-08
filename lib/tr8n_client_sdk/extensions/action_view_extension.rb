@@ -25,27 +25,27 @@ module Tr8nClientSdk
   module ActionViewExtension
     extend ActiveSupport::Concern
 
-    def tr8n_options_for_select(options, selected = nil, description = nil, lang = Tr8n.config.current_language)
+    def tr8n_options_for_select(options, selected = nil, description = nil, lang = Tr8n.session.current_language)
       options_for_select(options.tro(description), selected)
     end
 
     def tr8n_phrases_link_tag(search = "", phrase_type = :without, phrase_status = :any)
       return unless Tr8n.config.enabled?
-      return if Tr8n.config.current_language.default?
-      return unless Tr8n.config.current_translator.inline?
+      return if tr8n_current_language.default?
+      return unless tr8n_current_translator.inline?
 
-      link_to(image_tag(Tr8n.config.url_for("/assets/tr8n/translate_icn.gif"), :style => "vertical-align:middle; border: 0px;", :title => search),
-                        Tr8n.config.url_for("/tr8n/app/phrases/index?search=#{search}")).html_safe
+      link_to(image_tag(tr8n_application.url_for("/assets/tr8n/translate_icn.gif"), :style => "vertical-align:middle; border: 0px;", :title => search),
+              tr8n_application.url_for("/tr8n/app/phrases/index?search=#{search}")).html_safe
     end
 
-    def tr8n_language_flag_tag(lang = Tr8n.config.current_language, opts = {})
-      return "" unless Tr8n.config.application.feature_enabled?(:language_flags)
+    def tr8n_language_flag_tag(lang = tr8n_current_language, opts = {})
+      return "" unless tr8n_application.feature_enabled?(:language_flags)
       html = image_tag(lang.flag_url, :style => "vertical-align:middle;", :title => lang.native_name)
       html << "&nbsp;".html_safe 
       html.html_safe
     end
 
-    def tr8n_language_name_tag(lang = Tr8n.config.current_language, opts = {})
+    def tr8n_language_name_tag(lang = tr8n_current_language, opts = {})
       show_flag = opts[:flag].nil? ? true : opts[:flag]
       name_type = opts[:name].nil? ? :full : opts[:name] # :full, :native, :english, :locale
       linked = opts[:linked].nil? ? true : opts[:linked] 
@@ -61,13 +61,7 @@ module Tr8nClientSdk
         else lang.full_name
       end
 
-#      if linked
-#        # Todo: use language selector
-##        html << link_to(name.html_safe, "/tr8n/language/switch?locale=#{lang.locale}&language_action=switch_language&source_url=#{CGI.escape(opts[:source_url]||'')}")
-#      else
-        html << name
-      #end
-
+      html << name
       html << "</span></span>"
       html.html_safe
     end
@@ -92,7 +86,7 @@ module Tr8nClientSdk
     def tr8n_select_month(date, options = {}, html_options = {})
       month_names = options[:use_short_month] ? Tr8n.config.default_abbr_month_names : Tr8n.config.default_month_names
       select_month(date, options.merge(
-        :use_month_names => month_names.collect{|month_name| Tr8n::Language.translate(month_name, options[:description] || "Month name")} 
+        :use_month_names => month_names.collect{|month_name| tr8n_current_language.translate(month_name, options[:description] || "Month name")}
       ), html_options)
     end
 
@@ -105,69 +99,11 @@ module Tr8nClientSdk
       Thread.current[:block_options] ||= []
       Thread.current[:block_options].push(opts)
 
-      #component = Tr8n.config.current_component_from_block_options
-      #if component
-      #  source = Tr8n.config.current_source_from_block_options
-      #  unless source.nil?
-      #    Tr8n::ComponentSource.find_or_create(component, source)
-      #  end
-      #end
-      #
-      #if Tr8n.config.current_user_is_authorized_to_view_component?(component)
-      #  selected_language = Tr8n.config.current_language
-      #
-      #  unless Tr8n.config.current_user_is_authorized_to_view_language?(component, selected_language)
-      #    Tr8n.config.set_language(Tr8n.config.default_language)
-      #  end
-      #
-      #  if block_given?
-      #    ret = capture(&block)
-      #  end
-      #
-      #  Tr8n.config.current_language = selected_language
-      #else
-      #  ret = ""
-      #end
-
       if block_given?
         ret = capture(&block)
       end
 
       Thread.current[:block_options].pop
-      ret
-    end
-
-    def tr8n_content_for_locales_tag(opts = {}, &block)
-      locale = Tr8n.config.current_language.locale
-
-      if opts[:only] 
-         return unless opts[:only].include?(locale)
-      end
-
-      if opts[:except]
-        return if opts[:except].include?(locale)
-      end
-
-      if block_given?
-        ret = capture(&block) 
-      end
-      ret
-    end
-
-    def tr8n_content_for_countries_tag(opts = {}, &block)
-      country = Tr8n.config.country_from_ip(tr8n_request_remote_ip)
-      
-      if opts[:only] 
-         return unless opts[:only].include?(country)
-      end
-
-      if opts[:except]
-        return if opts[:except].include?(country)
-      end
-
-      if block_given?
-        ret = capture(&block) 
-      end
       ret
     end
 
@@ -202,15 +138,15 @@ module Tr8nClientSdk
     ## Language Direction Support
     ######################################################################
 
-    def tr8n_style_attribute_tag(attr_name = 'float', default = 'right', lang = Tr8n.config.current_language)
+    def tr8n_style_attribute_tag(attr_name = 'float', default = 'right', lang = tr8n_current_language)
       "#{attr_name}:#{lang.align(default)}".html_safe
     end
 
-    def tr8n_style_directional_attribute_tag(attr_name = 'padding', default = 'right', value = '5px', lang = Tr8n.config.current_language)
+    def tr8n_style_directional_attribute_tag(attr_name = 'padding', default = 'right', value = '5px', lang = tr8n_current_language)
       "#{attr_name}-#{lang.align(default)}:#{value}".html_safe
     end
 
-    def tr8n_dir_attribute_tag(lang = Tr8n.config.current_language)
+    def tr8n_dir_attribute_tag(lang = tr8n_current_language)
       "dir='#{lang.dir}'".html_safe
     end
 

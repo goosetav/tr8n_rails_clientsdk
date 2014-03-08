@@ -21,24 +21,15 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require 'rails'
-require 'pp'
-
-# Rails Extensions
-require File.join(File.dirname(__FILE__), 'extensions/action_common_methods')
-require File.join(File.dirname(__FILE__), 'extensions/action_view_extension')
-require File.join(File.dirname(__FILE__), 'extensions/action_controller_extension')
-
-module Tr8nClientSdk
-  class Railtie < ::Rails::Railtie #:nodoc:
-    initializer 'tr8n_client_sdk' do |app|
-      ActiveSupport.on_load(:action_view) do
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionCommonMethods
-        ::ActionView::Base.send :include, Tr8nClientSdk::ActionViewExtension
-      end
-      ActiveSupport.on_load(:action_controller) do
-        include Tr8nClientSdk::ActionControllerExtension
-      end      
-    end
+class HomeController < ApplicationController
+  
+  def index
   end
+
+  def upgrade_cache
+    Tr8n.cache.upgrade_version
+    trfn("Cache has been upgraded")
+    redirect_to(request.env['HTTP_REFERER'])
+  end
+
 end
