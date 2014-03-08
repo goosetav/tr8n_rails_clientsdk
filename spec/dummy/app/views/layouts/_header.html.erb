@@ -12,11 +12,7 @@
     
       <ul class="nav pull-right">
           <li>
-            <a href="#" onClick="Tr8n.UI.LanguageSelector.show(true)" class="dropdown-toggle" data-toggle="dropdown">
-              <%= image_tag(tr8n_current_language.flag_url, :style => "align:middle") %>
-              &nbsp; 
-              <%= tr8n_current_language.name %>
-            </a>
+            <%= tr8n_language_selector_tag %>
           </li>
           <% if tr8n_current_translator %>
             <li class="dropdown">

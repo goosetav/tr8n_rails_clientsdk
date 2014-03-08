@@ -62,7 +62,7 @@ Add the following configuration to your Application.rb:
     Tr8n.configure do |config|
       config.application = {
           :key => YOUR_APP_KEY,
-          :secret => YOUR_APP_SECRET"
+          :secret => YOUR_APP_SECRET
       }
     end
 ```
@@ -74,6 +74,24 @@ In the HEAD section of your layout, add:
 ```
 
 You are done, tr8n is now running in your app.
+
+
+Now you can simply add the default language selector anywhere on your page using:
+
+```ruby
+  <%= tr8n_language_selector_tag %>
+```
+
+And use TML (Translation Markup Language) to translate your strings, using:
+
+```ruby
+  <%= tr("Hello World") %>
+  <%= tr("You have {count||message}", :count => 5) %>
+  <%= tr("{actor} sent {target} [bold: {count||gift}]", :actor => actor_user, :target => target_user, :count => 5) %>
+  ...
+```
+
+Learn more about TML at: http://wiki.tr8nhub.com
 
 
 Caching

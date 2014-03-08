@@ -66,6 +66,10 @@ module Tr8nClientSdk
       html.html_safe
     end
 
+    def tr8n_language_selector_tag(opts = {})
+      render(:partial => '/tr8n_client_sdk/tags/language_selector', :locals => {:opts => opts})
+    end
+
     def tr8n_language_strip_tag(opts = {})
       opts[:flag] = opts[:flag].nil? ? false : opts[:flag]
       opts[:name] = opts[:name].nil? ? :native : opts[:name] 
