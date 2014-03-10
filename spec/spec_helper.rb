@@ -58,8 +58,8 @@ def init_application(locales = [], path = 'application.json')
   locales.each do |locale|
     app.add_language(Tr8n::Language.new(load_json("languages/#{locale}.json")))
   end
-  Tr8n.config.application = app
-  Tr8n.config.current_language = app.language('en-US')
+  Tr8n.session.application = app
+  Tr8n.session.current_language = app.language('en-US')
   app
 end
 
