@@ -5,7 +5,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'tr8n_core', :path => '../tr8n_ruby_core'
+#gem 'tr8n_core', :path => '../tr8n_ruby_core'
 
 gem 'bundler'
 
