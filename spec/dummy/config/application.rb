@@ -49,26 +49,6 @@ module Dummy
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    Tr8n.configure do |config|
-      config.application = {
-          :host => "http://localhost:3000",
-          :key => "6b714be8673fcc4a3",
-          :secret => "5c873790ebdc7d7b8"
-      }
-      config.cache = {
-          :enabled  => true,
-          :adapter  => 'memcache',
-          :host     => 'localhost:11211',
-          :version  => 2,
-          :timeout  => 3600
-      }
-      config.logger  = {
-          :enabled  => true,
-          :path     => "#{Rails.root}/log/tr8n.log",
-          :level    => 'debug'
-      }
-    end
-
   end
 end
 

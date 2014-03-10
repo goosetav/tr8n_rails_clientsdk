@@ -4,23 +4,19 @@
 
 Tr8n Client SDK for Ruby on Rails
 ===================================
-
-This Client SDK provides tools and extensions necessary for translating any Rails application using the Tr8n service.
-
 [![Build Status](https://travis-ci.org/tr8n/tr8n_rails_clientsdk.png?branch=master)](https://travis-ci.org/tr8n/tr8n_rails_clientsdk)
 [![Coverage Status](https://coveralls.io/repos/tr8n/tr8n_rails_clientsdk/badge.png)](https://coveralls.io/r/tr8n/tr8n_rails_clientsdk)
 [![Gem Version](https://badge.fury.io/rb/tr8n_client_sdk.png)](http://badge.fury.io/rb/tr8n_client_sdk)
 [![Dependency Status](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f/badge.png)](https://www.versioneye.com/user/projects/52e4bc4cec1375b57600000f)
 [![Project status](http://stillmaintained.com/tr8n/tr8n_ruby_core.png)](http://stillmaintained.com/tr8n/tr8n_ruby_core.png)
 
+This Client SDK provides extensions necessary for translating Rails based application using the Tr8nHub service.
 
-Runing the Client SDK Sample
+
+Tr8n Client SDK Sample
 ===================================
 
-
-To run the gem as a stand-alone application follow these:
-
-Make sure you edit the config/tr8n/config.yml file and provide the correct application host, key and secret for your application.
+The best way to start using Tr8nHub is to run the sample application that comes bundled with this SDK.
 
 ```sh
   $ git clone https://github.com/tr8n/tr8n_rails_clientsdk.git
@@ -29,7 +25,10 @@ Make sure you edit the config/tr8n/config.yml file and provide the correct appli
   $ script/rails s
 ```
 
-Alternatively, you can see the same sample application as a stand alone app:
+This will start the dummy application in development mode. The development mode uses Tr8nHub sandbox server for translations.
+
+
+Alternatively, you can use the same sample application as a stand alone app:
 
 https://github.com/tr8n/tr8n_rails_clientsdk_sample
 
@@ -42,7 +41,7 @@ http://rails.tr8nhub.com
 Integration Instructions
 ===================================
 
-To integrate Tr8n into your app, all you need to do is:
+To integrate Tr8n SDK into your app, all you need to do is:
 
 Add the following gems to your Gemfile:
 
@@ -56,7 +55,7 @@ Install the gems:
   $ bundle
 ```
 
-Add the following configuration to your Application.rb:
+Add the following configuration to your Application.rb (or to the various environment files):
 
 ```ruby
     Tr8n.configure do |config|
@@ -74,7 +73,6 @@ In the HEAD section of your layout, add:
 ```
 
 You are done, tr8n is now running in your app.
-
 
 Now you can simply add the default language selector anywhere on your page using:
 
