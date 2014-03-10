@@ -37,6 +37,12 @@ This application is running at:
 http://rails.tr8nhub.com
 
 
+Another sample application that uses this SDK is available here:
+
+https://github.com/tr8n/tr8n_samples_bookface_rails
+
+Install it and see how it works.
+
 
 Integration Instructions
 ===================================

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = Tr8nClientSdk::VERSION
   s.authors     = ["Michael Berkovich"]
   s.email       = ["michael@tr8nhub.com"]
-  s.homepage    = "https://tr8nhub.com"
+  s.homepage    = "https://github.com/tr8n/tr8n_rails_clientsdk"
   s.summary     = "Tr8n Client SDK for Ruby on Rails"
   s.description = "Client SDK for Tr8n translation engine."
 
@@ -18,5 +18,5 @@ Gem::Specification.new do |s|
   s.licenses = "MIT-LICENSE"
 
   s.add_dependency 'rails', '~> 4.0.0'
-  s.add_dependency 'tr8n_core', '~> 4.0.3'
+  s.add_dependency 'tr8n_core', '~> 4.0.4'
 end

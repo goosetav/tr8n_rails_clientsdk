@@ -70,11 +70,11 @@ module Tr8nClientSdk
       def tr8n_init_current_user
         self.send(Tr8n.config.current_user_method) if Tr8n.config.current_user_method
       rescue
-        nil
+        Tr8n.config.default_locale
       end
 
       def tr8n_init_client_sdk
-        return if Tr8n.config.disabled?
+        return if Tr8n.config.disabled? or Tr8n.config.application.nil?
 
         Tr8n.logger.info("Initializing request...")
         @tr8n_started_at = Time.now
@@ -94,21 +94,25 @@ module Tr8nClientSdk
           Tr8n.logger.info("Cookie does not exist")
         end
 
+        locale ||= tr8n_init_current_locale || Tr8n.config.default_locale
+
         Tr8n.session.current_user = tr8n_init_current_user
         Tr8n.session.current_translator = translator
-        Tr8n.session.current_language = tr8n_application.language(locale || tr8n_init_current_locale)
+        Tr8n.session.current_language = tr8n_application.language(locale || tr8n_init_current_locale || Tr8n.config.default_locale)
         Tr8n.session.current_source = tr8n_source
         Tr8n.session.current_component = tr8n_component
       end
 
       def tr8n_reset_client_sdk
+        return if tr8n_application.nil?
+
         @tr8n_finished_at = Time.now
 
         Tr8n.logger.info("Resetting request...")
         tr8n_application.submit_missing_keys
         Tr8n.session.reset
 
-        Tr8n.logger.info("Request took #{@tr8n_finished_at - @tr8n_started_at} mls")
+        Tr8n.logger.info("Request took #{@tr8n_finished_at - @tr8n_started_at} mls") if @tr8n_started_at
       end
 
     end
