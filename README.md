@@ -84,7 +84,7 @@ Now you can simply add the default language selector anywhere on your page using
 
 And use TML (Translation Markup Language) to translate your strings, using:
 
-```ruby
+```rails
   <%= tr("Hello World") %>
   <%= tr("You have {count||message}", :count => 5) %>
   <%= tr("{actor} sent {target} [bold: {count||gift}]", :actor => actor_user, :target => target_user, :count => 5) %>
