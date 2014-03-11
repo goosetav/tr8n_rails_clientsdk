@@ -103,7 +103,7 @@ module Tr8nClientSdk
     end
 
     def tr8n_current_language
-      Tr8n.session.current_language
+      Tr8n.session.current_language || Tr8n.config.default_locale
     end
 
   end
